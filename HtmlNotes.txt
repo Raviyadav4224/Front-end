@@ -1,7 +1,14 @@
 1. Script Tag - 
 
+    <Script defer src='index.js'/>
     properties
 
+    defer - It is downloaded in the background and loads the Javacsript after HTML parsing is complete
+    
+    async - It is downloaded in the background and  executes as soon as it is available 
+
+    *Scripts placed inside body tag executes after HTML content is loaded
+    
 2. HTML 5 features -
 
     
