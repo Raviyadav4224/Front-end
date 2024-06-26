@@ -1,0 +1,456 @@
+Javascript is a dynamically typed single threaded launguage
+In Javascript memory is alloacted during RunTime
+
+1. Data Types
+
+    Fundamental Data Types/ Primitive Data Types ---
+
+    Boolean,String,Number,Symbol,Undefined,null,BigInt
+    All Primitive data types are stored in STACK MEMORY i.e copy of variable is created
+
+    Derived Data Types/ Non Primitive Data Types ---
+
+    Arrays,Objects,Functions
+    All Derived data types are stored in HEAP MEMORY i.e reference of variable is created
+
+2. If Else -  it evaluates a condition and if its is true or false performs certain actions.
+
+3. Ternary Operator - it evaluates an expression and returns a value if it is true
+    example - console.log(5>10 ? "yes it is greater" : "No its not")
+
+4. Nullish Operator - 
+
+    console.log(5?? "This is the value")
+
+    means if 5 is Undefined or null then its value will be "This is the value" else it would be 5 only
+
+5. let, var, const - 
+ 
+ var - it has global scope , it can be accessed before declaration of the variable and its value will be Undefined,
+        it has global scope i.e window object will have the variable created using var
+ let -  it has block level scope, it cannot be accessed before declaration, it has SCRIPT scoped
+ const - it is similar to let but values once assigned cannot be overwritten
+
+    * const Arrays vlaues,Objects can be overwritten
+
+6. typeof - 
+    it is used to determine the type of variable
+
+    typeof(Function) - Function
+    typeof(Array) - Object
+    typeof(Undefined) - Undefined
+    typeof(null) - Object
+    typeof(Class) - Function
+
+7. Hoisting - 
+    Hoisting is a special feature in Javascript where variable and functions declaratives are moved to the 
+    top of their defining scopes during the compile phase, before the code is executed
+    * Functions declared using the keyword function are fully hoisted i.e they are moved to the top of their 
+    defining scope
+    * Function assignment are not hoisted
+
+8. Temporal Dead Zone - 
+     Both let and const are hoisted but differs with var 
+     let and const variable cannot be accessed before declaration , this is known as Temporal Dead Zone
+
+9. Closures - 
+    Closure occurs when one function is defined inside another function and the inner function has access 
+    to outer function variable even after outer function has stopped executing.
+
+10. Lexical Scoping - 
+    When inner function has access to the variable of outer function is known as lexical scoping
+
+11. Call,Apply and Bind - 
+
+    Call - 
+    it allows you to invoke a function with a specified this value and arguments provided individually
+    example
+    functionName.call(thisValue,args1,args2...)
+
+    Apply - 
+    it allows you to invoke a function with a specified this value and arguments provided as an Array
+    example
+    functionName.apply(thisValue,[args1,args2...])
+
+    function functionName(arg1,arg2){
+        console.log(arg1,arg2)
+    }
+    here arg1,arg2 will refer to arg1 passed in apply method
+
+    Bind - 
+    it returns a new function with a specified this value, It creates a new function which can be invoked later
+    example
+    const newFunction=functionName.bind(thisValue,args1,args2...)
+
+12. Arrow Functions vs Functions - 
+
+    Arrow function doesn't have their own this value
+    They refer to parents this value which is generally the global object (window object)
+    Whereas normal functions this changes as per requirement
+    for example - 
+    functionName.call({name:"ra"}) - here functionName will refer to {name:"ra"} object and not the global object
+
+13. IIFE - Immediately invoked function expression
+
+    (function definition)(function call as soon as it gets created)
+    (function IIFE() {
+    console.log("this is an IIFE")
+    }) ();
+    
+    *For using two IIFE seperate it using semicolon
+
+14. new keyword - 
+    using new keyword to create objects, each call to the constructor object will create a new object 
+    with its own memory allocation
+
+15. Objects - 
+
+    Different ways to create an Object in JS - 
+    1. using literals 
+            const obj2 = {
+            name: "Minu",
+            age: 27,
+            logMe: function () {
+                console.log(`Hey ${this.name} your age is ${this.age}`);
+            },
+            }
+    2. using Object Constructor
+    3. using function
+    4. using Class
+    5. using JSON.parse(text in json format)
+    6. using Object.create()
+    7. Object.assign(target,source) - it is also used copy source to target object
+    
+    ** 
+    obj7 =  MyClassObject("Ravi", 26);
+    obj7 = MyClassObject("Minu", 27);
+    In this case it is overwritting the created object values
+    here this will be window object but when using new keyword it refers to MyClassObject this value
+    obj7 = new  MyClassObject("Ravi", 26);
+    obj7 = new MyClassObject("Minu", 27);
+    
+    ** you cannot copy methods using JSON.parse
+    
+
+    Object.freeze() vs Object.seal()
+
+    freeze() makes an Object immutable i.e no property can be added, removed, modified, even for its child objects
+    whereas seal() prevents from adding new properties and makes existing properties as non configurable i.e 
+    using defineProperty you cannot modify that object but you can modify exisitng properties values
+
+    Object.assign - 
+    It is used to create shallow copy of Objects
+    * spread operator also creates shallow copy of object
+
+    Shallow Copy vs Deep Copy - 
+
+    In shallow copy the immediate properties of an object are copied and not the NESTED properties,
+    new object created through shallow copy shares references to the nested objects.
+    spread operator, normal object assignment,Object.assign(), Object.create() all these
+    creates shallow copy of the object
+
+    whereas in deep copy all the properties of object along with its nested objects are copied,
+    new object created using deep copy has new reference or entirely newly created object
+
+    using JSON.parse(JOSN.stringify(obj)) we can create a deep copy of an object
+
+16. Loops - 
+    
+    map, filter, reduce methods returns array whereas forEach,for,forof,forin doesn't returns anything
+    for of is used to iterate over iterable i.e Arrays
+
+    Array.redcue(callbackFn,initialValue)
+                filteredData.map((item) => item.amount)
+                .reduce((prev, current) => prev + current, 0)
+17. SetTimeout & SetTimeInterval & ClearTimeout & ClearTimeInterval
+
+    this concept in SetTimeout function
+
+    *
+    for (var i = 0; i < 10; i++) {
+    setTimeout((i) => {
+    console.log(`Executed after ${i} seconds`);
+    }, i * 1000);
+    }
+
+    This happens because var is not block scope, it is hoisted to the function scope
+    if we change var to let, let is block scope and creates lexical environment for each execution of if
+
+    for (let i = 0; i < 10; i++) {
+    setTimeout((i) => {
+    console.log(`Executed after ${i} seconds`);
+    }, i * 1000);
+    }
+    To replicate same using var keyword
+    we can do this
+    for (var i = 0; i < 10; i++) {
+    function Execute(index) {
+    setTimeout(() => {
+      console.log(`Executed after ${index} seconds`);
+    }, index * 1000);
+     }
+    Execute(i);
+    }
+
+18. Promises - 
+    Promises are objects in Javascript which represent completion or failure of an asynchronous operation
+    It has three states - 
+    pending, fullfilled or rejected
+    .then - fullfilled states
+    .catch - rejected states
+    .finally - gets executed everytime 
+    
+    const myPromise=new Promise((resolve,reject)=>{})
+
+    Promise.all([]) - 
+    Promise.all returns the value promises as an array of values when all promises are 
+    settled , when any of the promise gets rejected it stops
+    or we can say that it executes till first rejection
+    *It works concurrently, to make api call simultaneously use loops 
+    *using map will also make concurrent requests, to resolve that use Promise.all
+     Althogh Promise.all works concurrently but due to await in map it works for each promise to resolve
+        async function callMe() {
+            for(const url of urls){
+                await apiCall(url)
+            }
+            }
+
+    Promise.any([]) - 
+    It returns the value of first promise to be resolved
+    If none of the promise gets resolved, it returns the rejected value of last promise
+
+    Promise.allSettled - 
+    It returns the value of promises when all promises gets resolved
+
+    Promise.resolve(value) & Promise.reject(value) - 
+    It directly resolves or rejects the promise with the given value
+
+19. Async await - 
+
+    It is used to handle promises or asynchronous tasks in Javascript
+    when await keyword is encountered, Javascript waits there and checks if any other tasks is there to finish
+    or not
+    Inside of async function works Synchronously
+    Till the time ,execution of code is waiting at await keyword all other possible tasks which can be finished gets 
+    executed
+    *async function returns a promise by default
+
+    const myPromise1 = new Promise((resolve, reject) => {
+     if (true) {
+      setTimeout(() => resolve("Promise 3"), 3000);
+     } else {
+    reject("The myPromise has been rejected");
+     }
+    });
+    const myPromise2 = new Promise((resolve, reject) => {
+  if (true) {
+    resolve("Promise 4");
+  } else {
+    reject("The myPromise2 has been rejected");
+  }
+    });
+
+    async function callPromise() {
+  console.log("mypromise 1");
+  const p1 = await myPromise1;
+  console.log(p1)
+  console.log("mypromise 2");
+  const p2 = await myPromise2;
+  console.log(p2)
+  console.log("mypromise 3");
+    }
+    function logMe() {
+    console.log('Hey i"m logginggg......');
+    }
+
+    console.log('Start')
+    setTimeout(() => console.log("Waiting for 0 seconds", 0));
+    setTimeout(() => {
+    console.log("setTimeout function");
+    }, 5000);
+    logMe()
+    callPromise();
+    console.log('End')
+
+    Output
+    // Start
+    // hey i"m logginggg......
+    // mypromise 1
+    // End
+    // Waiting for 0 seconds
+    // Promise 3
+    // mypromise 2
+    // Promsie 4
+    // mypromise 3
+    // setTimeout function
+
+20. Fetch Api - 
+
+    It is a promise based API whereas xmlhttpRequest is callback based API.
+
+    fetch(url,options)
+    options:{
+        method:"GET/POST",
+        headers:{
+            "content-type":"application/json"
+        },
+        body: this must match headers content type JSON.stringify(data)
+    }
+
+21. Try-catch - 
+
+    try{
+        expression if throws any error goes to catch block
+    }
+    catch(error){
+        console.log(error)
+    }
+    finally{
+        gets executed everytime
+    }
+
+22. Callback function - 
+    A function which gets executed after all the tasks which gets completed is called callback 
+    example function(logData){
+        some operations
+        logData() // here logData is a callback function
+    }
+
+23. Higher Order Function - 
+
+    A function which takes another function as a argument or  returns another function as an output is
+    called a Higher order function
+    examples - map,filter,reduce all are higher order functions
+
+24. Callback hell - 
+
+    When a callback is called inside another callback it is referred as callback hell i.e nesting of multiple
+    of callbacks inside a function
+
+25. OOPS - 
+    Javascript implements 
+    Encapsulation - example class
+    inheritance
+    Polymorphism - same function used in many forms
+    Data Abstraction - JS doesnt have access modifiers like private,public,protected . So it is achieved using 
+    Closures or WeakMap object
+
+26 . Prototypal Inheritance - 
+    By default everything in Js points to an Object.
+    We can add properties to prototype of an Object
+    By default Js first searches for the property in Objects prototype, if it is not available it will search
+    in its parents prototype and so on until the property is found, this is called prototypal based inheritance
+
+    To get prototype of an object - 
+    Object.getPrototypeOf(person1)
+    Object.getPrototypeOf(person1,{'name})
+
+    To set prototype of an object - 
+
+    Object.setPrototypeOf(person1,{
+        prototype object
+    })
+
+27. BOM && DOM - 
+    Browser Object Model -  It is an Object provided by the browser, examples window.open(),window.close(),
+    window.scrollTo(),window.scrollBy, document etc
+
+    Here the document object is known as the Document Object Model i.e DOM
+    DOM is basically tree like structure or representation of HTML elements
+
+
+    HTMLCollection vs NodeList
+
+    An HTMLCollection is always a live collection. Example: If you add a <li>
+    element to a list in the DOM, the list in the HTMLCollection will also change.
+    A NodeList is most often a static collection. Example: If you add a <li>
+    element to a list in the DOM, the list in NodeList will not change.
+    The getElementsByClassName() and getElementsByTagName() methods return a live
+    HTMLCollection.
+    The getElementById() & querySelectorAll() method returns a static NodeList.
+    The childNodes property returns a live NodeList
+    HTMLCollection items can be accessed by their name, id, or index number.
+    NodeList items can only be accessed by their index number. 
+
+    document.getElementById - returns an Element Object
+    document.getElementsByClassName - returns a HTMLCollection
+    document.querySelector - returns an Element Object
+    document.querySelectorAll - returns a NodeList
+    document.getElementByTagName - returns a HTMLCollection
+
+    append vs appendChild - 
+
+    appendChild - it accepts only NodeList and add to the end of NodeList
+    It returns the appended Node object
+    example document.getElementsByClassName.appendChild('div') throws an error
+
+    append - it can accept multiple Node values , strings (DOM Strings) as an input
+    It doesn't have a return value
+    example document.getElementsByClassName.append(div, 'div')
+
+    ** HTMLCollection[0].childNodes gives the Node object and we can perform append or appendChild on
+        HTMLCollection[0] and not on HTMLCollection
+
+    innerText vs textContent - 
+
+    innerText - It is used to get or set the text content of an element considering the CSS
+    and it doesnt includes hidden text of an HTML element 
+    
+    textContent - It is used to set or get the text content along with text nodes and white content
+    of an element without considering the CSS
+
+    innerHtml - It is used to set or get the Html content of an element
+    
+    *remove vs removeChild - 
+
+    remove is a method directly available on DOM elements whereas removeChild is a method which is
+    available on PARENT'S NODE and used to remove child elements
+
+28. Event bubbling vs Event Capturing - 
+
+    By default an event follows bubbling mode.
+    In bubbling mode event propagates from child to parents whereas in event capturing mode event propagates 
+    from Parent to child
+
+    *We can stop propagation of bubbling events using event.stopPropagation()
+
+29. Event Simulation & Event Delegation - 
+
+    Calling an event from Javascript which is not depending upon user action is known as event simulation 
+    example  - addEventListener.click(), form.submit() etc
+
+    Instead of applying event to each child we can apply event to the parent and have the same outcome is
+    termed as event delegation
+
+30. CallStack vs Event Loop vs Callback Queue vs Execution Context - 
+
+    CallStack(LIFO) - Whenever a function is called in JS, a new execution context is created and then the function 
+    moves to the CallStack, After completion of that function it is popped out of the CallStack
+
+    Web API's - 
+    DOM Manipulation, Promises, Fetch API, events , xmlhttpRequest etc all are handled by web api's which is 
+    generally the browser in front end case
+    All these functions move to the web apis and then to the callback queue(FIFO)
+
+    Event Loop - 
+    Event loop keeps a check on CallStack and Callback Queue
+    Whenever CallStack is empty, a new function from callback queue is pushed to the CallStack and this circle goes on
+    goes on until the callback queue is not cleared
+
+    *MicroTasks vs MacroTasks - 
+     MicroTasks - Promises, fetch api
+     MacroTasks - setTimeout etc
+     MicroTasks > MacroTasks
+
+    Execution Context - It holds information about the environment in which Javascript is being executed
+    During the execution , a context is created everytime
+    Firstly variable creation phase takes place and then value assignment takes place
+
+xmlhttpRequest
+Node vs element 
+
+document.createElement
+Form events
+Strict mode in js
+type module and type SCRIPT
+script tag in html, defer tag in that

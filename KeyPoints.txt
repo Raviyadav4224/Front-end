@@ -1,0 +1,9 @@
+1. Number to String conversion - 
+
+    let num
+
+    let stringNum=123456789
+
+    num=Number(stringNum)
+    num= +stringNum
+    num=parseInt(stringNum,10)

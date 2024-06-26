@@ -1,0 +1,269 @@
+1. React -
+    Declarative programming
+    Component Based Architecture
+    Single Page Application
+    *Javascript is a imperative programming i.e we have to tell that DOM needs to be updated after variable
+     is updated
+
+    *Whereas React is declarative programming i.e after declaring variable, whenever it is updated, 
+     automatically DOM gets re-rendered
+
+2. React Element - 
+
+    React.createElement (type , props , children)
+    It returns a React Element object which has some properties
+    {
+    "type": "h1", // Here type can be a Function also
+    "key": null,
+    "ref": null,
+    "props": {}, // It is passed as argument to the type 
+    "_owner": null,
+    "_store": {}
+    }
+    ReactDOM.createRoot()
+    It creates a root element which is further used to render the react elements
+
+    ReactDOM.render(ReactDOM Element)
+
+3. JSX & Babel- 
+
+    Babel -  It transforms JSX (i.e HTML like code with Javascript) into React Element behind the scene
+    and renders it on page
+    It also converts ECMAScript code into backwards compatble version of Javascript that can be run by older version of Javascript
+    script tag type="text/babel" it tell the browser to include the babel file which transform html
+    into react element
+    * Why two curly brackets are used in React - It represents Javascript written in html
+
+4. Source Maps - 
+
+    Source maps in Javascript are files that provide a mapping between the source code and the code which is actually 
+    being executed by the browser or Javascript engine after transpilation/bundling or minification
+    
+    Babel after bundling or compilation generates source maps along with the resulting code
+    It can be configured using the babel.config.josn file
+    {
+    "presets": ["@babel/preset-react"],
+    "sourceMaps": true
+    }
+
+5. Bundlers - 
+
+   It is a tool used in web development to combine multiple files such as Javascript, CSS , images into a single file 
+   for deployment to a web server.
+   for example -  Parcel, Webpack, Vite etc
+   It bundles all files into single file and serves that file
+
+6. React Component - 
+    Whenever the type value of React element becomes a Function , it creates a React Component
+    This React Component is converted into React element by babel/parcel
+
+    React component is a function which returns a JSX which is generally a resuable piece of user interface
+
+7. React Events - 
+    An event can be applied to html elements only and not on the React component
+    We can accept the event as function and then apply it to the html element of the component
+
+8. How React Knows Not to Reinitialize useState ?
+    React keeps track of state between renders using a mechanism called hooks state management, which ensures 
+    that the state is preserved across renders and not reinitialized.
+
+9. State vs Props - 
+     
+    States are mutuable i.e changeable whereas props are immutable
+    * On Change of props or state component re-renders
+
+10. React Fragments - 
+    React functional component returns a single element.
+    Using react fragment no new div is created and we can wrap all the html inside it and it considers it as a single element
+
+11. React Children prop - 
+
+    <ReactComponent> whatever passed is children prop for the ReactComponent </ReactComponent>
+
+    Children prop can be a - 
+    React element
+    HTML
+    Function
+    React Component
+
+12. How to scope CSS in React -
+
+    CSS is loaded directly when react app is created and if similar classname is encountered CSS is applied to all the elements with similar classnames
+    To overcome this CSSFileName.module.css is used
+
+13. UseEffect hook - 
+
+    It is used to monitor states
+
+    useEffect(callbackFunction,dependencyArray)
+
+    useEffect(()=>{
+        //code
+
+    ***    return something // This is called Cleaning up code and is executed when component unmounts
+    })
+
+    useEffect(()=>{
+        const intervalId = setTimeInterval(()=>{
+            console.log("Printing")
+        },1000)
+
+        //Cleaning up function, when component unmounts , stopping the setTimeInterval
+
+        return ()=>{
+            clearTimeInterval(intervalId)
+        }
+    })
+
+14. React-router-dom - 
+
+    It is a library used for showing routes in react without relaoding the page
+    example - 
+    1.Setting up routes
+            const router = createBrowserRouter([
+            {
+            path: "/",
+            element: <App />,
+            errorElement: <div>Error Page</div>,
+            // loader:,
+            children: [
+            {
+                path: "/",
+                element: <div>Home</div>,
+            },
+            {
+                path: "Contact",
+                element: <div>Contact</div>,
+            },
+            {
+                path: "Contact/:contactId",
+                element: <div>Contact Id Page</div>,
+            },
+            {
+                path: "Work",
+                element: <div>Work</div>,
+            },
+            ],
+            },
+            ]);
+
+            <RouterProvider router={router} />
+
+    2.Navigating to Routes - 
+        
+        Link and NavLink tags are used to navigate to routes without relaoding the page
+
+        NavLink provides isActive, isPending, isTransitioning props for more styling
+        * end makes sures that only Contact route is active
+            <NavLink
+            to="/Contact"
+            className={({ isActive, isPending, isTransitioning }) => {
+            return isActive ? styles?.active : "";
+            }}
+            end
+                >
+            Contact
+            </NavLink>
+            <NavLink
+                to="/Contact/3"
+                className={({ isActive, isPending, isTransitioning }) => {
+                return isActive ? styles?.active : "";
+                }}
+            >
+                ContactId
+            </NavLink>
+
+    3. Outlet - 
+        It is used to render child routes
+
+        using useOutletContext() we get the value passed in Outlet
+        <Outlet context={"value"}/>
+        const data=useOutletContext()
+
+        We can use customHooks to minimize the imports 
+        example - 
+            import { createContext, useState } from "react";
+
+            export const ThemeContext = createContext();
+
+            export function ThemeProvider({ children }) {
+            console.log(children);
+            const [isDark, setisDark] = useState(false);
+            return (
+                <ThemeContext.Provider value={[isDark, setisDark]}>
+                {children}
+                </ThemeContext.Provider>
+            );
+            }
+
+15. Controlled Components - 
+
+    *Inputs, textareas, selects fields value attribute in react is not editable w/o onChange, it is because React adds an event
+     to it and make it unchangeable
+
+    *React has unidirectional data binding i.e we can only update the state and it will update the DOM
+     whereas bi-directional data binding is followed in AngularJs where on changing the variable value, DOM
+     automatically gets updated
+
+    Inputs, textareas, selects fields where input is controlled by react states and not by Javascript
+     is called controlled component
+    
+16. UseRef - 
+    It doesn't cause re-renders of the DOM
+    It is mostly used to access the DOM elements
+
+    const myRef=useRef('defaultValue')
+    myRef is an Object which has current value
+
+17. React Portal - 
+    It removes the Component from place where it has been called from actual html and places it in the place
+    where it has been mentioned in createPortal
+    createPortal from ReactDOM
+
+    createPortal(Component,place where we want to render it)
+    createPortal(Component,document.getElementById('portal'))
+    *Event binding is still there
+
+18. Code splitting & lazy loading - 
+    Lazy load means when user goes to that page then only load the content of that page/module is served
+
+    Bundlers by default creates bundle of whole code, even if it is not required by browser or user
+    To solve this lazy loading is done i.e load content when required
+    Bundlers creates different files in production build and serves them when required
+    Once the file is loaded, for next time browser takes the file from browser and doesn't lazy loads its everytime
+***crypto.randomUUID()  - is available only for HTTPS i.e secure networks and not fpr http
+
+19. Class Components - 
+    constructor & render methods are used here
+    First constructor function gets called and render gets called when there is change in state
+
+    render method returns JSX
+    constructor method provides ways to create and set States
+    super is used for calling parents constructor function
+
+20. Life Cycle Methods - 
+    React components stages includes - Mounting, Updating, Unmounting
+
+    Mounting - constructor(
+        
+    ),render(),componentDidMount()
+    Updating - render(),componentDidUpdate()
+    Unmounting - componentWillUnmount()
+
+21. Virtual Dom, Reconcillation, Diffing Algorithm - 
+
+    *Virtual DOM is a tree like srtructure of actual DOM elements and react compares the changes in DOM element using
+    diffing algorithm and then makes changes in the actual dom
+
+    *This whole process of comparison of DOM element using diffing algorithm is called Reconcillation in react
+
+    *Element created using React.createElement is an Virtual DOM Element and element created using document.createElement
+    is an normal DOM element
+
+    *React uses virtual DOM to track changes in element
+
+Diffrence btw React and ReactDOM
+React.createElement
+ReactDOM.createRoot
+ReactDOM.render  
+***some method,sort method ?

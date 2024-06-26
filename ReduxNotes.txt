@@ -1,0 +1,84 @@
+1. Redux is a Javascript library and it is a state management library - 
+
+    * It is based on Reducer, Actions(action type,payload,states) & Store
+    * It is an centralized state management
+    * It also uses contextApi
+    * State is not mutated rather returning new state every time when we want to update value, 
+      same is used in React
+
+      state.count=state.count+1 // MUTATING WAY
+      state = { count: state.count + 1 }; // NON MUTATING WAY i.e returning new state everytime to update the value
+
+      Reducer fuction - It is a function which performs operation based on actions 
+      reducer(state,action)
+      action:{type:"",payload:""}
+      Dispatch - It is used to dispatch actions which accepts reducer and calls and performs actions based on action
+      Store - It accepts a reducer fuction
+
+2. Redux createStore function provides some methods which are used mainly - 
+    dispatch(action)/reducer -  it returns state after performing some actions
+    getState()
+    subscribe(callBackFn) - which return a function, upon calling unsubscribes to subscribe
+
+3. Provider method of redux is basically a context provider which provides value in store props
+
+4. Using Immer js we can write mutable Javascript to update immutable react states
+   Since react compares old state and new state changes and renders only if there is change in state so we use
+   immutable way to implement that
+
+5. Redux-toolkit - 
+
+  We have 
+  action types - eg - CART_ADD_ITEM
+  action creators - function addItemQuantity(action.type,payload)
+  reducers - store reducer , cart reducer
+  *createSlice - It combines , action types,action creators and reducers into one
+
+  reduxtoolkit uses immer js behind the scene
+
+6. Middlewares in redux-toolkit -
+   API Calls are generally done using middlewares
+   Reducers are pure function
+   *Middleware are curried function which accepts three parameters - store,next,action
+
+7. Data fetching using redux - 
+
+  1. Using custom api middleware
+  2. Redux-thunk
+  3. ReduxToolKitQuery
+  4. Redux-Saga
+
+8. Selector in useSelector - 
+  
+  const data=useSelector(selector)
+  here selector is a callBackFn
+  example - 
+  getProducData selector
+  const getProducData=(state)=>state.productData
+
+  memoized version
+  const getProducData=createSelector(getProducData,(state)=>state)
+  
+9. Middlewares - 
+
+    first middleware gets called after calling next(action) in that if any other middleware is there it gets
+    called and then action is dispatched and it comes back to the last called middleware
+    example  - logger1,logger2
+    logger1,logger2,getData,logger2 after next,logger1 after next
+    *Middleware is executed before the action reaches the reducer.
+    
+9. Redux-thunk - 
+
+    dispatch always required an object with type prop and optional payload
+    to pass function in dispatch we can check if type of action received is function then call that function
+    else call the next(action) middleware
+    this is called redux-thunk
+    *By default thunk middleware is provided by reduxtoolkit
+
+10. Create Async Thunk - 
+
+    Creates actions for different states of an async operation (pending, fulfilled, rejected).
+    Extra Reducers: Handles these actions in the slice using the builder pattern, allowing for clean and 
+    organized state management for async operations.
+    Here reducer are getting repeated so for this we define them as extraReducers,
+    builder method is used which creates three states, pending,fulfilled and rejected

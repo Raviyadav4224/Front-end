@@ -1,0 +1,18 @@
+1. CSS Specificity - 
+   It is an algorithm used by browsers to determine CSS declaration which is more relevant to an element
+   It calculates weight of a html element to determine which rule to apply. 
+
+   specific weight - (ID,Class,TagName)
+
+   *Id > Class > TagName
+   * is() has() not() pseudo classes doesn't add value while calculating specific weight but the values
+   passed inside them, its specifc weight is added
+   example - is(.myClass) - (0,1,0)
+   *Inline CSS has the highest Specficity
+   *If Specficity clashes , lastest css is given more preference
+   * !important -  It reverses the specificity of the element
+
+2. Box Model
+
+3. z-index - 
+ It is related to its parent's z-index
