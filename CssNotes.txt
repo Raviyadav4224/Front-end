@@ -16,3 +16,8 @@
 
 3. z-index - 
  It is related to its parent's z-index
+
+4. position - relative vs absolute
+
+5. display - flex, grid, block, inline
+
