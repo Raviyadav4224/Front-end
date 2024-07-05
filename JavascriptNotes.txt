@@ -134,10 +134,15 @@ In Javascript memory is alloacted during RunTime
 
     Object.freeze() vs Object.seal()
 
+    Prevents adding new properties to the object.
+    Prevents removing existing properties from the object.
+    Prevents changing the values of existing properties (shallow freeze).
+    Prevents changing the enumerability, configurability, or writability of existing properties.
+
     freeze() makes an Object immutable i.e no property can be added, removed, modified, even for its child objects
     whereas seal() prevents from adding new properties and makes existing properties as non configurable i.e 
     using defineProperty you cannot modify that object but you can modify exisitng properties values
-
+    
     Object.assign - 
     It is used to create shallow copy of Objects
     * spread operator also creates shallow copy of object
@@ -445,6 +450,57 @@ In Javascript memory is alloacted during RunTime
     Execution Context - It holds information about the environment in which Javascript is being executed
     During the execution , a context is created everytime
     Firstly variable creation phase takes place and then value assignment takes place
+
+31. Map & Set - 
+
+    Map are objects in JavaScript which stores key-values pairs
+    *Keys can be of any type unless object where keys are of type string
+    let myMap=new Map()
+    myMap.set(key,value)
+    myMap.get(key)
+    myMap.keys()
+    myMap.values()
+    myMap.entries()
+    *let recipeMap = new Map([
+        ['cucumber', 500],
+        ['tomatoes', 350],
+        ['onion',    50]
+        ]);
+
+    *Set are also objects in JavaScript that store only UNIQUE values unlike Map which stores key-values
+    let mySet=new Map()
+    mySet.add(key,value)
+    mySet.delete(key)
+    mySet.keys()
+    mySet.values()
+    mySet.entries()
+
+32. Proxy - 
+    Proxy is JavaScript is an object which acts as a wrapper for plain objects.
+    It helps to create custom behavior for objects.
+
+    *const proxy=new Proxy(targetObject, handler object)
+     *here target object is the object which you want to proxy
+     *handler is an object with get,set,deleteProperty,has,apply,construct methods which helps 
+     to intercept the object
+
+     example - 
+            const target = {
+        message1: "hello",
+        message2: "world"
+        };
+        const handler = {
+        get: function(target, property) {
+            if (property === 'message2') {
+            return 'proxy';
+            }
+            return target[property];
+        }
+        };
+        const proxy = new Proxy(target, handler);
+        console.log(proxy.message1); // hello
+        console.log(proxy.message2); // proxy
+
 
 xmlhttpRequest
 Node vs element 

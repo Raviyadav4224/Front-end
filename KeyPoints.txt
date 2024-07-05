@@ -7,3 +7,154 @@
     num=Number(stringNum)
     num= +stringNum
     num=parseInt(stringNum,10)
+
+    ***parseInt whether charecters in the string are valid number or not if any invalid number is
+    encountered it stops parsing
+    example -  parseInt('7*8',10)
+    here * is invalid so it will return 7 
+
+2. Static methods - 
+
+    Static methods can be called only on the Class itself and not on the instance of the that Class
+    Here this will refer to the Class itself and not on the instance
+    example - 
+    const freddie = new Chameleon({ newColor: 'purple' });
+    //Error
+    console.log(freddie.colorChange('orange'));
+    console.log(Chameleon.colorChange('orange'));
+
+3. Object.prototype - 
+
+    In JavaScript, the prototype chain is dynamic. This means that changes to the prototype are 
+    immediately visible to all instances, even those created before the prototype was modified
+
+    function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    }
+
+    const member = new Person('Lydia', 'Hallie');
+    Person.getFullName = function() {
+    return `${this.firstName} ${this.lastName}`;
+    };
+
+
+    //Error
+    console.log(member.getFullName());
+
+    But adding getFullName to prototype will solve this issue
+    Person.prototype.getFullName=function(){
+    return `${this.firstName} ${this.lastName}`;
+    }
+
+    ***
+    Constructor Functions: Require new to properly initialize new instances with their own properties.
+    Without new, this refers to the global object or undefined.
+
+    Prototype Extensions: Methods added to prototypes (like String.prototype,Array.prototype, Object.prototype)
+    are automatically available to all instances of that type (e.g., all strings). This is due to 
+    JavaScript's prototype-based inheritance model. 
+
+4. tagged template literals - 
+
+    function tag(strings, ...values) {
+    console.log(strings); // Array of string literals
+    console.log(values); // Array of expression values
+    }
+
+    usage -  tag`Hello, my name is ${name} and I am ${age} years old.`
+
+5. With the var keyword, you can declare multiple variables with the same name. 
+    The variable will then hold the latest value.
+
+    var name=10
+    var name="Ravi"
+    console.log(name) // "Ravi"
+
+6. Arrow function - 
+    using call, apply and bind, it will not change the this value inside Arrow function.
+    Here this will still refer to the context in which it is defined or it will refer to parents this
+
+7. Variables exported from different modules are read only
+    They are exported as CONSTANT
+    now since for Objects and Array we can add new properties so it seems to be changing
+
+8. Object.defineProperty - 
+
+    It adds new properties to an object
+    * By default added property is not ennumerable 
+    * we can set ennumerable as true
+    * Object.keys returns ennumerable properties
+
+9. import vs require - 
+    With the import keyword, all imported modules are pre-parsed. This means that the imported modules
+    get run first, and the code in the file that imports the module gets executed after.
+
+    This is a difference between require() in CommonJS and import! With require(), you can load dependencies
+    on demand while the code is being run.
+
+10. Function prototype - 
+    
+    *Regular function has prototype property which is of the Object prototype which has the Constructor function
+    *Arrow function does not have prototype property and returns undefined 
+    example - console.log(ArrowFunction.prototype)
+
+11. Symbols - 
+
+    Symbols are not ennumerable
+    so setting it as key of an Object 
+        const info = {
+    [Symbol('a')]: 'b',
+    };
+
+    console.log(info);
+    // {Symbol('a'):'b'}
+    Object.keys will not show Symbol key since it returs ennumerable
+
+12. OR Operator - 
+
+    With the || operator, we can return the first truthy operand. If all values are falsy, 
+    the last operand gets returned.
+
+    (false || {} || null): the empty object {} is a truthy value. This is the first (and only)
+    truthy value, which gets returned. one is equal to {}.
+
+    (null || false || ""): all operands are falsy values. This means that the last operand,
+    "" gets returned. two is equal to "".
+
+    ([] || 0 || ""): the empty array[] is a truthy value. This is the first truthy value,
+    which gets returned. three is equal to [].
+
+13. isNaN vs Number.isNan - 
+    
+    isNaN checks that the value is not equal to number 
+    Number.isNaN checks that the value is number and equal to isNaN
+
+    example 
+    Number.isNaN('ravi') - false
+    Number.isNaN(22) - false
+
+14. Object.freeze() vs Object.seal() - 
+    
+    freeze() does shallow freezing means nested objects are not freezed
+
+    seal() allows for modification of exisitng properties
+
+15. const - 
+    const keyword means we cannot redeclare the variable i.e its read-only and the value is mutuable
+
+*16. *[Symbol.iterator]() - 
+
+    *Adding this porperty to an un-iterable object makes it iterable
+    The syntax *[Symbol.iterator]() {} is used to define a generator method in JavaScript. 
+
+    const person = {
+    name: "Lydia Hallie",
+    age: 21,
+    *[Symbol.iterator]() {
+        yield* Object.values(this);
+    }
+    };
+
+    console.log([...person]); // ["Lydia Hallie", 21]
+    *Arrays, strings, maps, sets, and other built-in iterables in JavaScript
