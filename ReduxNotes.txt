@@ -85,7 +85,7 @@
 
 
 -------------------------------------------------------------------------------------------------------------------
-Reduc clone keypoints
+Redux clone keypoints
 
 
 1. Actions - It is a function which returns an action object having type and optional payload

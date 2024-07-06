@@ -158,3 +158,11 @@
 
     console.log([...person]); // ["Lydia Hallie", 21]
     *Arrays, strings, maps, sets, and other built-in iterables in JavaScript
+
+17. Promise.all vs Promise.any vs Promise.allSettled - 
+    
+    Promise.all - returns first rejection value else array of resolved promises
+    Promise.any - return first resolved promise else Aggregation Error - All promises were rejected
+    Promise.allSettled - It returns array of objects ,
+        if resolved then {status:'fulfilled', value:'promise resolved value'}
+        if rejected {status:'rejected',reason:'promise rejected value'}
