@@ -501,7 +501,15 @@ In Javascript memory is alloacted during RunTime
         console.log(proxy.message1); // hello
         console.log(proxy.message2); // proxy
 
+33. Currying -
 
+34. Polyfill -
+
+35. Debouncing -
+
+36. Throttling -
+
+37.
 xmlhttpRequest
 Node vs element 
 
