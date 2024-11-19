@@ -109,7 +109,7 @@
 
     console.log(info);
     // {Symbol('a'):'b'}
-    Object.keys will not show Symbol key since it returs ennumerable
+    Object.keys will not show Symbol key since it returns ennumerable
 
 12. OR Operator - 
 

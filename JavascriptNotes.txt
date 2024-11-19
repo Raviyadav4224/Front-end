@@ -157,7 +157,7 @@ In Javascript memory is alloacted during RunTime
     whereas in deep copy all the properties of object along with its nested objects are copied,
     new object created using deep copy has new reference or entirely newly created object
 
-    using JSON.parse(JOSN.stringify(obj)) we can create a deep copy of an object
+    using JSON.parse(JSON.stringify(obj)) we can create a deep copy of an object
 
 16. Loops - 
     
@@ -211,7 +211,7 @@ In Javascript memory is alloacted during RunTime
     Promise.all returns the value promises as an array of values when all promises are 
     settled , when any of the promise gets rejected it stops
     or we can say that it executes till first rejection
-    *It works concurrently, to make api call simultaneously use loops 
+    *It works concurrently( all at once ), to make api call simultaneously use loops 
     *using map will also make concurrent requests, to resolve that use Promise.all
      Althogh Promise.all works concurrently but due to await in map it works for each promise to resolve
         async function callMe() {
@@ -241,38 +241,38 @@ In Javascript memory is alloacted during RunTime
     *async function returns a promise by default
 
     const myPromise1 = new Promise((resolve, reject) => {
-     if (true) {
-      setTimeout(() => resolve("Promise 3"), 3000);
-     } else {
-    reject("The myPromise has been rejected");
-     }
-    });
+        if (true) {
+        setTimeout(() => resolve("Promise 3"), 3000);
+        } else {
+            reject("The myPromise has been rejected");
+            }
+            });
     const myPromise2 = new Promise((resolve, reject) => {
-  if (true) {
-    resolve("Promise 4");
-  } else {
-    reject("The myPromise2 has been rejected");
-  }
-    });
+        if (true) {
+            resolve("Promise 4");
+        } else {
+            reject("The myPromise2 has been rejected");
+        }
+            });
 
     async function callPromise() {
-  console.log("mypromise 1");
-  const p1 = await myPromise1;
-  console.log(p1)
-  console.log("mypromise 2");
-  const p2 = await myPromise2;
-  console.log(p2)
-  console.log("mypromise 3");
-    }
+        console.log("mypromise 1");
+        const p1 = await myPromise1;
+        console.log(p1)
+        console.log("mypromise 2");
+        const p2 = await myPromise2;
+        console.log(p2)
+        console.log("mypromise 3");
+            }
     function logMe() {
-    console.log('Hey i"m logginggg......');
-    }
+        console.log('Hey i"m logginggg......');
+        }
 
     console.log('Start')
     setTimeout(() => console.log("Waiting for 0 seconds", 0));
     setTimeout(() => {
-    console.log("setTimeout function");
-    }, 5000);
+        console.log("setTimeout function");
+        }, 5000);
     logMe()
     callPromise();
     console.log('End')
@@ -385,13 +385,13 @@ In Javascript memory is alloacted during RunTime
 
     append vs appendChild - 
 
-    appendChild - it accepts only NodeList and add to the end of NodeList
-    It returns the appended Node object
-    example document.getElementsByClassName.appendChild('div') throws an error
-
     append - it can accept multiple Node values , strings (DOM Strings) as an input
     It doesn't have a return value
     example document.getElementsByClassName.append(div, 'div')
+
+    appendChild - it accepts only NodeList and add to the end of NodeList
+    It returns the appended Node object
+    example document.getElementsByClassName.appendChild('div') throws an error
 
     ** HTMLCollection[0].childNodes gives the Node object and we can perform append or appendChild on
         HTMLCollection[0] and not on HTMLCollection

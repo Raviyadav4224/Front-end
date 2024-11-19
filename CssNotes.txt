@@ -12,12 +12,38 @@
    *If Specficity clashes , lastest css is given more preference
    * !important -  It reverses the specificity of the element
 
-2. Box Model
+2. Box Model ->
+   It defines how elements are structured and positioned in a web page
+   It consists of four main components ->
+   content
+   border
+   margin
+   padding
+
+   box-sizing ->  default content-box -> means height and width applies only to content area. 
+                  border box -> means box height & width contains margin and padding
 
 3. z-index - 
- It is related to its parent's z-index
+   It is related to its parent's z-index
+   used to displace elements on the z-axis i.e in or out of the screen.
+   It is used to define the order of elements if they overlap with each other.
 
-4. position - relative vs absolute
+4. Position - 
 
-5. display - flex, grid, block, inline
+   Fixed -> relative tot he view port
+   Static -> default
+   relative -> we can set top bottom right left properties
+   absolute -> positioned relative to its first positioned parent 
 
+
+5. Block vs inline ->
+    A block-level element always starts on a new line and stretches out to the left and right
+    as far as it can
+    An inline element does not start on a new line and only takes up as much width as necessary.
+   
+6. Flex box -> 
+   It provides a layout Model for clean and easy arrangements of elements within a container
+   It provides 1-D layout
+
+7. Grid ->
+   It offers row column based layouts and has 2-dimensional layout

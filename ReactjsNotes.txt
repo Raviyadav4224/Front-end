@@ -29,7 +29,8 @@
 
     Babel -  It transforms JSX (i.e HTML like code with Javascript) into React Element behind the scene
     and renders it on page
-    It also converts ECMAScript code into backwards compatble version of Javascript that can be run by older version of Javascript
+    It also converts ECMAScript code into backwards compatble version of Javascript that can be run by 
+    older version of Javascript
     script tag type="text/babel" it tell the browser to include the babel file which transform html
     into react element
     * Why two curly brackets are used in React - It represents Javascript written in html
@@ -40,7 +41,7 @@
     being executed by the browser or Javascript engine after transpilation/bundling or minification
     
     Babel after bundling or compilation generates source maps along with the resulting code
-    It can be configured using the babel.config.josn file
+    It can be configured using the babel.config.json file
     {
     "presets": ["@babel/preset-react"],
     "sourceMaps": true
@@ -74,7 +75,8 @@
 
 10. React Fragments - 
     React functional component returns a single element.
-    Using react fragment no new div is created and we can wrap all the html inside it and it considers it as a single element
+    Using react fragment no new div is created and we can wrap all the html inside it 
+    and it considers it as a single element
 
 11. React Children prop - 
 
@@ -231,7 +233,7 @@
     To solve this lazy loading is done i.e load content when required
     Bundlers creates different files in production build and serves them when required
     Once the file is loaded, for next time browser takes the file from browser and doesn't lazy loads its everytime
-***crypto.randomUUID()  - is available only for HTTPS i.e secure networks and not fpr http
+***crypto.randomUUID()  - is available only for HTTPS i.e secure networks and not for http
 
 19. Class Components - 
     constructor & render methods are used here
@@ -244,9 +246,7 @@
 20. Life Cycle Methods - 
     React components stages includes - Mounting, Updating, Unmounting
 
-    Mounting - constructor(
-        
-    ),render(),componentDidMount()
+    Mounting - constructor(),render(),componentDidMount()
     Updating - render(),componentDidUpdate()
     Unmounting - componentWillUnmount()
 
@@ -262,7 +262,18 @@
 
     *React uses virtual DOM to track changes in element
 
-Diffrence btw React and ReactDOM
+Diffrence btw React and ReactDOM ->
+    React ->	Core library for building UIs	
+    ReactDOM -> DOM-specific rendering
+
+Pure component ->
+
+    In react Pure component extends the PureComponent instead of Component class
+    It is used reduce unnecessary renders of UI when parent component renders
+
+    Same can be replicated in functional components using the React.memo
+
+
 React.createElement
 ReactDOM.createRoot
 ReactDOM.render  

@@ -10,5 +10,14 @@
     *Scripts placed inside body tag executes after HTML content is loaded
     
 2. HTML 5 features -
+    Audio video tag
+    Header Footer tag
+    Nav tag
 
-    
+3. Elements vs tags -
+    Tags -> <span>, div tag executes
+    Elements -> It holds the content of the tag
+
+4. Comments -> 
+    <!-- dafjdakfa -->
+
