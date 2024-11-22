@@ -127,8 +127,14 @@
 
 13. isNaN vs Number.isNan - 
     
-    isNaN checks that the value is not equal to number 
-    Number.isNaN checks that the value is number and equal to isNaN
+    isNaN first converts the value to number and checks that the value is NaN  
+    Number.isNaN checks that the type is number and equal to isNaN
+    
+    *let number = NaN;
+    // It will check that it is of type number and it is NotANumber
+    console.log(typeof number)
+    console.log(Number.isNaN(number));
+    
 
     example 
     Number.isNaN('ravi') - false

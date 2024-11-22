@@ -78,11 +78,11 @@ function deepCopyWithCircularReferences(value, visited) {
 // Implement the functionality behaviour of Promise.any
 async function promiseAll(promiseArray) {
   console.log("promiseArray", promiseArray);
-  if(!Array.isArray(promiseArray)){
-    throw TypeError("Must be an Array of promises")
+  if (!Array.isArray(promiseArray)) {
+    throw TypeError("Must be an Array of promises");
   }
-  if(promiseArray.length===0){
-    return []
+  if (promiseArray.length === 0) {
+    return [];
   }
   let result = [];
   try {
@@ -97,17 +97,37 @@ async function promiseAll(promiseArray) {
 }
 
 // Implement a function that recursively flattens an array into a single level deep.
-function flattenArray(value){
-  return value.flat(1)
+function flattenArray(value) {
+  return value.flat(1);
 }
 function deepFlattenArray(value) {
   let result = [];
   value.forEach((element) => {
     if (Array.isArray(element)) {
-      flattenArray(element).forEach(item=>result.push(item))
+      flattenArray(element).forEach((item) => result.push(item));
     } else {
       result.push(element);
     }
   });
   return result;
+}
+
+// implement getElementById
+
+function getElementById(id) {
+  function traverse(node) {
+    if (node.id === id) {
+      return node;
+    }
+
+    for (let child of node.children) {
+      let result = traverse(child);
+      if (result) {
+        return result;
+      }
+    }
+  }
+
+  traverse(document.body);
+  return null;
 }

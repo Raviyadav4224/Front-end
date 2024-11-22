@@ -1,5 +1,5 @@
 Javascript is a dynamically typed single threaded launguage
-In Javascript memory is alloacted during RunTime
+* In Javascript memory is alloacted during RunTime
 
 1. Data Types
 
@@ -48,6 +48,11 @@ In Javascript memory is alloacted during RunTime
     * Functions declared using the keyword function are fully hoisted i.e they are moved to the top of their 
     defining scope
     * Function assignment are not hoisted
+    * console.log(var) // undefined
+      obj() // Type Error : not a fucntion
+      var obj=function(){
+        console.log("This is a function")
+        }
 
 8. Temporal Dead Zone - 
      Both let and const are hoisted but differs with var 
@@ -56,6 +61,26 @@ In Javascript memory is alloacted during RunTime
 9. Closures - 
     Closure occurs when one function is defined inside another function and the inner function has access 
     to outer function variable even after outer function has stopped executing.
+    
+        Example - 
+
+        function Counter() {
+        let count = 0;
+        return {
+            increaseMe: function () {
+            count += 1;
+            return count;
+            },
+            decreaseMe: function () {
+            count -= 1;
+            return count;
+            },
+        };
+        }
+
+        let myCounter = new Counter();
+        console.log(myCounter.increaseMe());
+        console.log(myCounter.decreaseMe());
 
 10. Lexical Scoping - 
     When inner function has access to the variable of outer function is known as lexical scoping
@@ -116,9 +141,10 @@ In Javascript memory is alloacted during RunTime
             }
     2. using Object Constructor
     3. using function
-    4. using Class
+    4. using class
     5. using JSON.parse(text in json format)
-    6. using Object.create()
+    *6. using Object.create() -> It creates new object using the existing objects as the prototype of
+        the newly created object
     7. Object.assign(target,source) - it is also used copy source to target object
     
     ** 
@@ -139,10 +165,20 @@ In Javascript memory is alloacted during RunTime
     Prevents changing the values of existing properties (shallow freeze).
     Prevents changing the enumerability, configurability, or writability of existing properties.
 
-    freeze() makes an Object immutable i.e no property can be added, removed, modified, even for its child objects
+    *freeze() makes an Object immutable i.e no property can be added, removed, modified, but nested properties are 
+    not freezed
     whereas seal() prevents from adding new properties and makes existing properties as non configurable i.e 
     using defineProperty you cannot modify that object but you can modify exisitng properties values
+    (configurable-false, writable-true)
     
+    * enumerable - Determines if the property is visible during enumeration 
+     (e.g., using for...in or Object.keys()).If enumerable: false, the property does not appear in 
+      enumerations but can still be accessed directly.
+    * configurable - Indicates whether the property can be deleted or reconfigured (i.e., its descriptors
+      like writable, enumerable, or even value can be changed).If configurable: false, 
+      you cannot: Delete the property. Change most of its descriptors (except writable).
+
+
     Object.assign - 
     It is used to create shallow copy of Objects
     * spread operator also creates shallow copy of object
@@ -159,7 +195,7 @@ In Javascript memory is alloacted during RunTime
 
     using JSON.parse(JSON.stringify(obj)) we can create a deep copy of an object
 
-16. Loops - 
+16. Loops & Map, Filter, Reduce - 
     
     map, filter, reduce methods returns array whereas forEach,for,forof,forin doesn't returns anything
     for of is used to iterate over iterable i.e Arrays
@@ -167,6 +203,7 @@ In Javascript memory is alloacted during RunTime
     Array.redcue(callbackFn,initialValue)
                 filteredData.map((item) => item.amount)
                 .reduce((prev, current) => prev + current, 0)
+
 17. SetTimeout & SetTimeInterval & ClearTimeout & ClearTimeInterval
 
     this concept in SetTimeout function
@@ -335,16 +372,27 @@ In Javascript memory is alloacted during RunTime
 25. OOPS - 
     Javascript implements 
     Encapsulation - example class
-    inheritance
+    inheritance - using Prototype
     Polymorphism - same function used in many forms
     Data Abstraction - JS doesnt have access modifiers like private,public,protected . So it is achieved using 
     Closures or WeakMap object
 
-26 . Prototypal Inheritance - 
+26. Prototypal Inheritance - 
+
+    * Prototype is a mechanism by which JavaScript objects inherit features from other objects
+    * Every JavaScript object has an internal property called [[Prototype]] 
+       (often accessed via the __proto__ property or indirectly through Object.getPrototypeOf())
+    * This [[Prototype]] property links the object to another object, known as its prototype.
+    * Prototype modifications (e.g., adding methods or properties) affect all instances dynamically, 
+        even those created before the modification.
+        Replacing the entire prototype (using Constructor.prototype = { ... }) breaks the connection
+        for existing instances, as they still refer to the original prototype object.
+
     By default everything in Js points to an Object.
     We can add properties to prototype of an Object
     By default Js first searches for the property in Objects prototype, if it is not available it will search
     in its parents prototype and so on until the property is found, this is called prototypal based inheritance
+    If not found it returns undefined.
 
     To get prototype of an object - 
     Object.getPrototypeOf(person1)
@@ -405,6 +453,7 @@ In Javascript memory is alloacted during RunTime
     of an element without considering the CSS
 
     innerHtml - It is used to set or get the Html content of an element
+    *using innerHtml (XSS) Cross site scripting attacks are possible so it is not recommended
     
     *remove vs removeChild - 
 
@@ -502,14 +551,92 @@ In Javascript memory is alloacted during RunTime
         console.log(proxy.message2); // proxy
 
 33. Currying -
+    It is a technique in JavaScript using which function with multiple arguments are converted into 
+    sequence of functions each taking a single arguments
+    example ->
+            function add(a, b) {
+                return a + b;
+                }
 
-34. Polyfill -
+        function curryingAdd(a) {
+            return function (b) {
+                return a + b;
+            };
+            }
+            console.log(curryingAdd(5)(6));
+
+34. Throttling -
+    It ensures that a given function in called at most once in given interval of time even if it is called
+    multiple times. It is used to control the rate of execution
+    example -
+    function throttle(func, delay) {
+        let lastTime = 0;
+
+        return function (...args) {
+            let now = Date.now();
+            if (now - lastTime >= delay) {
+            lastTime = now;
+            func(...args);
+            }
+        };
+        }
+
+        function logMe() {
+        console.log("Logging");
+        }
+        let t = throttle(logMe, 5000);
+        document.getElementById("throttle").addEventListener("click", t);
 
 35. Debouncing -
+    It ensures a fucntion in called after specified amount of time has passed i.e It delays invocation
+    function debounce(func, delay) {
+        let timer = 0;
+        return function () {
+            clearTimeout(timer);
+            timer = setTimeout(func, delay);
+        };
+        }
 
-36. Throttling -
+        function logMe() {
+        console.log("Logging");
+        }
+        document.getElementById("debounce").addEventListener("click", debounce(logMe,1000));
 
-37.
+36. Polyfill -
+
+37. Rest, Spread Operators & Default parameter value -
+
+38. Generator Functions -
+    Generator are special functions in JavaScript that pause execution, yield value and resume 
+    execution later.
+    *generator functions can delegate to another generators using yield*
+    *generator functions are iterable by default and forof loop can be used
+    example -
+    function* generator() {
+        yield 1;
+        yield 2;
+        yield 3;
+        }
+        let gen = generator();
+        console.log(gen.next());
+        console.log(gen.next());
+        console.log(gen.next());
+        console.log(gen.next());
+
+        *Using generator functions for iterating over an object
+            function* iterateGenerator(object) {
+            for (const key in object) {
+                if (Object.prototype.hasOwnProperty.call(object, key)) {
+                yield [key, obj[key]];
+                }
+            }
+            }
+
+            for (const [key, value] of iterateGenerator(obj)) {
+            console.log(key, value);
+            }
+
+        
 xmlhttpRequest
 Node vs element 
 
