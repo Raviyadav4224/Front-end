@@ -19,5 +19,45 @@
     Elements -> It holds the content of the tag
 
 4. Comments -> 
-    <!-- dafjdakfa -->
+    <!-- This is a comment -->
 
+5. Defer,Async attributes in script tag -
+
+    <script defer src="index.js"></script>
+        * Loads the script Asynchronously (with HTML parsing)
+        * Execution is deferred until HTML is fully parsed
+        * Ensures scripts are executed in given order
+
+    <script async src="index.js"></script>
+        * Loads the script Asynchronously (with HTML parsing)
+        * Execution starts as soon as the script is downlaoded, it doesn't waits for HTML parsing
+        * Execution order of scripts are not guaranteed
+
+6. window.onload vs DOMContentLoaded event -
+
+    onload -
+        * Executes only after entire page and resources are loaded
+
+    DOMContentLoaded -
+        * Executes as soon as the HTML is fully parsed and DOM is built
+          It doesn't waits for external resources.
+
+        *  example 
+                <script src="async.js" async></script>
+                <script src="defer.js" defer></script>
+
+                <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    console.log("DOM fully loaded!");
+                });
+
+                window.onload = () => {
+                    console.log("All resources loaded!");
+                };
+                </script>
+
+               **   async.js (may execute at any time after loading).
+                    DOM parsing completes.
+                    defer.js executes (in order before DOMContentLoaded).
+                    DOMContentLoaded event fires.
+                    window.onload event fires. 

@@ -172,3 +172,7 @@
     Promise.allSettled - It returns array of objects ,
         if resolved then {status:'fulfilled', value:'promise resolved value'}
         if rejected {status:'rejected',reason:'promise rejected value'}
+
+18. Date Format in forms -
+
+    let date =new Date("1997-04-31").toLocaleString("en-IN") // given date in dd/mm/yyyy format

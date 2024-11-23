@@ -525,7 +525,7 @@ Javascript is a dynamically typed single threaded launguage
     mySet.entries()
 
 32. Proxy - 
-    Proxy is JavaScript is an object which acts as a wrapper for plain objects.
+    Proxy in JavaScript is an object which acts as a wrapper for plain objects.
     It helps to create custom behavior for objects.
 
     *const proxy=new Proxy(targetObject, handler object)
@@ -636,6 +636,7 @@ Javascript is a dynamically typed single threaded launguage
             console.log(key, value);
             }
 
+39. 
         
 xmlhttpRequest
 Node vs element 
