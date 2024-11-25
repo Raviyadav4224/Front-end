@@ -1,7 +1,8 @@
 1. React -
+    It is an Javascript library
     Declarative programming
-    Component Based Architecture
-    Single Page Application
+    It is based on Component Based Architecture
+    It is used to create Single Page Application
     *Javascript is a imperative programming i.e we have to tell that DOM needs to be updated after variable
      is updated
 
@@ -31,8 +32,8 @@
     and renders it on page
     It also converts ECMAScript code into backwards compatble version of Javascript that can be run by 
     older version of Javascript
-    script tag type="text/babel" it tell the browser to include the babel file which transform html
-    into react element
+    *type="text/babel" <script type="text/babel" src="index.js"></script> it tell the browser to include
+     the babel file which transform html into react element
     * Why two curly brackets are used in React - It represents Javascript written in html
 
 4. Source Maps - 
@@ -49,8 +50,8 @@
 
 5. Bundlers - 
 
-   It is a tool used in web development to combine multiple files such as Javascript, CSS , images into a single file 
-   for deployment to a web server.
+   It is a tool used in web development to combine multiple files such as Javascript, CSS , images into a 
+   single file for deployment to a web server.
    for example -  Parcel, Webpack, Vite etc
    It bundles all files into single file and serves that file
 
@@ -90,11 +91,13 @@
 
 12. How to scope CSS in React -
 
-    CSS is loaded directly when react app is created and if similar classname is encountered CSS is applied to all the elements with similar classnames
+    CSS is loaded directly when react app is created and if similar classname is encountered 
+    CSS is applied to all the elements with similar classnames
     To overcome this CSSFileName.module.css is used
 
 13. UseEffect hook - 
 
+    It is used to perform side rendering
     It is used to monitor states
 
     useEffect(callbackFunction,dependencyArray)
@@ -233,7 +236,7 @@
     To solve this lazy loading is done i.e load content when required
     Bundlers creates different files in production build and serves them when required
     Once the file is loaded, for next time browser takes the file from browser and doesn't lazy loads its everytime
-***crypto.randomUUID()  - is available only for HTTPS i.e secure networks and not for http
+ ***crypto.randomUUID()  - is available only for HTTPS i.e secure networks and not for http
 
 19. Class Components - 
     constructor & render methods are used here
@@ -262,16 +265,62 @@
 
     *React uses virtual DOM to track changes in element
 
-Diffrence btw React and ReactDOM ->
+22. Diffrence btw React and ReactDOM ->
     React ->	Core library for building UIs	
     ReactDOM -> DOM-specific rendering
 
-Pure component ->
+23. Pure component ->
 
     In react Pure component extends the PureComponent instead of Component class
     It is used reduce unnecessary renders of UI when parent component renders
 
     Same can be replicated in functional components using the React.memo
+
+24. React.memo -
+    It is used to prevent re renders of Child component when Parent component re-renders provided Child
+    component states dont changes
+    Similar to PureComponents
+    syntax - const ChildComponent=React.memo(functionalComponent)
+    
+25. useCallback ,useMemo ,useContext -
+
+    useCallback -
+        It is used to create to memoized functions 
+        syntax const memoizedFunctionName=useCallback(function,[dependencyArray])
+        example -
+        * Without using React.memo or useCallback will cause Child Component to re-render everytime and it will create 
+          new instance of INCREMENT function.
+
+            function Parent() {
+                const [count, setCount] = useState(0);
+
+                const increment = () => {
+                    setCount((prev) => prev + 1);
+                };
+
+                const memoizedIncrement = useCallback(increment, []);
+                console.log("Parent Rendered", count);
+
+                return (
+                    <>
+                    <div className="app">This is App container</div>
+                    <div>Count is {count}</div>
+                    <ChildComponent increment={memoizedIncrement} />
+                    </>
+                );
+                    }
+
+    useMemo -
+        It is used to memoize a value rather than a function and it recalculates the value only when its
+        dependency changes
+        syntax - const memoizedValue=useMemo(()=>{
+            // calculating the value
+        },[dependencyArray])
+        
+    useContext -
+        It is used to pass data from Parent to child component without the need of props drilling
+
+26. Custom hooks -
 
 
 React.createElement
