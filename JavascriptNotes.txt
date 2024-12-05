@@ -44,7 +44,7 @@ Javascript is a dynamically typed single threaded launguage
 
 7. Hoisting - 
     Hoisting is a special feature in Javascript where variable and functions declaratives are moved to the 
-    top of their defining scopes during the compile phase, before the code is executed
+    top of their defining scopes during the compilation phase, before the code is executed
     * Functions declared using the keyword function are fully hoisted i.e they are moved to the top of their 
     defining scope
     * Function assignment are not hoisted
@@ -636,8 +636,27 @@ Javascript is a dynamically typed single threaded launguage
             console.log(key, value);
             }
 
-39. 
-        
+39. Date Object -
+
+40. Regex Expressions -
+
+41. String Manipulation -
+
+42. Value vs DefaultValue vs Selected attribute in Select in React/JS -
+
+        * value make the component a Controlled component
+          defaultValue makes it uncontrolled component
+        * When both value and defaultValue are specified, React prioritizes value and ignores defaultValue.
+        * The defaultValue only sets the initial value of the <select>, but subsequent changes to Select 
+          will not update the <select> value.Wheareas value will reflect the subsequent changes provided
+          it is being set using an onchange
+        * Selected attribute works for the initial render only in both React & JS, after that it shows
+            value based on value porperty
+            Even if Selected={stateValueInReact} even when state changes and component re-renders, here React
+            ignores the Selected property while re-rendering
+
+43.
+
 xmlhttpRequest
 Node vs element 
 

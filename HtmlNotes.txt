@@ -61,3 +61,61 @@
                     defer.js executes (in order before DOMContentLoaded).
                     DOMContentLoaded event fires.
                     window.onload event fires. 
+7. Position Static, Relative, Absolute, Fixed & Sticky
+    * Relative - 
+        This proeprty allows for adding top left bottom etc porperty to the given element
+        The element does not comes out of normal flow, it remains at its original position
+        
+    * Absolute -
+        The element is positioned relative to its nearest positioned ancestor, if none of the ancestors are
+        positioned relative / absolute / fixed it looks for parents position (HTML)
+        Element comes out of the normal flow and does not remains at its normal position
+
+    * Fixed -
+        The element is fixed wrt VIEWPORT
+        Element comes out of the normal flow
+        It remains fixed even if the Container containing it ends
+        It the element is position fixed and outside the VIEWPORT it will never shown on screen 
+        since it is positioned wrt VIEWPORT
+        
+    * Sticky -
+        It is an hybrid of Relative and Fixed
+        It will acts as relative initially and when it reaches the threshold values of top,bottom etc it 
+        becomes Fixed
+        It is fixed within the container containing it and does not moves outside
+        When it leaves its container, it sticks to the threshold position
+
+8. Importing FONTS in HTML/React -
+    
+    1. Using Link tag -
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Yuji+Mai&display=swap"
+            rel="stylesheet"/>
+
+    2. Using @import -
+
+        Import the CSS in style.css file
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Yuji+Mai&display=swap');
+
+    3. Using @font-face rule -
+        It is used for using Local fonts and Custom fonts
+
+        @font-face{
+            font-family: "MyFonts";
+            src:url('MagazineLetter.ttf') format("truetype");
+        }
+        * {
+            margin: 0%;
+            padding: 0;
+            font-family: "MyFonts",Georgia;
+        }
+
+9. Document Type of HTML 
+
+10. Anchor Tag
+
+11. How to center a div -
+
