@@ -113,9 +113,31 @@
             font-family: "MyFonts",Georgia;
         }
 
-9. Document Type of HTML 
+9. DocType of HTML -
 
-10. Anchor Tag
+    It stands for Document type declaration
+    It tells the browser about the type and version of the HTML
+    DocType declaration tells the browser to render the page in STANDARD MODE ensuring latest web standards
+    are follwed, If DocType declaration is missing browser renders it in QUIRKS MODE which may cause 
+    inconsistencty while rendering
+
+    *Current HTML version is HTML5
+    *document.doctype gives some information about doctype
+    *example - If doctype is missing CSS margin padding border may not work as intended
+
+
+10. Anchor Tag -
+
+    <a href="https://google.com" onclick="handleReload()">Google</a>
+
+    *href= refers to the url which anchor tag will point to
+    *target= _blank opens the link in new tab/window
+    *To stop reloading preventDefault action
+    *To scroll to particular section we can use href="#idToScroll", we cannot use class, it only works for ID
+    *To style anchor tag -
+        to change underline color - text-decoration-color:red;
+        to change underline - text-decoration-line:overline;
+        to remove the decoration - text-decoration :none;
 
 11. How to center a div -
 

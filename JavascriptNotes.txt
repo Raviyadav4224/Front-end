@@ -377,7 +377,7 @@ Javascript is a dynamically typed single threaded launguage
     Data Abstraction - JS doesnt have access modifiers like private,public,protected . So it is achieved using 
     Closures or WeakMap object
 
-26. Prototypal Inheritance - 
+26. *Prototypal Inheritance - 
 
     * Prototype is a mechanism by which JavaScript objects inherit features from other objects
     * Every JavaScript object has an internal property called [[Prototype]] 
@@ -655,7 +655,23 @@ Javascript is a dynamically typed single threaded launguage
             Even if Selected={stateValueInReact} even when state changes and component re-renders, here React
             ignores the Selected property while re-rendering
 
-43.
+43. Object.toString() -
+
+    It returns by default - [object <Class>]
+    Where 1st object indicates it is an OBJECT and 2nd object is its internal ClassName
+
+    *By default it works for all data types except null and undefined
+     for null and undefined it thrwos an error
+    *null and undefined can be stored using String wrapper class
+        a=String(undefined)
+        a.toString() - > "undefined"
+    *For Arrays - It return string with elements joined using ','
+    *For Functions - It return string format of function definition
+    *For Date - It returs date in human  readable format
+
+
+44. JSON.stringify() limitations -
+
 
 xmlhttpRequest
 Node vs element 
