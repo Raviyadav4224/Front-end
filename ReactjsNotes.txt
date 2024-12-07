@@ -272,13 +272,13 @@
 23. Pure component ->
 
     In react Pure component extends the PureComponent instead of Component class
-    It is used reduce unnecessary renders of UI when parent component renders
+    It is used to reduce unnecessary renders of UI when parent component renders
 
     Same can be replicated in functional components using the React.memo
 
 24. React.memo -
     It is used to prevent re renders of Child component when Parent component re-renders provided Child
-    component states dont changes
+    component states do not change
     Similar to PureComponents
     syntax - const ChildComponent=React.memo(functionalComponent)
     

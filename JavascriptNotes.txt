@@ -460,6 +460,13 @@ Javascript is a dynamically typed single threaded launguage
     remove is a method directly available on DOM elements whereas removeChild is a method which is
     available on PARENT'S NODE and used to remove child elements
 
+    *getAttribute vs setAttribute -
+        <div  data-id="123">This is a DIV </div>
+
+        To get/set the attribute data-id
+        document.getElementById("div").getAttribute("data-id")
+        document.getElementById("div").setAttribute("data-id","321")
+
 28. Event bubbling vs Event Capturing - 
 
     By default an event follows bubbling mode.
@@ -671,6 +678,23 @@ Javascript is a dynamically typed single threaded launguage
 
 
 44. JSON.stringify() limitations -
+
+45. Html events vs Javacsript events -
+
+    Javacsript events - 
+    Javacsript events are actions that happens in the browser when User interacts like clicking,
+    dragging, key press etc or when the page Loads
+    we can listen to these events using addEventListener(eventName,callbackFn,propagationType=false(default))
+
+    HTML events -
+    These are the events which are directly binded with the html element as attributes to provide 
+    more flexibility, but behind the scene they are an Javacsript event only
+
+    Available on both -
+    onclick, onMouseover etc
+
+    Available only with JS -
+    scroll event,focus event, blur event, load event, DOMContentLoaded event etc
 
 
 xmlhttpRequest

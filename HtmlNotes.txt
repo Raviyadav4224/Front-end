@@ -33,7 +33,7 @@
         * Execution starts as soon as the script is downlaoded, it doesn't waits for HTML parsing
         * Execution order of scripts are not guaranteed
 
-6. window.onload vs DOMContentLoaded event -
+6.* window.onload vs DOMContentLoaded event -
 
     onload -
         * Executes only after entire page and resources are loaded
@@ -63,7 +63,7 @@
                     window.onload event fires. 
 7. Position Static, Relative, Absolute, Fixed & Sticky
     * Relative - 
-        This proeprty allows for adding top left bottom etc porperty to the given element
+        This property allows for adding top left bottom etc porperty to the given element
         The element does not comes out of normal flow, it remains at its original position
         
     * Absolute -
@@ -125,7 +125,6 @@
     *document.doctype gives some information about doctype
     *example - If doctype is missing CSS margin padding border may not work as intended
 
-
 10. Anchor Tag -
 
     <a href="https://google.com" onclick="handleReload()">Google</a>
@@ -140,4 +139,62 @@
         to remove the decoration - text-decoration :none;
 
 11. How to center a div -
+
+    1. using position relative & absolute -
+        body {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            }
+        .center {
+            background-color: darkorange;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            }
+    2. Using margin auto/text-align center - horizontally centers -
+        .parent{
+            text-align:center;
+            margin: auto;
+        }
+    3. using display grid -
+        .parent{
+            display:grid;
+            place-items:center;
+        }
+    4. using display flex -
+        .parent{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+12. Display Flex -
+
+    justify-content - HORIZONTALLY (parent property)
+    flex: flex-grow flex-shrink flex-basis; (child property)
+    order:2 (child property) - sets the order of child elements
+
+13. Simulate onclick using CSS -
+    Directly simulation is not possible but we can mimic of clicking using btn:active,
+    btn:focus etc 
+
+14. CORS -
+
+    Cross Origin Resource Sharing
+    CORS is a server-side concept that allows or restricts cross-origin requests based on headers.
+    HTML itself does not directly manage CORS. You use JavaScript to make cross-origin requests, 
+    and the browser checks if the CORS policy is followed
+    In backend -
+    Access-Control-Allow-Origin: *
+    Access-Control-Allow-Origin: https://example.com
+    Access-Control-Allow-Methods: GET, POST, PUT
+    Access-Control-Allow-Headers: Content-Type, Authorization
+    Access-Control-Allow-Credentials: true Indicates whether the browser should include credentials
+    (like cookies or HTTP authentication) in cross-origin requests. Default is false
+
+15. Display grid -
 
