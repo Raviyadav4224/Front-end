@@ -131,3 +131,15 @@ function getElementById(id) {
   traverse(document.body);
   return null;
 }
+
+function deepClone(obj) {
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+  let clone = Array.isArray(obj) ? [] : {};
+
+  for (const key in obj) {
+    clone[key] = deepClone(obj[key]);
+  }
+  return clone;
+}

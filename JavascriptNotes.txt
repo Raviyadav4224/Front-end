@@ -186,6 +186,7 @@ Javascript is a dynamically typed single threaded launguage
     Shallow Copy vs Deep Copy - 
 
     In shallow copy the immediate properties of an object are copied and not the NESTED properties,
+    i.e it is done only at the FIRST level
     new object created through shallow copy shares references to the nested objects.
     spread operator, normal object assignment,Object.assign(), Object.create() all these
     creates shallow copy of the object
@@ -676,8 +677,44 @@ Javascript is a dynamically typed single threaded launguage
     *For Functions - It return string format of function definition
     *For Date - It returs date in human  readable format
 
-
 44. JSON.stringify() limitations -
+
+        * JSON.stringify() ignores properties whose VALUES are functions, undefined, or symbol
+            let obj = {
+                a: 10,
+                b: undefined,
+                c: function() { return 20; },
+                d: Symbol("test")
+                };
+                console.log(JSON.stringify(obj)); // {"a":10}
+
+        * Non-enumerable properties (properties that are not included in Object.keys) are not included 
+            in the JSON string
+            let obj = {};
+            Object.defineProperty(obj, 'hidden', { value: 'secret', enumerable: false });
+            obj.visible = 'visible';
+            console.log(JSON.stringify(obj)); // {"visible":"visible"}
+            we can check all the properties using Object.getOwnPropertyDescriptors(Obj)
+
+        * The prototype chain is ignored during serialization, so inherited properties are not included.
+            function Person(name) {
+                this.name = name;
+                }
+                Person.prototype.age = 30;
+
+                let person = new Person("John");
+                console.log(JSON.stringify(person)); // {"name":"John"}
+
+        * While undefined is ignored in objects, it is converted to null in arrays.
+            let arr = [1, undefined, 3];
+            console.log(JSON.stringify(arr)); // [1,null,3]
+
+        * If the object being stringified contains circular references (where a property refers back 
+          to the object itself), JSON.stringify() will throw a TypeError.
+          let obj = {};
+            obj.self = obj;
+            JSON.stringify(obj); // TypeError: Converting circular structure to JSON
+
 
 45. Html events vs Javacsript events -
 
