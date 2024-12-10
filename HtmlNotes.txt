@@ -198,3 +198,18 @@
 
 15. Display grid -
 
+16.* Meta Tags -
+
+    Meta tags are metadata i.e it contains data about data of an webpage
+    It gives information about the DESCRIPTION , AUTHOR details, KEYWORDS, CHARSET and 
+    VIEWPORT settings of a page
+    It is included in the Head tag of the html
+
+    <meta name="author" content="John Doe">
+    <meta name="description" content="Learn about meta tags and how they work with media queries to make responsive webpages.">
+    <meta name="keywords" content="HTML, meta tags, media queries, responsive design">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    * meta name ="viewport" content="width=device-width" tells the browser to open the webpage 
+      in device width so that it can be made responsive
