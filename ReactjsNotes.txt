@@ -236,6 +236,19 @@
     To solve this lazy loading is done i.e load content when required
     Bundlers creates different files in production build and serves them when required
     Once the file is loaded, for next time browser takes the file from browser and doesn't lazy loads its everytime
+    * Suspense is always required
+    * Lazy loading works onyl for React components
+    * For dynamic imports we can use import() with await, example -
+        const { default: sum } = await import('./sumFunction');
+        
+    example -
+    import React, { Suspense } from 'react';
+    const LazyComponent = React.lazy(() => import('./LazyComponent'));
+    const App = () => (
+        <Suspense fallback={<div>Loading...</div>}>
+            <LazyComponent />
+        </Suspense>
+    );
  ***crypto.randomUUID()  - is available only for HTTPS i.e secure networks and not for http
 
 19. Class Components - 
@@ -246,12 +259,24 @@
     constructor method provides ways to create and set States
     super is used for calling parents constructor function
 
-20. Life Cycle Methods - 
+20. Life Cycle Methods in Class Based Components - 
     React components stages includes - Mounting, Updating, Unmounting
 
-    Mounting - constructor(),render(),componentDidMount()
-    Updating - render(),componentDidUpdate()
-    Unmounting - componentWillUnmount()
+    Mounting ---->
+        constructor
+        static getDerivedStateFromProps(props,state)
+        render
+        componentDidMount
+
+    Updating --->
+        static getDerivedStateFromProps(props,state)
+        shouldComponentUpdate(nextProps,nextState)
+        render()
+        getSnapshotBeforeUpdate(prevProps, prevState)
+        componentDidUpdate(prevProps,PrevState,snapshots)
+
+    Unmounting --->
+        componentWillUnmount
 
 21. Virtual Dom, Reconcillation, Diffing Algorithm - 
 
@@ -277,8 +302,8 @@
     Same can be replicated in functional components using the React.memo
 
 24. React.memo -
-    It is used to prevent re renders of Child component when Parent component re-renders provided Child
-    component states do not change
+    It is used to prevent re-renders of Child component when Parent component re-renders provided Child
+    component props do not change
     Similar to PureComponents
     syntax - const ChildComponent=React.memo(functionalComponent)
     
