@@ -107,9 +107,14 @@ Javascript is a dynamically typed single threaded launguage
     example
     const newFunction=functionName.bind(thisValue,args1,args2...)
 
+    * It is used to re-use the methods created as an object property
+    * While destructuring an object, it looses its this binding
+    * This binding can again be attached using bind or re-attaching it
+    
 12. Arrow Functions vs Functions - 
 
     Arrow function doesn't have their own this value
+    Arrow functions dont have prototypes 
     They refer to parents this value which is generally the global object (window object)
     Whereas normal functions this changes as per requirement
     for example - 
@@ -715,6 +720,9 @@ Javascript is a dynamically typed single threaded launguage
             obj.self = obj;
             JSON.stringify(obj); // TypeError: Converting circular structure to JSON
 
+        * JSON.stringify(object,replacer,space)
+          replacer can be a function or array of keys
+          console.log(JSON.stringify(obj, ["name", "value"]));
 
 45. Html events vs Javacsript events -
 
@@ -733,6 +741,46 @@ Javascript is a dynamically typed single threaded launguage
     Available only with JS -
     scroll event,focus event, blur event, load event, DOMContentLoaded event etc
 
+46. Session storage, Local storage vs cookies -
+
+    Session storage - 
+        It is web storage API that stores data for the duration of browser session (TAB specific), once
+        the tab is closed the data is lost
+        Maximum storage ~ 5MB
+        It is only accessible in the client side
+    
+    Local storage -
+        It is similar to session storage but stores data even after the brower is closed.
+        It is shared accross all tabs/windows of same origin
+        Data persists until explicitly cleared by the user
+        Maximum storage ~ 5MB
+    
+    Cookies - 
+        Cookies are small pieces of data stored on the client side i.e browser by the server and 
+        sent back to the server with every request
+        Maximum storage ~ 4KB
+        It can be set to expire at a given time (Expires or Max-Age)
+        *It is accessible by both client side and server side
+        Use case includes - Authentication of JWT's token
+        Session cookies (default) expire when the browser is closed
+        
+        *document.cookie="username=Ravi; Max-Age=3600(in seconds); Path=/; Secure; HttpOnly"
+        *console.log(document.cookie)
+
+47. type="text/javascript" vs type="module" -
+
+    type="module" -
+        By using type="module" in script tag tells the browser to treat script as Javascript modules
+        This allows us to use the ES6 module features such as import and export.
+        Script with type="module" are executed in STRICT mode and variables and functions have module 
+        level scoping
+        *With type="module" scripts are deferred, meaning the script is executed only after HTML parsing
+         is completed similar to defer attribute
+
+        
+    type="text/javascript" -
+        It is used for standard JavaScript not generally in STRICT mode
+        Cannot use import export here
 
 xmlhttpRequest
 Node vs element 

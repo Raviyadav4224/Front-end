@@ -61,6 +61,7 @@
                     defer.js executes (in order before DOMContentLoaded).
                     DOMContentLoaded event fires.
                     window.onload event fires. 
+                    
 7. Position Static, Relative, Absolute, Fixed & Sticky
     * Relative - 
         This property allows for adding top left bottom etc porperty to the given element
@@ -189,7 +190,7 @@
     HTML itself does not directly manage CORS. You use JavaScript to make cross-origin requests, 
     and the browser checks if the CORS policy is followed
     In backend -
-    Access-Control-Allow-Origin: *
+    Access-Control-Allow-Origin: * ( All )
     Access-Control-Allow-Origin: https://example.com
     Access-Control-Allow-Methods: GET, POST, PUT
     Access-Control-Allow-Headers: Content-Type, Authorization
