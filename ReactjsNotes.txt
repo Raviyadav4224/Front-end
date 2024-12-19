@@ -347,6 +347,66 @@
 
 26. Custom hooks -
 
+27. Package json (install a package, ~ vs ^, devDependencies, exact package version) -
+
+    * To install a package as devDependency -
+        npm install --save-dev prettier
+    * By default packages installed are with ^
+    * ^(Caret) vs ~(Tilde) -
+            "prettier": "^3.4.2" means 
+            The caret ^ symbol allows updates to the minor and patch versions but not the major versions
+            means allowed updates - 
+                3.4.2>= and <4.0.0
+                3.4.2, 3.4.3, 3.5.0, 3.9.9 are allowed
+            The tilde ~ symbol allows updates to the patch version only but not the major and minor versions
+                3.4.2>= and <3.5.0
+                3.4.2, 3.4.3, 3.4.9 are allowed
+    * To install a particular version of a package -
+        npm install packageName@version
+        example npm install prettier@3.4.2 
+        This is will install prettier as "prettier": "^3.4.2",
+    * To install exact version -
+        npm install packageName@version --save-exact
+        example - npm install prettier@3.4.2 --save-exact
+    * To check package versions -
+        npm show packageName versions
+
+28. package.json vs package-lock.json -
+
+    package.json contains -
+        meta data about the project such as name, author,description, version etc
+        It also contains info about devDependencies used in the project
+
+    package-lock.json -
+        It is generate automatically by npm on every npm install
+        It locks the versions of the packages installed
+        example "prettier": "^3.4.2", 
+        package-lock.json will contain exact 3.4.2 version and its resolved urls
+        It ensures same packages are installed across different systems
+        * However if someone manually changes the version of the package and re-installs it package-lock.json 
+            will be updated to the mentioned version
+        * While udpating using npm update, if new version is available it will update both package.josn and package-lock.json
+
+29. How to add compatible BROWSERSLIST in package.json -
+
+     "browserslist": {
+        "production": [
+        "> 0.2%",
+        "not dead",
+        "not op_mini all"
+        ],
+        "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+        ]
+    }
+    *   "last 2 versions": Supports the last two versions of all major browsers.
+    *    not dead": Excludes browsers that are officially discontinued or have <0.5% market share.
+    *   "> 0.2%": Includes browsers used by more than 0.2% of global users.
+    *   "not op_mini all": Excludes Opera Mini because it has limited feature support.
+
+
 
 React.createElement
 ReactDOM.createRoot
