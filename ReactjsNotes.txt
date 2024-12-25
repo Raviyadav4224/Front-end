@@ -30,7 +30,7 @@
 
     Babel -  It transforms JSX (i.e HTML like code with Javascript) into React Element behind the scene
     and renders it on page
-    It also converts ECMAScript code into backwards compatble version of Javascript that can be run by 
+    It also converts ECMAScript code into backwards compatible version of Javascript that can be run by 
     older version of Javascript
     *type="text/babel" <script type="text/babel" src="index.js"></script> it tell the browser to include
      the babel file which transform html into react element
@@ -351,24 +351,33 @@
 
     * To install a package as devDependency -
         npm install --save-dev prettier
+
     * By default packages installed are with ^
+
     * ^(Caret) vs ~(Tilde) -
+
             "prettier": "^3.4.2" means 
             The caret ^ symbol allows updates to the minor and patch versions but not the major versions
             means allowed updates - 
                 3.4.2>= and <4.0.0
                 3.4.2, 3.4.3, 3.5.0, 3.9.9 are allowed
+
             The tilde ~ symbol allows updates to the patch version only but not the major and minor versions
                 3.4.2>= and <3.5.0
                 3.4.2, 3.4.3, 3.4.9 are allowed
+
     * To install a particular version of a package -
         npm install packageName@version
         example npm install prettier@3.4.2 
         This is will install prettier as "prettier": "^3.4.2",
+
     * To install exact version -
+
         npm install packageName@version --save-exact
         example - npm install prettier@3.4.2 --save-exact
+
     * To check package versions -
+
         npm show packageName versions
 
 28. package.json vs package-lock.json -
@@ -383,11 +392,11 @@
         example "prettier": "^3.4.2", 
         package-lock.json will contain exact 3.4.2 version and its resolved urls
         It ensures same packages are installed across different systems
-        * However if someone manually changes the version of the package and re-installs it package-lock.json 
+        * However if someone manually changes the version of the package and re-installs it, package-lock.json 
             will be updated to the mentioned version
-        * While udpating using npm update, if new version is available it will update both package.josn and package-lock.json
+        * While udpating using npm update, if new version is available it will update both package.json and package-lock.json
 
-29. How to add compatible BROWSERSLIST in package.json -
+29. How to add compatible BROWSERSLIST'S in package.json -
 
      "browserslist": {
         "production": [
@@ -405,6 +414,61 @@
     *    not dead": Excludes browsers that are officially discontinued or have <0.5% market share.
     *   "> 0.2%": Includes browsers used by more than 0.2% of global users.
     *   "not op_mini all": Excludes Opera Mini because it has limited feature support.
+
+    **To check the compatible browserslist use -
+
+        npx browserslist
+        npx browserslist queries -> npx browserslist "last 1 chrome version,last 1 firefox version"
+        npx browserslist --debug -> shows all the commands and how they can be used
+        npx browserslist --env=development & npx browserslist --env=production
+
+30. What actually Babel does and how it uses browserslist -
+    
+    * Babel converts the modern JS versions into backward compatible versions so that it can run on older
+    browsers as well
+    * It also converts the JSX (HTML like code inside JS) using the React.createElement
+
+    * Babel also makes the application compatible with mentioned BROWSERSLIST'S in package.json file or
+      in the .browserslistrc config file 
+
+    * Babel itself does not directly parse browserslist, it relies on plugins and presets 
+      (like @babel/preset-env) to transform the code. These presets use the browserslist 
+      configuration to determine which transformations are needed to make the code compatible 
+      with the specified browsers.
+
+    * npx babel sourceFolderToCompile --out-dir outputFolderName
+        1. @babel/preset-env it converts the modern JS into backward compatible code and also detects the
+            list of compatible browsers list
+        2. Plugin babel-plugin-transform-remove-console - It removes all the console after compiling
+        3. @babel/preset-react - It converts JSX into JS
+        4. Custom babel plugins
+
+        babel.config.json file -
+            {
+            "presets": ["@babel/preset-env", "@babel/preset-react"],
+            "plugins": ["transform-remove-console","./plugins/addComment"]
+            }
+
+        *Babel plugin - 
+            A Babel plugin is a JavaScript function that operates on the Abstract Syntax Tree (AST) 
+            of your code. The AST is a tree-like representation of your source code, where each node 
+            corresponds to a syntactic construct (e.g., a function, variable, expression).
+            Babel plugins manipulate this tree to transform or analyze code.
+
+                custom babel plugin -
+                function addComment() {
+                    return {
+                        visitor: {
+                        FunctionDeclaration(path) {
+                            path.addComment("leading", "FROM_CUSTOM_PLUGIN : This is a function");
+                        },
+                        },
+                    };
+                    }
+                export default addComment;
+
+    * Babel automatically detects the browserslist from package.json or browserslistrc.js file when
+      @babel/preset-env is used
 
 
 
