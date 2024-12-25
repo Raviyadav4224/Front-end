@@ -470,7 +470,18 @@
     * Babel automatically detects the browserslist from package.json or browserslistrc.js file when
       @babel/preset-env is used
 
+31. NPX vs NPM -
 
+    NPX - Node Package Executor 
+        It is a tool which comes with Node (5.2.0 and above) and allows you to execute Node packages
+        using command line without the need of installing them globally.
+        It downloads the packages temporarily and removes it after execution.
+        example - npx babel src --out-dir outputFolderName
+
+    NPM - Node Package Manager
+        It is tool for managing Nodejs packages.
+        It is mainly used for installing packages locally and globally
+        It helps in managing dependencies of a project
 
 React.createElement
 ReactDOM.createRoot
