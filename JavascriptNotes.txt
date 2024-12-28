@@ -473,6 +473,8 @@ Javascript is a dynamically typed single threaded launguage
         document.getElementById("div").getAttribute("data-id")
         document.getElementById("div").setAttribute("data-id","321")
 
+    **document.getElementById("id").style.display="block" -> sets the INLINE CSS and not the external css
+    
 28. Event bubbling vs Event Capturing - 
 
     By default an event follows bubbling mode.
@@ -670,8 +672,14 @@ Javascript is a dynamically typed single threaded launguage
 
 43. Object.toString() -
 
-    It returns by default - [object <Class>]
+    The Object.prototype.toString method uses this [[Class]] property to generate the type string.
+    The format returned is [object <Type>], where <Type> is the specific type derived from [[Class]]
+    It returns by default - [object <Type>]
     Where 1st object indicates it is an OBJECT and 2nd object is its internal ClassName
+
+    *** Object.prototype.toString(value) - here this refers to the Object.prototype and so it gives output
+        as object Object
+        To check type of specific value use Object.prototype.toString.call(value) , which returns object Type
 
     *By default it works for all data types except null and undefined
      for null and undefined it thrwos an error
