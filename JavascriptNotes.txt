@@ -273,6 +273,8 @@ Javascript is a dynamically typed single threaded launguage
     Promise.resolve(value) & Promise.reject(value) - 
     It directly resolves or rejects the promise with the given value
 
+    ***.then(res=>{return "value"}) -> Whatever is returned from .then() is wrapped as a fullfilled promise
+
 19. Async await - 
 
     It is used to handle promises or asynchronous tasks in Javascript
