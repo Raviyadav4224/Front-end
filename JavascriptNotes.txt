@@ -43,16 +43,34 @@ Javascript is a dynamically typed single threaded launguage
     typeof(Class) - Function
 
 7. Hoisting - 
-    Hoisting is a special feature in Javascript where variable and functions declaratives are moved to the 
-    top of their defining scopes during the compilation phase, before the code is executed
-    * Functions declared using the keyword function are fully hoisted i.e they are moved to the top of their 
-    defining scope
-    * Function assignment are not hoisted
-    * console.log(var) // undefined
-      obj() // Type Error : not a fucntion
-      var obj=function(){
-        console.log("This is a function")
-        }
+    Hoisting in javascript is a feature where variables and functions declarations are moved
+    top of their defining scopes
+    variables declared using var are fully hoisted
+    Function declared using the keyword function are fully hoisted
+    Function expressions are only partially hoisted (only the variable declaration is hoisted, 
+    but the assignment happens at runtime). 
+    Functions are hoisted first and then variables
+    During compilation phase -
+    functions and variables declaration move top of their defining scopes
+    variable creation takes place but initialization doesn't
+    * when we decalre a variable using var inside a function it is scoped there
+
+    * SCOPES -
+    var are function scoped and can be re-declared in the same scope
+    whereas let is block scope , it cannot be re-declared
+    function outer() {
+    console.log(a); (1)
+    var a = 10;
+    var inner = function () {
+        console.log(a); (2)
+        a = 20;
+        console.log(a); (3)
+    };
+    inner();
+    console.log(a); (4)
+    }
+
+    outer();
 
 8. Temporal Dead Zone - 
      Both let and const are hoisted but differs with var 
