@@ -483,6 +483,16 @@
         It is mainly used for installing packages locally and globally
         It helps in managing dependencies of a project
 
+32. Optional chaining (?.) -
+
+    It allows you to safely access properties or methods of an object without throwing an error if the object
+    is null or undefined
+    example -
+        let user=undefined
+        console.log(user.name) // Gives error - Uncaught TypeError: Cannot read properties of undefined
+        solution - console.log(user?.name) 
+
+        
 React.createElement
 ReactDOM.createRoot
 ReactDOM.render  
