@@ -268,6 +268,19 @@ Javascript is a dynamically typed single threaded launguage
     
     const myPromise=new Promise((resolve,reject)=>{})
 
+    * Conditionally resolve/reject a promise - (on a button click)
+        myPromise=new Promise((resolve,reject)=>{
+            document.getElementById("btn").addEventListener('click',function(){
+                resolve("Promise has been resolved")
+            })
+        })
+        
+    * Create a promise in pending state -
+        myPromise=new Promise((resolve,reject)=>{}) 
+        When we are neither resolving or rejecting a promise , then it is created in PENDING state
+
+    ** We can use AWAIT outside async function if script is of NOT type module
+
     Promise.all([]) - 
     Promise.all returns the value promises as an array of values when all promises are 
     settled , when any of the promise gets rejected it stops
