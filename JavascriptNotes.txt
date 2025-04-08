@@ -636,7 +636,7 @@ Javascript is a dynamically typed single threaded launguage
         document.getElementById("throttle").addEventListener("click", t);
 
 35. Debouncing -
-    It ensures a fucntion in called after specified amount of time has passed i.e It delays invocation
+    It ensures a function in called after specified amount of time has passed i.e It delays invocation
     function debounce(func, delay) {
         let timer = 0;
         return function () {
@@ -725,6 +725,9 @@ Javascript is a dynamically typed single threaded launguage
 
 44. JSON.stringify() limitations -
 
+        * JSON.stringify() If keys are same but differs in order then stringify cannot be used to compare 
+            two objects.
+            
         * JSON.stringify() ignores properties whose VALUES are functions, undefined, or symbol
             let obj = {
                 a: 10,
@@ -761,9 +764,11 @@ Javascript is a dynamically typed single threaded launguage
             obj.self = obj;
             JSON.stringify(obj); // TypeError: Converting circular structure to JSON
 
-        * JSON.stringify(object,replacer,space)
+        * JSON.stringify(object,replacer,space) -
+
           replacer can be a function or array of keys
-          console.log(JSON.stringify(obj, ["name", "value"]));
+          console.log(JSON.stringify(obj, ["name", "value"])); - It will convert into JSON with given keys HttpOnly
+          We can give custom replacer function which will replace as per our needs
 
 45. Html events vs Javacsript events -
 
@@ -841,6 +846,61 @@ Javascript is a dynamically typed single threaded launguage
         myobj=null
         console.log(myweakMap)
 
+49. FileReader in JS -
+
+50. Symbols -
+
+    It is a primitive data type in Javascript, generally used as keys in objects to differentiate two
+    object keys
+
+    *Symbols are not enumerable i.e we cannot run loops on it
+
+    * new Symbol("") always creates a NEW symbol
+      let sm1 = Symbol("abc")
+      let sm2 = Symbol("abc")
+      sm1 === sm2 --> false
+
+    * Symbol.for("") creates symbol GLOBALLY , if it exists already then NEW symbol is not created 
+      rather same is returned from the global pool
+
+      let sym1=Symbol.for('abc')
+      let sym1=Symbol.for('abc')
+      sm1 === sm2 --> true
+
+51. isNaN vs Number.isNaN() -
+
+    isNaN first converts the value to number and checks that the value is NaN  
+    examples -
+        isNaN(123) -> false
+        isNaN("123") -> false
+        isNaN("ravi") -> true
+        isNaN(NaN) -> true
+        isNaN(undefined) -> true
+
+    Whereas Numebr.isNaN() checks whether the given value is NaN or not
+    examples -
+        Number.isNaN(123) -> false
+        Number.isNaN("123") -> false
+        Number.isNaN("ravi") -> false
+        Number.isNaN(NaN) -> true
+        Number.isNaN(undefined) -> false
+
+52. import vs dynamic import() -
+
+    import - 
+        It is preparsed at COMPILE TIME and enables TREE Shaking by default
+    
+    import() -
+        Used for conditionally loading the content 
+        It is parsed at RUNTIME
+        It returns a Promise and error handling must be done properly
+
+50. ARIA 
+51. Workers
+52. Progressive Web Apps
+55. Compare two primitive data types
+56. Deep copy
+57. JIT
 xmlhttpRequest
 Node vs element 
 

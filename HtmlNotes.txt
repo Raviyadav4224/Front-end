@@ -76,7 +76,7 @@
         The element is fixed wrt VIEWPORT
         Element comes out of the normal flow
         It remains fixed even if the Container containing it ends
-        It the element is position fixed and outside the VIEWPORT it will never shown on screen 
+        If the element is position fixed and outside the VIEWPORT it will never shown on screen 
         since it is positioned wrt VIEWPORT
         
     * Sticky -
@@ -177,7 +177,7 @@
 
     justify-content - HORIZONTALLY (parent property)
     flex: flex-grow flex-shrink flex-basis; (child property)
-    order:2 (child property) - sets the order of child elements
+    * order:2 (child property) - sets the order of child elements
 
 13. Simulate onclick using CSS -
     Directly simulation is not possible but we can mimic of clicking using btn:active,
