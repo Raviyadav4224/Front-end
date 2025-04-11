@@ -43,16 +43,46 @@ Javascript is a dynamically typed single threaded launguage
     typeof(Class) - Function
 
 7. Hoisting - 
+
     Hoisting in javascript is a feature where variables and functions declarations are moved
-    top of their defining scopes
-    variables declared using var are fully hoisted
-    Function declared using the keyword function are fully hoisted
-    Function expressions are only partially hoisted (only the variable declaration is hoisted, 
-    but the assignment happens at runtime). 
-    Functions are hoisted first and then variables
+    to the top of their defining scopes
+
+    * variables declared using var and Function declared using the keyword function are fully hoisted
+
+    * Function expressions are only partially hoisted (only the variable declaration is hoisted, 
+      but the assignment happens at runtime). 
+
+    ** Functions are hoisted first and then variables
+    
+    ** Functions and variable with SAME NAME, function is given more previlege 
+        example -
+            console.log(abc);
+            var abc = 10;
+            function abc() {
+                console.log("i'm Function");
+            }
+            console.log(abc);
+
+
+        During compilation phase ->
+          function abc() {
+            console.log("i'm Function");
+          }
+          var abc ; -> ** Here Function abc is not being overwritten because value is not assigned to abc
+                          i.e since it's just a declaration, it doesn't override the function yet.
+
+          console.log(abc);
+          abc = 10;
+          console.log(abc);
+
+          Output - 
+          function definition 
+          10
+
     During compilation phase -
-    functions and variables declaration move top of their defining scopes
-    variable creation takes place but initialization doesn't
+    Functions and variables declaration move top of their defining scopes
+    variable creation takes place but initialization doesn't happens
+
     * when we decalre a variable using var inside a function it is scoped there
 
     * SCOPES -
@@ -71,10 +101,16 @@ Javascript is a dynamically typed single threaded launguage
     }
 
     outer();
+    Output - 
+        undefined
+        10
+        20
+        20
 
 8. Temporal Dead Zone - 
      Both let and const are hoisted but differs with var 
-     let and const variable cannot be accessed before declaration , this is known as Temporal Dead Zone
+     let and const variable cannot be accessed before declaration and throws an REFERENCE ERRRO,
+     this is known as Temporal Dead Zone
 
 9. Closures - 
     Closure occurs when one function is defined inside another function and the inner function has access 
@@ -224,7 +260,7 @@ Javascript is a dynamically typed single threaded launguage
     map, filter, reduce methods returns array whereas forEach,for,forof,forin doesn't returns anything
     for of is used to iterate over iterable i.e Arrays
 
-    Array.redcue(callbackFn,initialValue)
+    Array.reduce(callbackFn,initialValue)
                 filteredData.map((item) => item.amount)
                 .reduce((prev, current) => prev + current, 0)
 
@@ -855,7 +891,7 @@ Javascript is a dynamically typed single threaded launguage
 
     *Symbols are not enumerable i.e we cannot run loops on it
 
-    * new Symbol("") always creates a NEW symbol
+    * Symbol("value") always creates a NEW symbol
       let sm1 = Symbol("abc")
       let sm2 = Symbol("abc")
       sm1 === sm2 --> false
@@ -895,12 +931,15 @@ Javascript is a dynamically typed single threaded launguage
         It is parsed at RUNTIME
         It returns a Promise and error handling must be done properly
 
+53. JIT ( Just in Time Compiler ) -
+
+54. Equality Check ( == vs === ) -
+
 50. ARIA 
 51. Workers
 52. Progressive Web Apps
 55. Compare two primitive data types
 56. Deep copy
-57. JIT
 xmlhttpRequest
 Node vs element 
 
@@ -908,4 +947,3 @@ document.createElement
 Form events
 Strict mode in js
 type module and type SCRIPT
-script tag in html, defer tag in that
