@@ -244,16 +244,16 @@ Javascript is a dynamically typed single threaded launguage
 
     Shallow Copy vs Deep Copy - 
 
-    In shallow copy the immediate properties of an object are copied and not the NESTED properties,
-    i.e it is done only at the FIRST level
-    new object created through shallow copy shares references to the nested objects.
-    spread operator, normal object assignment,Object.assign(), Object.create() all these
-    creates shallow copy of the object
+        In shallow copy the immediate properties of an object are copied and not the NESTED properties,
+        i.e it is done only at the FIRST level
+        new object created through shallow copy shares references to the nested objects.
+        spread operator, normal object assignment,Object.assign(), Object.create() all these
+        creates shallow copy of the object
 
-    whereas in deep copy all the properties of object along with its nested objects are copied,
-    new object created using deep copy has new reference or entirely newly created object
+        whereas in deep copy all the properties of object along with its nested objects are copied,
+        new object created using deep copy has new reference or entirely newly created object
 
-    using JSON.parse(JSON.stringify(obj)) we can create a deep copy of an object
+        using JSON.parse(JSON.stringify(obj)) we can create a deep copy of an object
 
 16. Loops & Map, Filter, Reduce - 
     
@@ -486,54 +486,85 @@ Javascript is a dynamically typed single threaded launguage
     Here the document object is known as the Document Object Model i.e DOM
     DOM is basically tree like structure or representation of HTML elements
 
+    Node -
+
+        Every part of an HTML document i.e elements , texts , comments are considered as a Node
+        DOM is the tree like structure of Nodes
+        In DOM Nodes can be of different types such as Element Node (1), Text Node (3), Comment Node(8)
+        Each Node has a nodetype value
+        The Document itself is a document node of type 9
 
     HTMLCollection vs NodeList
 
-    An HTMLCollection is always a live collection. Example: If you add a <li>
-    element to a list in the DOM, the list in the HTMLCollection will also change.
-    A NodeList is most often a static collection. Example: If you add a <li>
-    element to a list in the DOM, the list in NodeList will not change.
-    The getElementsByClassName() and getElementsByTagName() methods return a live
-    HTMLCollection.
-    The getElementById() & querySelectorAll() method returns a static NodeList.
-    The childNodes property returns a live NodeList
-    HTMLCollection items can be accessed by their name, id, or index number.
-    NodeList items can only be accessed by their index number. 
+        An HTMLCollection is always a live collection. Example: If you add a <li>
+        element to a list in the DOM, the list in the HTMLCollection will also change.
+        A NodeList is most often a static collection. Example: If you add a <li>
+        element to a list in the DOM, the list in NodeList will not change.
+        The getElementsByClassName() and getElementsByTagName() methods return a live
+        HTMLCollection.
+        The getElementById() & querySelectorAll() method returns a static NodeList.
+        The childNodes property returns a live NodeList
+        HTMLCollection items can be accessed by their name, id, or index number.
+        NodeList items can only be accessed by their index number. 
 
-    document.getElementById - returns an Element Object
-    document.getElementsByClassName - returns a HTMLCollection
-    document.querySelector - returns an Element Object
-    document.querySelectorAll - returns a NodeList
-    document.getElementByTagName - returns a HTMLCollection
+        document.getElementById - returns an Element Object
+        document.getElementsByClassName - returns a HTMLCollection
+        document.querySelector - returns an Element Object
+        document.querySelectorAll - returns a NodeList
+        document.getElementByTagName - returns a HTMLCollection
+            
+            example -
+                let ul=document.getElementsByTagName('ul')
+                let li=document.querySelectorAll('li')
+                console.log("HTMLCollection - LiveList",ul[0].children)
+                console.log("NodeList - Static List",li)
+
+                // add an li to ul
+
+                let element=document.createElement('li')
+                element.innerText="This is added using JS"
+                ul[0].append(element)
+                console.log("HTMLCollection - LiveList",ul[0].children) // Logs the updated HTMLCollection 
+                console.log("NodeList - Static List",li) // Logs the Static NodeList before updation
+                console.log(document.querySelectorAll('li')) // Logs the updated Nodelist 
+
+    *NodeList can be STATIC or LIVE (dynamic) depending upon how it is obtained
+
+        example -  
+            document.querySelectorAll('li') - gives static NodeList 
+            document.getElementsByTagName('ul')[0].childNodes - gives Live NodeList
+
+        Static NodeList doesnot reflect DOM changes
+        Dynamic NodeList refeclects DOM Changes
 
     append vs appendChild - 
 
-    append - it can accept multiple Node values , strings (DOM Strings) as an input
-    It doesn't have a return value
-    example document.getElementsByClassName.append(div, 'div')
+        append - it can accept,single & multiple Node values , strings (DOM Strings) as an input
+        It doesn't have a return value
+        example document.getElementsByClassName.append(div, 'div')
 
-    appendChild - it accepts only NodeList and add to the end of NodeList
-    It returns the appended Node object
-    example document.getElementsByClassName.appendChild('div') throws an error
+        appendChild - it accepts only Element or Node and adds to the end of NodeList
+        It returns the appended Node object
+        example document.getElementsByClassName.appendChild('div') throws an error
 
-    ** HTMLCollection[0].childNodes gives the Node object and we can perform append or appendChild on
-        HTMLCollection[0] and not on HTMLCollection
+        ** HTMLCollection[0].childNodes gives the Node object and we can perform append or appendChild on
+            HTMLCollection[0] and not on HTMLCollection
 
-    innerText vs textContent - 
+    innerText vs textContent vs innerHtml - 
 
-    innerText - It is used to get or set the text content of an element considering the CSS
-    and it doesnt includes hidden text of an HTML element 
-    
-    textContent - It is used to set or get the text content along with text nodes and white content
-    of an element without considering the CSS
+        innerText - It is used to get or set the text content of an element considering the CSS
+        and it doesnt includes hidden text of an HTML element 
+        
+        textContent - It is used to set or get the text content along with text nodes and white content
+        of an element without considering the CSS
 
-    innerHtml - It is used to set or get the Html content of an element
-    *using innerHtml (XSS) Cross site scripting attacks are possible so it is not recommended
+        innerHtml - It is used to set or get the Html content of an element
+        *using innerHtml (XSS) Cross site scripting attacks are possible so it is not recommended
     
     *remove vs removeChild - 
 
-    remove is a method directly available on DOM elements whereas removeChild is a method which is
-    available on PARENT'S NODE and used to remove child elements
+        remove is a method directly available on DOM elements whereas removeChild is a method which is
+        available on PARENT'S NODE and used to remove child elements    
 
     *getAttribute vs setAttribute -
         <div  data-id="123">This is a DIV </div>
@@ -550,6 +581,8 @@ Javascript is a dynamically typed single threaded launguage
     In bubbling mode event propagates from child to parents whereas in event capturing mode event propagates 
     from Parent to child
 
+    * element.addEventListener('eventName',function,false) BUBBLING Mode
+    * element.addEventListener('eventName',function,true) CAPTURING Mode
     *We can stop propagation of bubbling events using event.stopPropagation()
 
 29. Event Simulation & Event Delegation - 
@@ -559,6 +592,13 @@ Javascript is a dynamically typed single threaded launguage
 
     Instead of applying event to each child we can apply event to the parent and have the same outcome is
     termed as event delegation
+    example -
+        document.getElementsByTagName("ul")[0].addEventListener(
+            "click",
+            function (event) {
+            console.log("clicked UL",event);
+            }
+        );
 
 30. CallStack vs Event Loop vs Callback Queue vs Execution Context - 
 
