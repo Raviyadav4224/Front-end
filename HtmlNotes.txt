@@ -175,6 +175,8 @@
     
 12. Display Flex -
 
+    It provides a layout Model for clean and easy arrangements of elements within a container
+    It provides 1-D layout
     justify-content - HORIZONTALLY (parent property)
     flex: flex-grow flex-shrink flex-basis; (child property)
     * order:2 (child property) - sets the order of child elements
@@ -199,6 +201,8 @@
 
 15. Display grid -
 
+    It offers row column based layouts and has 2-dimensional layout
+
 16.* Meta Tags -
 
     Meta tags are metadata i.e it contains data about data of an webpage
@@ -214,3 +218,61 @@
 
     * meta name ="viewport" content="width=device-width" tells the browser to open the webpage 
       in device width so that it can be made responsive
+
+17. CSS Specificity - 
+   It is an algorithm used by browsers to determine CSS declaration which is more relevant to an element
+   It calculates weight of a html element to determine which rule to apply. 
+
+   specific weight - (ID,Class,TagName)
+
+   *Id > Class > TagName
+   * is() has() not() pseudo classes doesn't add value while calculating specific weight but the values
+   passed inside them, its specifc weight is added
+   example - is(.myClass) - (0,1,0)
+   *Inline CSS has the highest Specficity
+   *If Specficity clashes , lastest css is given more preference
+   * !important -  It reverses the specificity of the element
+
+18. Box Model -
+
+   It defines how elements are structured and positioned in a web page
+   It consists of four main components ->
+   content
+   border
+   margin
+   padding
+
+   box-sizing ->  default content-box -> means height and width applies only to content area. 
+                  border box -> means box height & width contains margin and padding
+
+19. z-index - 
+
+   It is related to its parent's z-index
+   used to displace elements on the z-axis i.e in or out of the screen.
+   It is used to define the order of elements if they overlap with each other.
+
+20. Block vs inline -
+
+    A block-level element always starts on a new line and stretches out to the left and right
+    as far as it can
+    An inline element does not start on a new line and only takes up as much width as necessary.
+
+21*. Cross Browser Compatibilty Issues -
+
+    1. Using gap in a flex layout for spacing between cards. It worked fine on Chrome and Firefox, 
+       but in Safari, the spacing was missing.
+            gap: 20px; 
+        To overcome this - used margin-right:20px
+
+    2. <input type="date"> had different UIs across browsers. In Safari and Firefox, the styling and 
+        even behavior (like the date format) differed.
+
+        For IE11 input type='date' doesn't works
+        To fix this we can use Babel presets
+    
+    3. In an autocomplete input, event.key worked well in modern browsers, but older Edge/IE 
+        required keyCode.
+            const key = e.key || e.keyCode;
+                if (key === 'Enter' || key === 13) {
+                handleSubmit();
+            }
