@@ -1003,7 +1003,25 @@ Javascript is a dynamically typed single threaded launguage
             console.log(sliced); // [2, 3, 4]
             console.log(arr);    // [1, 2, 3, 4, 5] → unchanged
 
-50. ARIA 
+50. Accessible Rich Internet Applications( ARIA ) - 
+
+    It is a powerful tool for enhancing accessibility in web applications.It ensures that all users
+    including those with visual or cognitive impairements can understand and interact with the website
+
+    ARIA defines three types of attributes:
+        Roles
+            Describe what an element is.
+            Example: role="button", role="dialog", role="tab".
+            Useful when you’re using a <div> or <span> to build a component that visually behaves like a native element (e.g., a button).
+
+        States  
+            Describe the current condition of an element.
+            Example: aria-expanded="true" or aria-checked="false".
+
+        Properties
+        Define characteristics of elements that are consistent over time.
+        Example: aria-labelledby, aria-describedby.
+        
 51. Workers
 52. Progressive Web Apps
 55. Compare two primitive data types
