@@ -764,6 +764,15 @@ Javascript is a dynamically typed single threaded launguage
 
 40. Regex Expressions -
 
+    Using literal syntax -
+
+        const pattern1=/hello/gi
+
+    Using Constructor syntax -
+
+        const pattern2= new RegExp(pattern,flags)
+        const regExpEmail= new RegExp("abc","gi")
+
 41. String Manipulation -
 
 42. Value vs DefaultValue vs Selected attribute in Select in React/JS -
@@ -974,6 +983,25 @@ Javascript is a dynamically typed single threaded launguage
 53. JIT ( Just in Time Compiler ) -
 
 54. Equality Check ( == vs === ) -
+
+55. Splice vs Slice -
+
+    Splice - Modifies the original array
+
+        array.splice(startIndex, deleteCount, item1, item2, ...)
+        example -
+            let arr = [1, 2, 99, 100, 5];
+            arr.splice(2, 2, 3, 4);
+            console.log(arr); // [1, 2, 3, 4, 5]
+
+    Slice - Does'nt modifies the original array
+
+        array.slice(startIndex, endIndex) // endIndex is non-inclusive
+        example -
+            let arr = [1, 2, 3, 4, 5];
+            let sliced = arr.slice(1, 4);
+            console.log(sliced); // [2, 3, 4]
+            console.log(arr);    // [1, 2, 3, 4, 5] → unchanged
 
 50. ARIA 
 51. Workers
