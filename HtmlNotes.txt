@@ -9,10 +9,39 @@
 
     *Scripts placed inside body tag executes after HTML content is loaded
     
-2. HTML 5 features -
-    Audio video tag
-    Header Footer tag
-    Nav tag
+2. HTML5 & CSS3 Features -
+
+    HTML5 Features -
+
+        1. Addition of semantic elements like - nav , footer, header, section, article, Audio, Video 
+            tags etc
+        
+        2. Addition of new input types such as tel, date, number etc
+
+        3. Canvas APIs  <canvas> for rendering simple charts and visual effects
+
+    CSS3 Features -
+
+        1. Addition of custom variables -
+
+            :root {
+            --primary-color: #3498db;
+            }
+            .btn {
+            background-color: var(--primary-color);
+            }
+
+        2. Addition of Pseudo classes and Pseudo elements -
+
+            Pseudo-classes(:) - Used to define special state of an element example hover, active, focus
+            Pseudo-elements(::) - lets you style part of an element like ::before,::after,::placeholder
+
+        3. Addition of media queries for creating and designing responsive designs
+            @media (max-width: 768px) {
+                .sidebar {
+                    display: none;
+                }
+            }
 
 3. Elements vs tags -
     Tags -> <span>, div tag executes
