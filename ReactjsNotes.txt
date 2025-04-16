@@ -259,6 +259,29 @@
     render method returns JSX
     constructor method provides ways to create and set States
     super is used for calling parents constructor function
+    example -
+        class ClassComponent extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                counter: 0,
+                };
+            }
+
+            render() {
+                return (
+                <>
+                    <div>This is a Class Component</div>
+                    <button
+                    onClick={() => this.setState({ counter: this.state.counter + 1 })}
+                    >
+                    Counter+
+                    </button>
+                    <p>{this.state.counter}</p>
+                </>
+                );
+            }
+            }
 
 20. Life Cycle Methods in Class Based Components - 
     React components stages includes - Mounting, Updating, Unmounting
