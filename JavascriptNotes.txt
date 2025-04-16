@@ -258,12 +258,15 @@ Javascript is a dynamically typed single threaded launguage
 
 16. Loops & Map, Filter, Reduce - 
     
-    map, filter, reduce methods returns array whereas forEach,for,forof,forin doesn't returns anything
+    map, filter, reduce methods returns new array and does not modifies the existing array whereas 
+    forEach,for,forof,forin doesn't returns anything
+    
     for of is used to iterate over iterable i.e Arrays
 
     Array.reduce(callbackFn,initialValue)
+    Array.reduce(( accumulator , currentValue ), initialValue )
                 filteredData.map((item) => item.amount)
-                .reduce((prev, current) => prev + current, 0)
+                .reduce((accumulator, current) => accumulator + current, 0)
 
 17. SetTimeout & SetTimeInterval & ClearTimeout & ClearTimeInterval
 
@@ -465,8 +468,13 @@ Javascript is a dynamically typed single threaded launguage
 
     * Prototype modifications (e.g., adding methods or properties) affect all instances dynamically, 
         even those created before the modification.
-        Replacing the entire prototype (using Constructor.prototype = { ... }) breaks the connection
-        for existing instances, as they still refer to the original prototype object.
+        Replacing the entire prototype (using Object.prototype = { logMe:function(){console.log(this)} }) 
+        breaks the connection for existing instances, as they still refer to the original prototype object.
+
+    * Object Literals ({}) always refer to Object.prototype as their prototype.
+
+    * Objects created via a function constructor (new Function()) refer to Function.prototype as their 
+      prototype.
 
     By default everything in Js points to an Object.
     We can add properties to prototype of an Object
@@ -814,6 +822,8 @@ Javascript is a dynamically typed single threaded launguage
 
     * By default it works for all data types except null and undefined
       for null and undefined it thrwos an error
+        let value=null or undefined
+        value.toString() - throws error
 
     * null and undefined can be stored using String wrapper class
         a=String(undefined)
