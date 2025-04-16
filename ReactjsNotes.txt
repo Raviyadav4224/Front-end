@@ -361,28 +361,47 @@
         It is used to create to memoized functions 
         syntax const memoizedFunctionName=useCallback(function,[dependencyArray])
         example -
-        * Without using React.memo or useCallback will cause Child Component to re-render everytime and it will create 
-          new instance of INCREMENT function.
+        * When using inline functions, on every re-render, new function reference is created
+          To avoid this we use useCallback 
+          example -
 
-            function Parent() {
+            const Parent = () => {
                 const [count, setCount] = useState(0);
+                console.log("Parent Rendering");
 
-                const increment = () => {
-                    setCount((prev) => prev + 1);
-                };
-
-                const memoizedIncrement = useCallback(increment, []);
-                console.log("Parent Rendered", count);
-
+                //   const handleClick = () => {
+                //     console.log("Inline Function");
+                //   };
+                    const handleClick = useCallback(() => {
+                    console.log("Inline Function");
+                    }, []);
                 return (
                     <>
-                    <div className="app">This is App container</div>
-                    <div>Count is {count}</div>
-                    <ChildComponent increment={memoizedIncrement} />
+                    Count {count}
+                    <button onClick={() => setCount((prev) => prev + 1)}>Click</button>
+                    <h1>Parent</h1>
+                    <Child1 handleClick={handleClick} />
                     </>
                 );
-                    }
+                };
 
+                export default Parent;
+
+
+                const Child1 = ({ handleClick }) => {
+                const [emiValue, setEMIValue] = useState(0);
+                const [inputValue, setInput] = useState(0);
+
+                console.log("Child Rendering");
+                //Checking Function reference
+                useEffect(() => {
+                    console.log("📌 handleClick function reference changed");
+                }, [handleClick]);
+                return <>Child</>;
+                };
+
+                export default React.memo(Child1);
+                
     useMemo -
         It is used to memoize a value rather than a function and it recalculates the value only when its
         dependency changes
