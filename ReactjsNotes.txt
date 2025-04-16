@@ -230,6 +230,7 @@
     *Event binding is still there
 
 18. Code splitting & lazy loading - 
+
     Lazy load means when user goes to that page then only load the content of that page/module is served
 
     Bundlers by default creates bundle of whole code, even if it is not required by browser or user
@@ -237,7 +238,7 @@
     Bundlers creates different files in production build and serves them when required
     Once the file is loaded, for next time browser takes the file from browser and doesn't lazy loads its everytime
     * Suspense is always required
-    * Lazy loading works onyl for React components
+    * Lazy loading works only for React components
     * For dynamic imports we can use import() with await, example -
         const { default: sum } = await import('./sumFunction');
         
@@ -302,10 +303,34 @@
     Same can be replicated in functional components using the React.memo
 
 24. React.memo -
+
     It is used to prevent re-renders of Child component when Parent component re-renders provided Child
     component props do not change
     Similar to PureComponents
     syntax - const ChildComponent=React.memo(functionalComponent)
+    example -
+        const Comp1 = () => {
+        const [count, setCount] = useState(0);
+        console.log("Comp 1 Rendered")
+        return (
+            <div>
+            Comp1
+            <button onClick={() => setCount((prev) => prev + 1)}>Click Me</button>
+            Count :{count}
+            <Comp2 />
+            </div>
+        );
+        };
+
+        const Comp2 = () => {
+        console.log("Comp 2 Rendered")
+
+        return (
+            <div>Comp2</div>
+        )
+        }
+
+        export default React.memo(Comp2)
     
 25. useCallback ,useMemo ,useContext -
 
@@ -338,6 +363,7 @@
     useMemo -
         It is used to memoize a value rather than a function and it recalculates the value only when its
         dependency changes
+        * It memoizes JSX elements, objects, or arrays (e.g., children)
         syntax - const memoizedValue=useMemo(()=>{
             // calculating the value
         },[dependencyArray])
