@@ -83,7 +83,7 @@ Javascript is a dynamically typed single threaded launguage
     Functions and variables declaration move top of their defining scopes
     variable creation takes place but initialization doesn't happens
 
-    * when we decalre a variable using var inside a function it is scoped there
+    * when we declare a variable using var inside a function it is scoped there
 
     * SCOPES -
     var are function scoped and can be re-declared in the same scope
@@ -137,9 +137,10 @@ Javascript is a dynamically typed single threaded launguage
         console.log(myCounter.decreaseMe());
 
 10. Lexical Scoping - 
+
     When inner function has access to the variable of outer function is known as lexical scoping
 
-11. Call,Apply and Bind - 
+11. Call, Apply and Bind - 
 
     Call - 
     it allows you to invoke a function with a specified this value and arguments provided individually
@@ -168,7 +169,7 @@ Javascript is a dynamically typed single threaded launguage
 12. Arrow Functions vs Functions - 
 
     Arrow function doesn't have their own this value
-    Arrow functions dont have prototypes 
+    * Arrow functions dont have prototypes 
     They refer to parents this value which is generally the global object (window object)
     Whereas normal functions this changes as per requirement
     for example - 
@@ -295,6 +296,7 @@ Javascript is a dynamically typed single threaded launguage
     }
 
 18. Promises - 
+
     Promises are objects in Javascript which represent completion or failure of an asynchronous operation
     It has three states - 
     pending, fullfilled or rejected
@@ -455,9 +457,12 @@ Javascript is a dynamically typed single threaded launguage
 26. *Prototypal Inheritance - 
 
     * Prototype is a mechanism by which JavaScript objects inherit features from other objects
+
     * Every JavaScript object has an internal property called [[Prototype]] 
        (often accessed via the __proto__ property or indirectly through Object.getPrototypeOf())
+
     * This [[Prototype]] property links the object to another object, known as its prototype.
+
     * Prototype modifications (e.g., adding methods or properties) affect all instances dynamically, 
         even those created before the modification.
         Replacing the entire prototype (using Constructor.prototype = { ... }) breaks the connection
@@ -627,7 +632,7 @@ Javascript is a dynamically typed single threaded launguage
 31. Map & Set - 
 
     Map are objects in JavaScript which stores key-values pairs
-    *Keys can be of any type unless object where keys are of type string
+    *Keys can be of any type unless Objects where keys are of type string
     let myMap=new Map()
     myMap.set(key,value)
     myMap.get(key)
@@ -675,6 +680,7 @@ Javascript is a dynamically typed single threaded launguage
         console.log(proxy.message2); // proxy
 
 33. Currying -
+
     It is a technique in JavaScript using which function with multiple arguments are converted into 
     sequence of functions each taking a single arguments
     example ->
@@ -690,6 +696,7 @@ Javascript is a dynamically typed single threaded launguage
             console.log(curryingAdd(5)(6));
 
 34. Throttling -
+
     It ensures that a given function in called at most once in given interval of time even if it is called
     multiple times. It is used to control the rate of execution
     example -
@@ -712,7 +719,9 @@ Javascript is a dynamically typed single threaded launguage
         document.getElementById("throttle").addEventListener("click", t);
 
 35. Debouncing -
+
     It ensures a function in called after specified amount of time has passed i.e It delays invocation
+
     function debounce(func, delay) {
         let timer = 0;
         return function () {
@@ -731,6 +740,7 @@ Javascript is a dynamically typed single threaded launguage
 37. Rest, Spread Operators & Default parameter value -
 
 38. Generator Functions -
+
     Generator are special functions in JavaScript that pause execution, yield value and resume 
     execution later.
     *generator functions can delegate to another generators using yield*
@@ -779,10 +789,13 @@ Javascript is a dynamically typed single threaded launguage
 
         * value make the component a Controlled component
           defaultValue makes it uncontrolled component
+
         * When both value and defaultValue are specified, React prioritizes value and ignores defaultValue.
+
         * The defaultValue only sets the initial value of the <select>, but subsequent changes to Select 
           will not update the <select> value.Wheareas value will reflect the subsequent changes provided
           it is being set using an onchange
+
         * Selected attribute works for the initial render only in both React & JS, after that it shows
             value based on value porperty
             Even if Selected={stateValueInReact} even when state changes and component re-renders, here React
@@ -799,14 +812,15 @@ Javascript is a dynamically typed single threaded launguage
         as object Object
         To check type of specific value use Object.prototype.toString.call(value) , which returns object Type
 
-    *By default it works for all data types except null and undefined
-     for null and undefined it thrwos an error
-    *null and undefined can be stored using String wrapper class
+    * By default it works for all data types except null and undefined
+      for null and undefined it thrwos an error
+
+    * null and undefined can be stored using String wrapper class
         a=String(undefined)
         a.toString() - > "undefined"
     *For Arrays - It return string with elements joined using ','
     *For Functions - It return string format of function definition
-    *For Date - It returs date in human  readable format
+    *For Date - It returs date in human readable format
 
 44. JSON.stringify() limitations -
 
@@ -852,7 +866,7 @@ Javascript is a dynamically typed single threaded launguage
         * JSON.stringify(object,replacer,space) -
 
           replacer can be a function or array of keys
-          console.log(JSON.stringify(obj, ["name", "value"])); - It will convert into JSON with given keys HttpOnly
+          console.log(JSON.stringify(obj, ["name", "value"])); - It will convert into JSON with given keys only
           We can give custom replacer function which will replace as per our needs
 
 45. Html events vs Javacsript events -
@@ -875,18 +889,21 @@ Javascript is a dynamically typed single threaded launguage
 46. Session storage, Local storage vs cookies -
 
     Session storage - 
+
         It is web storage API that stores data for the duration of browser session (TAB specific), once
         the tab is closed the data is lost
         Maximum storage ~ 5MB
         It is only accessible in the client side
     
     Local storage -
+
         It is similar to session storage but stores data even after the brower is closed.
         It is shared accross all tabs/windows of same origin
         Data persists until explicitly cleared by the user
         Maximum storage ~ 5MB
     
     Cookies - 
+
         Cookies are small pieces of data stored on the client side i.e browser by the server and 
         sent back to the server with every request
         Maximum storage ~ 4KB
@@ -901,15 +918,18 @@ Javascript is a dynamically typed single threaded launguage
 47. type="text/javascript" vs type="module" -
 
     type="module" -
+
         By using type="module" in script tag tells the browser to treat script as Javascript modules
         This allows us to use the ES6 module features such as import and export.
         Script with type="module" are executed in STRICT mode and variables and functions have module 
         level scoping
+
         *With type="module" scripts are deferred, meaning the script is executed only after HTML parsing
          is completed similar to defer attribute
 
         
     type="text/javascript" -
+
         It is used for standard JavaScript not generally in STRICT mode
         Cannot use import export here
 
@@ -949,7 +969,7 @@ Javascript is a dynamically typed single threaded launguage
       rather same is returned from the global pool
 
       let sym1=Symbol.for('abc')
-      let sym1=Symbol.for('abc')
+      let sym2=Symbol.for('abc')
       sm1 === sm2 --> true
 
 51. isNaN vs Number.isNaN() -
@@ -973,9 +993,11 @@ Javascript is a dynamically typed single threaded launguage
 52. import vs dynamic import() -
 
     import - 
+
         It is preparsed at COMPILE TIME and enables TREE Shaking by default
     
     import() -
+
         Used for conditionally loading the content 
         It is parsed at RUNTIME
         It returns a Promise and error handling must be done properly
@@ -1021,7 +1043,18 @@ Javascript is a dynamically typed single threaded launguage
         Properties
         Define characteristics of elements that are consistent over time.
         Example: aria-labelledby, aria-describedby.
-        
+
+51. 'use strict' -
+
+    * Strict mode is not enabled by default in Javacsript, it needs to be enabled using 'use strict'
+
+    * Strict mode helps to catch common errors while developing and it doesn't allows for -
+        * creating variable without let var or const
+        * Makes this undefined in functions (instead of global object)
+        * Disallows duplicate parameter names
+
+    * By default for type='module' strict mode is enabled
+
 51. Workers
 52. Progressive Web Apps
 55. Compare two primitive data types
@@ -1032,4 +1065,3 @@ Node vs element
 document.createElement
 Form events
 Strict mode in js
-type module and type SCRIPT
