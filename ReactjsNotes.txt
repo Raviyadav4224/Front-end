@@ -221,12 +221,13 @@
     myRef is an Object which has current value
 
 17. React Portal - 
+
     It removes the Component from place where it has been called from actual html and places it in the place
     where it has been mentioned in createPortal
     createPortal from ReactDOM
 
-    createPortal(Component,place where we want to render it)
-    createPortal(Component,document.getElementById('portal'))
+    createPortal(Component(JSX),place where we want to render it)
+    createPortal(Component,document.getElementById('portal')) // here portal div must be there in index.html
     *Event binding is still there
 
 18. Code splitting & lazy loading - 
@@ -403,6 +404,7 @@
                 export default React.memo(Child1);
                 
     useMemo -
+
         It is used to memoize a value rather than a function and it recalculates the value only when its
         dependency changes
         * It memoizes JSX elements, objects, or arrays (e.g., children)
@@ -412,6 +414,90 @@
         
     useContext -
         It is used to pass data from Parent to child component without the need of props drilling
+
+    useLayoutEffect -
+
+        syntax - useLayoutEffect(()=>{},[dependencies])
+
+        It is used to avoid flickering or shifting of UI generally when calculating positions
+
+    useLayoutEffect -
+
+        1. Component renders - means virtual DOM is ready 
+        2. useLayoutEffect runs (side effects happen **before paint**)
+        3. Browser paints the screen - Shows on the UI to the user
+        4. If state/props change → re-render happens
+
+        example - 
+
+            Chat Box - 
+
+                where messages keeps updating , UI is scrolled to the latest
+                msg, if useEffect is used flickering can be seen , but with useLayoutEffect , 
+                no flickering occurs
+
+            Tooltip hovering -
+
+                If useEffect is used there is a flicker in position, since position calcualtion happens
+                after the screen is painted then useEffect calculates the position and it changes
+                But when we use useLayoutEffect , it calculates position before painting the screen
+
+        useEffect -
+
+            1. Component renders- means virtual DOM is ready 
+            2. Browser paints the screen (DOM is visible to user) - Shows on the UI to the user
+            3. useEffect runs (side effects happen)
+            4. If state/props change → re-render happens
+
+    forwardRef -
+
+        It is used to pass a ref from parent component to a child component,allowing Parent ref to
+        directly access the child components DOM element and imperative methods
+
+        Normally, ref is used to reference DOM elements inside the same component. But if the 
+        DOM element is inside a child, forwardRef lets the parent still access it.
+        
+        syntax -
+            const ChildComponent = forwardRef((props, ref) => {
+                return <input ref={ref} type="text" />;
+            });
+
+    useImperativeHandle -
+
+        syntax - useImperativeHandle(forwardedRef,ExposedFunctions,[dependencies])
+
+        It is used to expose limited methods od a Child component to the Parent using ref,
+        hence reducing no of renders
+        It must be used with forwardRef
+
+        example -
+        
+        PARENT - 
+
+            <Modal ref={modalRef} />
+            <button onClick={() => modalRef?.current.open()}>Show Modal</button>
+
+        CHILD -
+
+            const Modal = forwardRef((props, ref) => {
+                const [show, setShow] = useState(false);
+                useImperativeHandle(
+                    ref,
+                    () => ({
+                    open: () => setShow(true),
+                    close: () => setShow(false),
+                    }),
+                    []
+                );
+                if (!show) return null;
+                return (
+                    <div>
+                    Modal
+                    <p>This is a Modal!</p>
+                    <button onClick={() => setShow(false)}>Close</button>
+                    </div>
+                );
+                });
 
 26. Custom hooks -
 
