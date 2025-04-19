@@ -356,7 +356,7 @@
 
         export default React.memo(Comp2)
     
-25. useCallback ,useMemo ,useContext -
+25. Hooks -
 
     useCallback -
         It is used to create to memoized functions 
