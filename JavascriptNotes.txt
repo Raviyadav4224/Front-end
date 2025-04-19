@@ -499,13 +499,23 @@ Javascript is a dynamically typed single threaded launguage
     Here the document object is known as the Document Object Model i.e DOM
     DOM is basically tree like structure or representation of HTML elements
 
-    Node -
+    Node  vs Element -
 
-        Every part of an HTML document i.e elements , texts , comments are considered as a Node
+        Every part of an HTML document i.e Elements , Texts , Comments are considered as a Node
         DOM is the tree like structure of Nodes
         In DOM Nodes can be of different types such as Element Node (1), Text Node (3), Comment Node(8)
         Each Node has a nodetype value
         The Document itself is a document node of type 9
+
+        Whereas Element is an specific type of Node. It represents HTML Tags like div span a etc
+        Every Element is a Node but every Node is not an Element
+
+        example -
+            <div>Hello <span>World</span></div>
+            <div> → Element node
+            "Hello " → Text node
+            <span> → Element node
+            "World" → Text node
 
     HTMLCollection vs NodeList
 
@@ -588,6 +598,56 @@ Javascript is a dynamically typed single threaded launguage
 
     **document.getElementById("id").style.display="block" -> sets the INLINE CSS and not the external css
     
+    classList methods -
+
+        It is a property of DOM Element which returns the elements classes
+
+        classList.add(className) - Adds a specified class to the Element
+        classList.remove(className) - Removes a specified class to the Element
+        classList.toggle(className) - Toggles a specified class to the Element if it is not available
+        classList.toggle(className, true / false) - Ensures it's added
+
+    Data Attributes -
+
+        It is an way to store extra information in an HTML, It does affects how the page looks but helps 
+        in JS logics
+
+        * They are custom attributes that start with data- and can be added to any HTML element
+          example -
+                    <div id="user" data-user-id="123" data-role="admin">Ravi</div>
+                    
+                    Here data-user-id is a data attribute
+
+            To access data attribute -
+                .dataset is used to get the attributes
+                document.getElementById('user').dataset.userId
+                document.getElementById('user').dataset.role
+
+    Offset vs getBoundingClientRect vs Client Properties -
+
+        Offset Properties
+            offsetTop / offsetLeft:
+            ➤ Distance from the top/left of offset parent
+            ➤ Does NOT include margins
+            ➤ Good for positioning inside containers
+
+        clientX / clientY
+            Mouse event properties
+            ➤ Coordinates of the mouse pointer relative to the VIEWPORT
+            ➤ Useful in events like mousemove, click
+            ➤ clientX = horizontal position, clientY = vertical position
+
+         getBoundingClientRect()
+            Returns position + size of an element relative to the VIEWPORT
+                {
+                    top: 120,      // distance from top of viewport
+                    left: 240,     // distance from left of viewport
+                    width: 200,
+                    height: 50,
+                    bottom: 170,   // top + height
+                    right: 440     // left + width
+                }
+
 28. Event bubbling vs Event Capturing - 
 
     By default an event follows bubbling mode.
