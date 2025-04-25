@@ -1076,6 +1076,26 @@ Javascript is a dynamically typed single threaded launguage
 
 54. Equality Check ( == vs === ) -
 
+    * Non-primitive data types are always compared using their references and not by their values
+    * === checks the TYPE and VALUE if primitive data type & TYPE and REFERENCE if non - primitive 
+      data type
+      examples - 
+        console.log("abc" - "xyz"); // NaN
+        console.log(0 <= 1); // true
+        console.log(NaN - NaN); // NaN
+        console.log(null === null); // true
+        console.log({} == {}); // false
+        console.log([] == {}); // false
+        console.log({} === {}); // true
+        console.log([] === {}); // false
+
+        const obj1 = { a: 1 };
+        const obj2 = { a: 1 };
+        const obj3 = obj1;
+
+        console.log(obj1 === obj2); // false ❌ (same structure but different reference)
+        console.log(obj1 === obj3); // true ✅ (same reference)
+
 55. Splice vs Slice -
 
     Splice - Modifies the original array

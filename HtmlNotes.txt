@@ -337,6 +337,18 @@
    used to displace elements on the z-axis i.e in or out of the screen.
    It is used to define the order of elements if they overlap with each other.
 
+    * Child z-index is relative to its parent’s stacking context, and cannot "escape" or overlap higher 
+      stacking contexts.
+    
+    * z-index only works if the element has a non-static position.
+        The values that work:
+        position: relative
+        position: absolute
+        position: fixed
+        position: sticky
+        An element with position: relative or absolute and a z-index creates a new stacking context.
+
+Children inside it are layered only within that context
 20. Block vs inline -
 
     A block-level element always starts on a new line and stretches out to the left and right
