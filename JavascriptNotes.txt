@@ -28,7 +28,9 @@ Javascript is a dynamically typed single threaded launguage
  
  var - it has global scope , it can be accessed before declaration of the variable and its value will be Undefined,
         it has global scope i.e window object will have the variable created using var
+
  let -  it has block level scope, it cannot be accessed before declaration, it has SCRIPT scoped
+ 
  const - it is similar to let but values once assigned cannot be overwritten
 
     * const Arrays vlaues,Objects can be overwritten
@@ -108,11 +110,13 @@ Javascript is a dynamically typed single threaded launguage
         20
 
 8. Temporal Dead Zone - 
-     Both let and const are hoisted but differs with var 
-     let and const variable cannot be accessed before declaration and throws an REFERENCE ERRRO,
-     this is known as Temporal Dead Zone
+
+    Both let and const are hoisted but differs with var 
+    let and const variable cannot be accessed before declaration and throws an REFERENCE ERROR,
+    this is known as Temporal Dead Zone
 
 9. Closures - 
+
     Closure occurs when one function is defined inside another function and the inner function has access 
     to outer function variable even after outer function has stopped executing.
     
@@ -163,7 +167,7 @@ Javascript is a dynamically typed single threaded launguage
     const newFunction=functionName.bind(thisValue,args1,args2...)
 
     * It is used to re-use the methods created as an object property
-    * While destructuring an object, it looses its this binding
+    ** While destructuring an object, it looses its this binding
     * This binding can again be attached using bind or re-attaching it
     
 12. Arrow Functions vs Functions - 
@@ -203,7 +207,7 @@ Javascript is a dynamically typed single threaded launguage
     3. using function
     4. using class
     5. using JSON.parse(text in json format)
-    *6. using Object.create() -> It creates new object using the existing objects as the prototype of
+    *6. using Object.create( existingObject ) -> It creates new object using the existing objects as the prototype of
         the newly created object
     7. Object.assign(target,source) - it is also used copy source to target object
     
@@ -450,6 +454,7 @@ Javascript is a dynamically typed single threaded launguage
     of callbacks inside a function
 
 25. OOPS - 
+
     Javascript implements 
     Encapsulation - example class
     inheritance - using Prototype
@@ -493,6 +498,7 @@ Javascript is a dynamically typed single threaded launguage
     })
 
 27. BOM && DOM - 
+
     Browser Object Model -  It is an Object provided by the browser, examples window.open(),window.close(),
     window.scrollTo(),window.scrollBy, document etc
 
@@ -637,7 +643,7 @@ Javascript is a dynamically typed single threaded launguage
             ➤ Useful in events like mousemove, click
             ➤ clientX = horizontal position, clientY = vertical position
 
-         getBoundingClientRect()
+        getBoundingClientRect()
             Returns position + size of an element relative to the VIEWPORT
                 {
                     top: 120,      // distance from top of viewport
@@ -1077,6 +1083,7 @@ Javascript is a dynamically typed single threaded launguage
 54. Equality Check ( == vs === ) -
 
     * Non-primitive data types are always compared using their references and not by their values
+    
     * === checks the TYPE and VALUE if primitive data type & TYPE and REFERENCE if non - primitive 
       data type
       examples - 
