@@ -1,4 +1,5 @@
 1. React -
+
     It is an Javascript library
     Declarative programming
     It is based on Component Based Architecture
@@ -56,16 +57,19 @@
    It bundles all files into single file and serves that file
 
 6. React Component - 
+
     Whenever the type value of React element becomes a Function , it creates a React Component
     This React Component is converted into React element by babel/parcel
 
     React component is a function which returns a JSX which is generally a resuable piece of user interface
 
 7. React Events - 
+
     An event can be applied to html elements only and not on the React component
     We can accept the event as function and then apply it to the html element of the component
 
 8. How React Knows Not to Reinitialize useState ?
+
     React keeps track of state between renders using a mechanism called hooks state management, which ensures 
     that the state is preserved across renders and not reinitialized.
 
@@ -75,6 +79,7 @@
     * On Change of props or state component re-renders
 
 10. React Fragments - 
+
     React functional component returns a single element.
     Using react fragment no new div is created and we can wrap all the html inside it 
     and it considers it as a single element
@@ -105,7 +110,7 @@
     useEffect(()=>{
         //code
 
-    ***    return something // This is called Cleaning up code and is executed when component unmounts
+    ***    return function (){} // This is called Cleaning up code and is executed when component unmounts
     })
 
     useEffect(()=>{
@@ -122,7 +127,7 @@
 
 14. React-router-dom - 
 
-    It is a library used for showing routes in react without relaoding the page
+    It is a library used for showing routes in react without re-loading the page
     example - 
     1.Setting up routes
             const router = createBrowserRouter([
@@ -213,7 +218,8 @@
     Inputs, textareas, selects fields where input is controlled by react states and not by Javascript
      is called controlled component
     
-16. UseRef - 
+16. UseRef -
+
     It doesn't cause re-renders of the DOM
     It is mostly used to access the DOM elements
 
@@ -254,6 +260,7 @@
  ***crypto.randomUUID()  - is available only for HTTPS i.e secure networks and not for http
 
 19. Class Components - 
+
     constructor & render methods are used here
     First constructor function gets called and render gets called when there is change in state
 
@@ -284,7 +291,8 @@
             }
             }
 
-20. Life Cycle Methods in Class Based Components - 
+20. Life Cycle Methods in Class Based Components -
+
     React components stages includes - Mounting, Updating, Unmounting
 
     Mounting ---->
@@ -315,7 +323,8 @@
 
     *React uses virtual DOM to track changes in element
 
-22. Diffrence btw React and ReactDOM ->
+22. Difference btw React and ReactDOM ->
+
     React ->	Core library for building UIs	
     ReactDOM -> DOM-specific rendering
 
@@ -359,6 +368,7 @@
 25. Hooks -
 
     useCallback -
+
         It is used to create to memoized functions 
         syntax const memoizedFunctionName=useCallback(function,[dependencyArray])
         example -
@@ -413,6 +423,7 @@
         },[dependencyArray])
         
     useContext -
+
         It is used to pass data from Parent to child component without the need of props drilling
 
     useLayoutEffect -
@@ -421,7 +432,7 @@
 
         It is used to avoid flickering or shifting of UI generally when calculating positions
 
-    useLayoutEffect -
+        useLayoutEffect -
 
         1. Component renders - means virtual DOM is ready 
         2. useLayoutEffect runs (side effects happen **before paint**)
@@ -537,10 +548,12 @@
 28. package.json vs package-lock.json -
 
     package.json contains -
+
         meta data about the project such as name, author,description, version etc
         It also contains info about devDependencies used in the project
 
     package-lock.json -
+
         It is generate automatically by npm on every npm install
         It locks the versions of the packages installed
         example "prettier": "^3.4.2", 
@@ -604,6 +617,7 @@
             }
 
         *Babel plugin - 
+        
             A Babel plugin is a JavaScript function that operates on the Abstract Syntax Tree (AST) 
             of your code. The AST is a tree-like representation of your source code, where each node 
             corresponds to a syntactic construct (e.g., a function, variable, expression).
