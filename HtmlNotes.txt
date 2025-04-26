@@ -3,7 +3,7 @@
     <Script defer src='index.js'/>
     properties
 
-    defer - It is downloaded in the background and loads the Javacsript after HTML parsing is complete
+    defer - It is downloaded in the background and loads the Javacsript after HTML PARSING is complete
     
     async - It is downloaded in the background and  executes as soon as it is available 
 
@@ -34,7 +34,9 @@
         2. Addition of Pseudo classes and Pseudo elements -
 
             Pseudo-classes(:) - Used to define special state of an element example hover, active, focus
-            Pseudo-elements(::) - lets you style part of an element like ::before,::after,::placeholder
+
+            Pseudo-elements(::) - lets you style part of an element like ::before,::after,::placeholder,
+            They dont change the original element rather they allow to style around it
 
         3. Addition of media queries for creating and designing responsive designs
             @media (max-width: 768px) {
@@ -44,8 +46,10 @@
             }
 
 3. Elements vs tags -
-    Tags -> <span>, div tag executes
-    Elements -> It holds the content of the tag
+
+    Tags -> syntax used to define an HTML element like <div> <span> etc
+
+    Elements -> It holds the content of the tag i.e Tag + Content
 
 4. Comments -> 
     <!-- This is a comment -->
@@ -92,16 +96,20 @@
                     window.onload event fires. 
                     
 7. Position Static, Relative, Absolute, Fixed & Sticky
+
     * Relative - 
+
         This property allows for adding top left bottom etc porperty to the given element
         The element does not comes out of normal flow, it remains at its original position
         
     * Absolute -
+
         The element is positioned relative to its nearest positioned ancestor, if none of the ancestors are
         positioned relative / absolute / fixed it looks for parents position (HTML)
         Element comes out of the normal flow and does not remains at its normal position
 
     * Fixed -
+
         The element is fixed wrt VIEWPORT
         Element comes out of the normal flow
         It remains fixed even if the Container containing it ends
@@ -109,6 +117,7 @@
         since it is positioned wrt VIEWPORT
         
     * Sticky -
+
         It is an hybrid of Relative and Fixed
         It will acts as relative initially and when it reaches the threshold values of top,bottom etc it 
         becomes Fixed
@@ -131,6 +140,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Yuji+Mai&display=swap');
 
     3. Using @font-face rule -
+
         It is used for using Local fonts and Custom fonts
 
         @font-face{
@@ -347,13 +357,15 @@
         position: fixed
         position: sticky
         An element with position: relative or absolute and a z-index creates a new stacking context.
+        Children inside it are layered only within that context
 
-Children inside it are layered only within that context
 20. Block vs inline -
 
     A block-level element always starts on a new line and stretches out to the left and right
     as far as it can
     An inline element does not start on a new line and only takes up as much width as necessary.
+
+    * We cannot give height and width to an inline element whereas it is possible in block element case
 
 21*. Cross Browser Compatibilty Issues -
 
@@ -366,7 +378,7 @@ Children inside it are layered only within that context
         even behavior (like the date format) differed.
 
         For IE11 input type='date' doesn't works
-        To fix this we can use Babel presets
+        To fix this we used JavaScript libraries such as Pikaday, Flatpikr
     
     3. In an autocomplete input, event.key worked well in modern browsers, but older Edge/IE 
         required keyCode.
