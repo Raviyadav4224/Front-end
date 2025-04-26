@@ -16,6 +16,7 @@
       Store - It accepts a reducer fuction
 
 2. Redux createStore function provides some methods which are used mainly - 
+
     dispatch(action)/reducer -  it returns state after performing some actions
     getState()
     subscribe(callBackFn) - which return a function, upon calling unsubscribes to subscribe
@@ -37,6 +38,7 @@
   reduxtoolkit uses immer js behind the scene
 
 6. Middlewares in redux-toolkit -
+
    API Calls are generally done using middlewares
    Reducers are pure function
    *Middleware are curried function which accepts three parameters - store,next,action
