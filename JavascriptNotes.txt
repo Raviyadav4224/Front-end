@@ -167,7 +167,28 @@ Javascript is a dynamically typed single threaded launguage
     const newFunction=functionName.bind(thisValue,args1,args2...)
 
     * It is used to re-use the methods created as an object property
-    ** While destructuring an object, it looses its this binding
+    ** While destructuring an object, it looses its this binding (in STRICT MODE, in 
+        Non - STRICT Mode this will be window object)
+        example -
+            const user = {
+                name: "user123",
+                greet: function () {
+                    console.log("Hello, " + this.name);
+
+                    const inner = () => {
+                    console.log("Inside arrow: " + this.name);
+                    };
+                    
+                    inner();
+                }
+                };
+
+                const anotherGreet = user.greet;
+            anotherGreet(); 
+            // OUTPUT - 
+                undefined 
+                undefined 
+
     * This binding can again be attached using bind or re-attaching it
     
 12. Arrow Functions vs Functions - 
@@ -489,7 +510,7 @@ Javascript is a dynamically typed single threaded launguage
 
     To get prototype of an object - 
     Object.getPrototypeOf(person1)
-    Object.getPrototypeOf(person1,{'name})
+    Object.getPrototypeOf(person1,{'name'})
 
     To set prototype of an object - 
 
