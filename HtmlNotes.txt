@@ -31,7 +31,7 @@
             background-color: var(--primary-color);
             }
 
-        2. Addition of Pseudo classes and Pseudo elements -
+        2*. Addition of Pseudo classes and Pseudo elements -
 
             Pseudo-classes(:) - Used to define special state of an element example hover, active, focus
 
@@ -339,7 +339,7 @@
    padding
 
    box-sizing ->  default content-box -> means height and width applies only to content area. 
-                  border box -> means box height & width contains margin and padding
+                  border box -> means box height & width contains border and padding not margin
 
 19. z-index - 
 
@@ -386,3 +386,96 @@
                 if (key === 'Enter' || key === 13) {
                 handleSubmit();
             }
+
+22. display:none vs visibility:none -
+
+    display :none -
+
+        Element is removed from the VIEW but remains in DOM
+        It takes up NO SPACE
+        Other elements behave as if it doesnot exists
+    
+    visibility : none -
+
+        The element is INVISIBLE from the VIEW but it takes up SPACE
+
+23. px vs em vs rem vs % units in CSS -
+
+    px (pixels) -
+
+        Fixed size.
+        Absolute unit, does not scale with anything else.
+        Good for precise control but less flexible/responsive.
+
+    em -
+
+        Relative to the font-size of the current element (its parent).
+        If a parent font size is 16px, 1em = 16px in the child.
+        Can compound (nested elements multiply).
+
+    rem -
+
+        Relative to the root element's font size (<html> font size).
+        Usually more predictable than em because it’s always relative to the root, not parents.
+
+    % (percent) -
+
+        Relative to the parent element's size (depends on the CSS property).
+        Often used for width, height, padding, margin relative to parent container size.
+
+34. Opacity vs visibility -
+
+    opacity -
+
+        Controls transparency level, from 0 (fully transparent) to 1 (fully opaque).
+        The element still takes up space and responds to events (clicks, hover).
+        Example: opacity: 0 makes it invisible but still interactive.
+
+    visibility -
+
+        Controls visibility state: visible or hidden.
+        When hidden, element is invisible and doesn’t respond to events, but still takes space in layout.
+        Unlike opacity: 0, it disables interaction.
+
+35. picture tag -
+
+    The <picture> tag is used to load images conditionally based on screen size, device type, 
+    or image format support.
+
+    It allows you to define multiple image sources using <source> elements with media queries or file types.
+
+    Browser picks the best matching image automatically for faster loading, better quality, and 
+    optimized performance.
+    example -
+        <picture>
+            <source media="(max-width: 768px)" srcset="hills-small.jpg">
+            <source media="(min-width: 769px)" srcset="hills-medium.avif">
+            <img src="./6mbpic.jpg" alt="person">
+        </picture>
+
+36. Making website SEO friendly using HTML -
+    
+    1. Using semantic tags such as header, footer, aside, section, nav, article etc
+    2. Use proper heading structure h1 h2 h3
+    3. Add alt text to images
+    4. Add meta tags inside head tag and addition of proper keywords related to the website
+
+37. CSS Preprocessors -
+
+    CSS Preprocessors add features to normal CSS like variables, functions , loops, nesting etc
+    thus making it easier to style and more powerful
+    Popular preprocessors:
+        SASS (.scss files)
+        LESS
+
+38. Vendor prefixes -
+
+    Some CSS features work differently ( or are not supported ) for different browsers, vendor prefixes 
+    are added to tell the browser how to handle them
+
+    -webkit- -> Chrome/Safari
+    -moz- -> Mozila Firefox
+    -ms- -> Internet Explorer
+    -o- -> Opera
+
+    * But now a days tools like Autoprefixers add prefixes during the build 
