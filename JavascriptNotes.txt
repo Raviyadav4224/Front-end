@@ -601,6 +601,14 @@ Javascript is a dynamically typed single threaded launguage
         Static NodeList doesnot reflect DOM changes
         Dynamic NodeList refeclects DOM Changes
 
+    *children vs childNodes -
+
+        Children gives Element nodes of the parent whereas childNodes gives the all the Nodes (like 
+        text node, Comment Node, Element Node) of the parent
+        
+        * Both children and childNodes gives live lists i.e children -> Live HTML Collection 
+          & childNodes -> Live NodeList
+
     append vs appendChild - 
 
         append - it can accept,single & multiple Node values , strings (DOM Strings) as an input
