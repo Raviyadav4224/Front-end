@@ -13,6 +13,15 @@ Javascript is a dynamically typed single threaded launguage
     Arrays,Objects,Functions
     All Derived data types are stored in HEAP MEMORY i.e reference of variable is created
 
+    * valueOf is used to access the values of Primitive Data types values
+        example -
+
+            1. let num=10
+                console.log(num.valueOf()) // Output - 10
+            
+            2. Object.prototype.sayHi=function(){
+                console.log(` Hi ${this.valueOf()} `)
+            }
 2. If Else -  it evaluates a condition and if its is true or false performs certain actions.
 
 3. Ternary Operator - it evaluates an expression and returns a value if it is true
@@ -1198,3 +1207,34 @@ Javascript is a dynamically typed single threaded launguage
 51. Workers
 52. Progressive Web Apps
 53. Form events
+
+54. Performance optimization techniques ( HTML CSS Javacsript Application ) -
+
+    1. Minimize and Optimize Assets -
+
+        Minify HTML/CSS/JS using tools like Minifier to remove white spaces and Comments
+
+    2. Image optimization -
+
+        Compress images using online tools such as TinyPNG to compress the images
+        Use modern formats such as WebP or avif instead of JPG/PNG
+    
+    3. Lazy Load -
+
+        Lazy load script and images
+
+        <img src="./image.webp" alt="image" loading="lazy" />
+        * By deafult images are eager loaded
+
+    4. Use CDN -
+
+        To serve static assets like images, CSS, JS use CDN links such as Cloudfare, AWS CDN
+    
+    5. Use Efficient Fonts -
+
+        Use Efficient fonts with latest standards such as WOFF2
+    
+    * To ananlyze all the optimization & improvements in Chrome's Dev tool we can use -
+      
+        1. LIGHTHOUSE TAB - For automated result of key metrics such as Best Practices, SEO, Performance
+        2. PERFORMANCE TAB - For Manual results
