@@ -202,12 +202,45 @@ Javascript is a dynamically typed single threaded launguage
     
 12. Arrow Functions vs Functions - 
 
-    Arrow function doesn't have their own this value
-    * Arrow functions dont have prototypes 
-    They refer to parents this value which is generally the global object (window object)
-    Whereas normal functions this changes as per requirement
-    for example - 
-    functionName.call({name:"ra"}) - here functionName will refer to {name:"ra"} object and not the global object
+    * Arrow function doesn't have their own this value
+    * They refer to their parents this value or Arrow function this refers to the Lexical scope in which 
+      it has been defined
+    * For Normal Functions this refers to the current context
+    * Arrow functions dont have prototype property and returns undefined 
+    * Using call, apply and bind, it will not change the this value inside Arrow function
+        for example - 
+            functionName.call({name:"ra"}) - here functionName will refer to {name:"ra"} object and not the global object
+
+            let obj = {
+              first: 1,
+              last: 2,
+              sumArrow: () => {
+                console.log("Arrow This", this);
+              },
+              sumFunction: function() {
+                console.log("Function This", this);
+              },
+            };
+            obj.sumFunction() - THIS - Object itself
+            obj.sumArrow() - THIS - Window Object
+
+            class Calculator {
+                constructor(a, b) {
+                console.log("inside constructor", this);
+                this.first = a;
+                this.last = b;
+                }
+                sumArrow = () => {
+                console.log("Arrow This", this);
+                };
+
+                sumFunction = function () {
+                console.log("Function This", this);
+                };
+            }
+            let cal1 = new Calculator(1, 2);
+            cal1.sumFunction(); THIS - Object itself
+            cal1.sumArrow(); THIS - Object itself since arrow function this is its current lexical scope
 
 13. IIFE - Immediately invoked function expression
 
