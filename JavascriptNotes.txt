@@ -401,7 +401,7 @@ Javascript is a dynamically typed single threaded launguage
         myPromise=new Promise((resolve,reject)=>{}) 
         When we are neither resolving or rejecting a promise , then it is created in PENDING state
 
-    ** We can use AWAIT outside async function if script is of NOT type module
+    ** We can use AWAIT outside async function if script is of type MODULE
 
     Promise.all([]) - 
     Promise.all returns the value promises as an array of values when all promises are 
