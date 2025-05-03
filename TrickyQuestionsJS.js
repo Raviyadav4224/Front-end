@@ -163,6 +163,9 @@ function getElementsByClassName(classname) {
 
   return result;
 }
+
+// Deep Clone an Object
+
 function deepClone(obj) {
   if (obj === null || typeof obj !== "object") {
     return obj;
@@ -174,6 +177,8 @@ function deepClone(obj) {
   }
   return clone;
 }
+
+// Call the given function for given number of times only(similar to throttle)
 
 const rateLimitApi = (timeSpan, rate, callback) => {
   let count = 0;
@@ -208,6 +213,8 @@ async function handlePromisesOneByOne() {
 }
 handlePromisesOneByOne().then((res) => console.log(res));
 
+// Memoize a function
+
 function memoizeFunc(func) {
   let cache = new Map();
 
@@ -217,7 +224,7 @@ function memoizeFunc(func) {
       console.log("From Cache");
       return cache.get(key);
     } else {
-      const result = func.call(this, ...args);
+      const result = func.call(this, ...args); // If we dont use call here, then this might be undefined, we can use Arrow function here to fix this
       cache.set(key, result);
       return result;
     }
