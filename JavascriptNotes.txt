@@ -1215,7 +1215,7 @@ Javascript is a dynamically typed single threaded launguage
             console.log(sliced); // [2, 3, 4]
             console.log(arr);    // [1, 2, 3, 4, 5] → unchanged
 
-50. Accessible Rich Internet Applications( ARIA ) - 
+56. Accessible Rich Internet Applications( ARIA ) - 
 
     It is a powerful tool for enhancing accessibility in web applications.It ensures that all users
     including those with visual or cognitive impairements can understand and interact with the website
@@ -1234,7 +1234,7 @@ Javascript is a dynamically typed single threaded launguage
         Define characteristics of elements that are consistent over time.
         Example: aria-labelledby, aria-describedby.
 
-51. 'use strict' -
+57. 'use strict' -
 
     * Strict mode is not enabled by default in Javacsript, it needs to be enabled using 'use strict'
 
@@ -1245,11 +1245,11 @@ Javascript is a dynamically typed single threaded launguage
 
     * By default for type='module' strict mode is enabled
 
-51. Workers
-52. Progressive Web Apps
-53. Form events
+58. Workers
+59. Progressive Web Apps
+60. Form events
 
-54. Performance optimization techniques ( HTML CSS Javacsript Application ) -
+61. Performance optimization techniques ( HTML CSS Javacsript Application ) -
 
     1. Minimize and Optimize Assets -
 
