@@ -75,26 +75,23 @@ function deepCopyWithCircularReferences(value, visited) {
   return copyObjWithCircularReference;
 }
 
-// Implement the functionality behaviour of Promise.any
-
-async function promiseAll(promiseArray) {
-  console.log("promiseArray", promiseArray);
-  if (!Array.isArray(promiseArray)) {
-    throw TypeError("Must be an Array of promises");
-  }
-  if (promiseArray.length === 0) {
-    return [];
-  }
-  let result = [];
-  try {
-    for (const promise of promiseArray) {
-      let res = await promise;
-      result.push(res);
-    }
-    return result;
-  } catch (error) {
-    return error;
-  }
+// Polyfill for Promise.all
+function allPromise(promiseArr) {
+  return new Promise((resolve, reject) => {
+    let result = [];
+    let completed = 0;
+    promiseArr.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then((res) => {
+          result[index] = res;
+          completed++;
+          if (completed === promiseArr.length) {
+            resolve(result);
+          }
+        })
+        .catch((err) => reject(err));
+    });
+  });
 }
 
 // Implement a function that recursively flattens an array into a single level deep.
@@ -111,7 +108,6 @@ function deepFlatten(arr) {
       result.push(element);
     }
   }
-
 
   for (const element of arr) {
     flat(element);
