@@ -244,3 +244,169 @@ Array.prototype.mapFilter = function (callbackFn) {
 
   return result;
 };
+
+// CLOSURES AND HOISTING QUESTIONS
+// ------------------------------------------------------------------------------------------
+
+// * SCOPES -
+//  var are function scoped and can be re-declared in the same scope
+// whereas let is block scope , it cannot be re-declared
+// function outer() {
+//   console.log(a); // (1)
+//   var a = 10;
+//   var inner = function () {
+//     console.log(a); // (2)
+//     a = 20;
+//     console.log(a); // (3)
+//   };
+//   inner();
+//   console.log(a); // (4)
+// }
+
+// outer();
+
+// --------------------------------------------------------------------------------------------------------
+// 1.
+// function outer() {
+//   var x = 5;
+
+//   function inner() {
+//     let x = 10; // Shadowing the outer `x`
+//     console.log(x); // (1)
+//   }
+
+//   console.log(x); // (2)
+//   inner();
+//   console.log(x); // (3)
+// }
+
+// outer();
+
+// 2.
+// function outer() {
+//   console.log(a); // (1)
+
+//   var a = 10;
+
+//   var inner = function () {
+//     console.log(a); // (2)
+//     a = 20; // Modifies `a` in `outer`
+//     console.log(a); // (3)
+//   };
+
+//   inner();
+//   console.log(a); // (4)
+// }
+
+// outer();
+
+// 3.
+// function outer() {
+//   var a = 10;
+
+//   for (let i = 0; i < 3; i++) {
+//     console.log(a, i); // (1)
+//     let a = i * 2; // Shadows `a` in `outer`
+//     console.log(a); // (2)
+//   }
+
+//   console.log(a); // (3)
+// }
+
+// outer();
+
+// 4.
+// function outer() {
+//   var a = 100;
+
+//   function inner() {
+//     console.log(a); // (1)
+
+//     var a = 50; // Shadowed
+//     console.log(a); // (2)
+//   }
+
+//   return inner;
+// }
+
+// const innerFunc = outer();
+// innerFunc();
+
+// 5.
+// function outer(a) {
+//   console.log(a); // (1)
+
+//   function inner(a) {
+//     console.log(a); // (2)
+
+//     a = 30; // Updates `a` in `inner`
+//     console.log(a); // (3)
+//   }
+
+//   inner(20);
+//   console.log(a); // (4)
+// }
+
+// outer(10);
+
+// 6.
+// function outer() {
+//   this.value = 50;
+
+//   const inner = () => {
+//     console.log(this.value); // (1)
+//     this.value += 10; // Modifies `value` in `outer`
+//     console.log(this.value); // (2)
+//   };
+
+//   inner();
+//   console.log(this.value); // (3)
+// }
+
+// const obj = new outer();
+
+// 7.
+// function outer(a, b) {
+//   console.log(arguments[0], arguments[1]); // (1)
+
+//   function inner(a) {
+//     console.log(arguments[0]); // (2)
+
+//     a = 30; // Updates the local `a`
+//     console.log(a); // (3)
+//     console.log(arguments[0]); // (4)
+//   }
+
+//   inner(20);
+// }
+
+// outer(10, 40);
+
+// 8.
+// function outer() {
+//   var a = 10;
+
+//   (function inner() {
+//     console.log(a); // (1)
+//     var a = 20; // Shadowed
+//     console.log(a); // (2)
+//   })();
+
+//   console.log(a); // (3)
+// }
+
+// outer();
+
+// 9.
+// var a = 10;
+// function test() {
+//   console.log(a);
+
+//   if (true) {
+//     console.log(a);
+//     var a = 10;
+//     let b = 20;
+//   }
+//   console.log(b);
+// }
+// test();
