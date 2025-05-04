@@ -202,6 +202,13 @@ Javascript is a dynamically typed single threaded launguage
     
 12. Arrow Functions vs Functions - 
 
+    * Functions (Arrow & Normal Functions) are OBJECTS in Javascript 
+        function(){}
+        const func=()=>{}
+
+        if(func || function(){}){
+            // Always TRUE since Objects are Truthy values
+        }
     * Arrow function doesn't have their own this value
     * They refer to their parents this value or Arrow function this refers to the Lexical scope in which 
       it has been defined
@@ -345,10 +352,11 @@ Javascript is a dynamically typed single threaded launguage
     for of is used to iterate over iterable i.e Arrays
 
     Array.reduce(callbackFn,initialValue)
-    Array.reduce(( accumulator , currentValue ), initialValue )
+    Array.reduce(( accumulator , nextValue ), initialValue )
                 filteredData.map((item) => item.amount)
                 .reduce((accumulator, current) => accumulator + current, 0)
-
+    * If initial value is not given in reduce method it takes first value as the accumulator value
+    
 17. SetTimeout & SetTimeInterval & ClearTimeout & ClearTimeInterval
 
     this concept in SetTimeout function
