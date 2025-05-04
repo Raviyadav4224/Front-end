@@ -412,27 +412,25 @@ Javascript is a dynamically typed single threaded launguage
     ** We can use AWAIT outside async function if script is of type MODULE
 
     Promise.all([]) - 
-    Promise.all returns the value promises as an array of values when all promises are 
-    settled , when any of the promise gets rejected it stops
-    or we can say that it executes till first rejection
-    *It works concurrently( all at once ), to make api call simultaneously use loops 
-    *using map will also make concurrent requests, to resolve that use Promise.all
-     Althogh Promise.all works concurrently but due to await in map it works for each promise to resolve
-        async function callMe() {
-            for(const url of urls){
-                await apiCall(url)
-            }
-            }
+
+        Promise.all returns the value promises as an array of values when all promises are 
+        settled , when any of the promise gets rejected it stops
+        or we can say that it executes till first rejection
+        * It works all at once i.e all promises start executing simultaneously
+        * using map will also make concurrent requests, to resolve that use Promise.all
 
     Promise.any([]) - 
-    It returns the value of first promise to be resolved
-    If none of the promise gets resolved, it returns the rejected value of last promise
 
-    Promise.allSettled - 
-    It returns the value of promises when all promises gets resolved
+        It returns the value of first promise to be resolved
+        If none of the promise gets resolved, it returns the rejected value of last promise
+
+    Promise.allSettled -
+
+        It returns the value of promises when all promises gets resolved
 
     Promise.resolve(value) & Promise.reject(value) - 
-    It directly resolves or rejects the promise with the given value
+    
+        It directly resolves or rejects the promise with the given value
 
     ***.then(res=>{return "value"}) -> Whatever is returned from .then() is wrapped as a fullfilled promise
 
