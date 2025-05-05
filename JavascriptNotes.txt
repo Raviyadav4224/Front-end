@@ -1103,11 +1103,13 @@ Javascript is a dynamically typed single threaded launguage
 48. WeakMap -
 
     It is a special type of Map is javascript introduced in ES6 that holds weak references to its keys.
-    It is similar to Map but can only have objects or functions as its keys
+    It is similar to Map but can only have OBJECTS OR FUNCTIONS as its keys
 
     * Weak keys are held WEAKLY means if there are no references to the keys then they are
       garbage collected automatically by the js engine
-    * Keys must be Objects , primitive string numbers etc cannot be used
+
+    * Keys must be OBJECTS OR FUNCTIONS , primitive values such as string, numbers etc cannot be used
+    
     * They are not enumerable
     
         let myweakMap=new WeakMap()
