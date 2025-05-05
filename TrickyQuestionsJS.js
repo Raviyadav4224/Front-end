@@ -58,23 +58,6 @@ function deepEqual(value1, value2, visited = new Set()) {
   return false;
 }
 
-// Implement a function that performs a deep copy of a value, but also handles circular references.
-function deepCopyWithCircularReferences(value, visited) {
-  console.log(typeof value);
-
-  if (typeof value !== "object" || value === null) {
-    return value;
-  }
-  let copyObjWithCircularReference = {};
-
-  if (Array.isArray(value)) {
-  }
-  Object.entries(value).map(
-    ([key, value]) => (copyObjWithCircularReference[key] = value)
-  );
-  return copyObjWithCircularReference;
-}
-
 // Polyfill for Promise.all
 function allPromise(promiseArr) {
   return new Promise((resolve, reject) => {
@@ -160,19 +143,87 @@ function getElementsByClassName(classname) {
   return result;
 }
 
-// Deep Clone an Object
+// Deep Clone an Object which handles primitives, Arrays & Objects, Date,RegExp,Map,Set & Circular References
 
-function deepClone(obj) {
-  if (obj === null || typeof obj !== "object") {
-    return obj;
+function deepClone(value, visited = new WeakMap()) {
+  // Primitive data types
+  if (typeof value !== "object" || value === null) {
+    return value;
   }
-  let clone = Array.isArray(obj) ? [] : {};
 
-  for (const key in obj) {
-    clone[key] = deepClone(obj[key]);
+  // Handling Circular References
+  if (visited.has(value)) {
+    return visited.get(value);
   }
+
+  // Date Object
+  if (value instanceof Date) {
+    return new Date(value.getTime());
+  }
+
+  // RegExp Object
+  if (value instanceof RegExp) {
+    return new RegExp(value.source, value.flags);
+  }
+
+  // Map Object
+  if (value instanceof Map) {
+    const resultMap = new Map();
+    visited.set(value, resultMap);
+    for (const [key, val] of value.entries()) {
+      resultMap.set(deepClone(key, visited), deepClone(val, visited));
+    }
+    return resultMap;
+  }
+
+  // Set Object
+  if (value instanceof Set) {
+    let resultSet = new Set();
+    visited.set(value, resultSet);
+    for (const elem of value.values()) {
+      resultSet.add(deepClone(elem, visited));
+    }
+    return resultSet;
+  }
+
+  const clone = Array.isArray(value) ? [] : {};
+
+  // Adding Clone to Visited Objects
+  visited.set(value, clone);
+
+  // Handling Arrays and Objects
+  for (const key of Object.keys(value)) {
+    // Object.keys is used so that prototypes and not added to the keys
+    clone[key] = deepClone(value[key], visited);
+  }
+
   return clone;
 }
+
+let obj1 = {
+  name: "ravi",
+  age: 27,
+  address: {
+    countryCode: "IN",
+    state: "West Bengal",
+  },
+  salary: null,
+  dateOfJoining: new Date("2021-12-06").toLocaleDateString("en-IN"),
+  someSets: new Set([1, 2, 3, 4, 5, 4]),
+};
+
+obj1["circular"] = obj1;
+Object.setPrototypeOf(obj1, {
+  logMe: function () {
+    console.log("Hey", this.name);
+  },
+});
+let obj2 = deepClone(obj1);
+
+obj2.salary = 27000;
+obj2.address.state = "Bihar";
+console.log("obj1", obj1);
+console.log("obj2", obj2);
 
 // Call the given function for given number of times only(similar to throttle)
 
