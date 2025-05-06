@@ -1328,3 +1328,89 @@ Javascript is a dynamically typed single threaded launguage
       
         1. LIGHTHOUSE TAB - For automated result of key metrics such as Best Practices, SEO, Performance
         2. PERFORMANCE TAB - For Manual results
+
+62. class -
+
+    * It is a blueprint for creating objects
+
+    * Class is like a template using which we create objects
+
+    * Everything inside class is in STRICT MODE even if we dont specify it
+
+    * We can declare private variables using #
+        class Laptop {
+            #brand;
+            constructor(brand) {
+                this.#brand = brand;
+                }
+            }
+
+            const myLaptop = new Laptop("Dell");
+
+    * static keyword is used to declare a variable or method as static, it is accessed without 
+      creating Object and directly using the class
+        class MathUtil {
+            static add(a, b) {
+                return a + b;
+            }
+        }
+        console.log(MathUtil.add(2,3)); // 5
+
+
+    * Extends keyword is used for inheritance     
+
+    * super() is used to call constructor of parent class
+
+    * get set are used to define getters and setters
+
+        class Laptop {
+        #brand;
+        
+        constructor(brand) {
+            this.#brand = brand;
+        }
+
+        // Getter
+        get brandName() {
+            return this.#brand;
+        }
+
+        // Setter
+        set brandName(newBrand) {
+            this.#brand = newBrand;
+        }
+        }
+
+        const myLaptop = new Laptop("Dell");
+
+        console.log(myLaptop.brandName); // 👉 "Dell" (getter used)
+
+        myLaptop.brandName = "HP";       // 👉 (setter used)
+        console.log(myLaptop.brandName); // 👉 "HP"
+
+    example -
+
+        class Product {
+        constructor(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        display() {
+            console.log(`${this.name} costs $${this.price}`);
+        }
+        }
+
+        class Electronic extends Product { // INHERITANCE
+        constructor(name, price, brand) {
+            super(name, price);
+            this.brand = brand;
+        }
+
+        display() {
+            console.log(`${this.brand} ${this.name} costs $${this.price}`);
+        }
+        }
+
+        const laptop = new Electronic("Laptop", 1500, "Dell");
+        laptop.display(); // Dell Laptop costs $1500
