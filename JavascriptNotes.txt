@@ -202,6 +202,50 @@ Javascript is a dynamically typed single threaded launguage
     
 12. Arrow Functions vs Functions - 
 
+    * THIS Keyword -
+        
+        For Normal Functions - 
+
+            * This depends on how it is CALLED 
+            * It looses its this binding when destructured
+
+        For Arrow Functions -
+
+            * This depends on where it is CREATED 
+            * It doesn't looses its this binding on destructuring ( because it is fixed at creation time )
+
+        In Clases -
+
+            * Everything is in STRICT MODE even if we dont define 'use strict'
+            * If you use normal functions, this depends on how you call it.
+            * If you use arrow functions, this will always refer to the class instance.
+
+        example -
+            const easyPeasyObject = {
+                message: "Easy Right",
+                showMessage: function () {
+                console.log(this.message);
+                },
+            };
+
+            // easyPeasyObject.showMessage();
+            const fn = easyPeasyObject.showMessage;
+            fn(); // OUTPUT - undefined
+
+            class Challenger {
+                constructor(message) {
+                this.message = message;
+                }
+
+                showMessage = () => {
+                console.log(this.message);
+                };
+            }
+
+            const challenge = new Challenger("You WON");
+            const fn1 = challenge.showMessage;
+            fn1(); // OUTPUT - TypeError
+
     * Functions (Arrow & Normal Functions) are OBJECTS in Javascript 
         function(){}
         const func=()=>{}
@@ -209,11 +253,16 @@ Javascript is a dynamically typed single threaded launguage
         if(func || function(){}){
             // Always TRUE since Objects are Truthy values
         }
+
     * Arrow function doesn't have their own this value
+
     * They refer to their parents this value or Arrow function this refers to the Lexical scope in which 
       it has been defined
+
     * For Normal Functions this refers to the current context
+
     * Arrow functions dont have prototype property and returns undefined 
+    
     * Using call, apply and bind, it will not change the this value inside Arrow function
         for example - 
             functionName.call({name:"ra"}) - here functionName will refer to {name:"ra"} object and not the global object
