@@ -292,6 +292,30 @@ Array.prototype.mapFilter = function (callbackFn) {
   return result;
 };
 
+// Polyfill for Array.forEach
+
+Array.prototype.eachFor = function (callbackFn) {
+  for (let index = 0; index < this.length; index++) {
+    callbackFn.call(this, this[index], index, this);
+  }
+};
+
+// Polyfill for Array.forEach method but works for async methods in series i.e one by one
+
+Array.prototype.forEachAsync = async function (callbackFn) {
+  // To Check whether the given function is Async or not
+  if (callbackFn.constructor.name !== "AsyncFunction") {
+    throw new Error(
+      `Callback must be an Async Function, received: ${callbackFn.constructor.name}`
+    );
+  }
+
+  // Wrapping the callback into Promise so that it can handle non-promises
+  for (let index = 0; index < this.length; index++) {
+    await Promise.resolve(callbackFn.call(this, this[index], index, this));
+  }
+};
+
 // CLOSURES AND HOISTING QUESTIONS
 // ------------------------------------------------------------------------------------------
 

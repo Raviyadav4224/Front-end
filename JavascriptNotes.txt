@@ -208,11 +208,24 @@ Javascript is a dynamically typed single threaded launguage
 
             * This depends on how it is CALLED 
             * It looses its this binding when destructured
+            * In non-strict mode: this is window (browser) or global (Node).
+            * In strict mode: this is undefined.
+                "use strict";
+                console.log(this) // WINDOW OBJECT
+                function test(){
+                    console.log(this)
+                }
+                test() // UNDEFINED 
+                const arrow = () => {
+                console.log(this);
+                };
+                arrow(); // WINDOW OBJECT
 
         For Arrow Functions -
 
-            * This depends on where it is CREATED 
+            * This depends on where it is CREATED i.e its lexical environment
             * It doesn't looses its this binding on destructuring ( because it is fixed at creation time )
+            * Strict mode does NOT affects it.
 
         In Clases -
 
