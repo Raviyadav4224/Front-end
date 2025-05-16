@@ -316,6 +316,19 @@ Array.prototype.forEachAsync = async function (callbackFn) {
   }
 };
 
+// Actual Length of an Object considering Symbols and enumerable false keys as well
+
+Object.defineProperty(obj, "actualLength", {
+  get() {
+    return [
+      ...Object.getOwnPropertyNames(this).filter(
+        (item) => item !== "actualLength"
+      ),
+      ...Object.getOwnPropertySymbols(this),
+    ].length;
+  },
+});
+
 // CLOSURES AND HOISTING QUESTIONS
 // ------------------------------------------------------------------------------------------
 
