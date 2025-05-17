@@ -952,6 +952,29 @@ Javascript is a dynamically typed single threaded launguage
             }
             console.log(curryingAdd(5)(6));
 
+    * For N no. of arguments -
+
+             function sum(a, b, c, d) {
+                return a + b + c + d;
+            }
+
+            function curriedFn(func) {
+                const actualFnLength = func.length;
+                return function curried(...args) {
+                if (args.length >= actualFnLength) {
+                    return func(...args);
+                } else {
+                    return function (...nextArgs) {
+                    return curried(...nextArgs, ...args);
+                    };
+                }
+                };
+            }
+            const curriedSum = curriedFn(sum);
+            console.log(curriedSum(1)(2)(3)(4)); 
+            console.log(curriedSum(1)(2, 3, 4));
+            console.log(curriedSum(1)(2)(5)(4));
+
 34. Throttling -
 
     It ensures that a given function in called at most once in given interval of time even if it is called
