@@ -22,6 +22,21 @@ Javascript is a dynamically typed single threaded launguage
             2. Object.prototype.sayHi=function(){
                 console.log(` Hi ${this.valueOf()} `)
             }
+
+        ** We cannot directly add prototypes to PRIMITIVE data types, it can be added only to the 
+           NON - PRIMITIVE data types
+           let username="Minu"
+
+            username.prototype.sayHi=function(){ // ERROR
+                console.log(` Hi ${this.valueOf()} `)
+            }
+
+            Correct way -
+
+            String.prototype.sayHi=function(){
+                console.log(` Hi ${this.valueOf()} `)
+            }
+            
 2. If Else -  it evaluates a condition and if its is true or false performs certain actions.
 
 3. Ternary Operator - it evaluates an expression and returns a value if it is true
