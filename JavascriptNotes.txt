@@ -131,23 +131,38 @@ Javascript is a dynamically typed single threaded launguage
     
         Example - 
 
-        function Counter() {
-        let count = 0;
-        return {
-            increaseMe: function () {
-            count += 1;
-            return count;
-            },
-            decreaseMe: function () {
-            count -= 1;
-            return count;
-            },
-        };
+            function Counter() {
+            let count = 0;
+            return {
+                increaseMe: function () {
+                count += 1;
+                return count;
+                },
+                decreaseMe: function () {
+                count -= 1;
+                return count;
+                },
+            };
+            }
+
+            let myCounter = new Counter();
+            console.log(myCounter.increaseMe());
+            console.log(myCounter.decreaseMe());
+
+    ** When you pass a function as a reference, the variables it uses depend on the lexical scope 
+      where it was defined, not where it was called
+
+        let name = "Global";
+
+        function printName() {
+            console.log(name);
         }
 
-        let myCounter = new Counter();
-        console.log(myCounter.increaseMe());
-        console.log(myCounter.decreaseMe());
+        function execute(callback) {
+            let name = "Local";
+        }
+
+        execute(printName); // OUTPUT -> Global and not Local
 
 10. Lexical Scoping - 
 
