@@ -1019,6 +1019,42 @@ Javascript is a dynamically typed single threaded launguage
 
 37. Rest, Spread Operators & Default parameter value -
 
+    Rest & Spread Operators -
+
+        Both Rest and Spread operators follows the same syntax i.e three dots(...) but they serve different
+        purpose on different contexts
+
+        Rest - used to collect elements into single array or objects
+
+            function sum(...numbers) { // Here numbers will be an array[]
+                return numbers.reduce((a, b) => a + b, 0);
+                }
+
+            const [first, ...rest] = [1, 2, 3];
+            console.log(rest); // [2, 3]
+
+        Spread - Used to unpack elements from an array or objects
+
+            const arr1 = [1, 2];
+            const arr2 = [...arr1, 3]; // [1, 2, 3]
+
+        DefaultValue -
+
+            Default parameters allow us to set a default value for a function parameter if no argument
+            is provided or if undefined is passed
+
+            *Parameters are initialized before the function body runs.
+
+            **Each default value expression has access to previous parameters, but not to later ones 
+              or inner function variables.
+
+                for example -
+                    function example(a = 1, b = a + 1) {
+                    return b;
+                    }
+                    console.log(example()); // 2 ✅
+                function wrong(b = a + 1, a = 1) {} // ❌ ReferenceError
+
 38. Generator Functions -
 
     Generator are special functions in JavaScript that pause execution, yield value and resume 
