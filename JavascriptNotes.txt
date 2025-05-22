@@ -165,7 +165,7 @@ Javascript is a dynamically typed single threaded launguage
             console.log(myCounter.decreaseMe());
 
     ** When you pass a function as a reference, the variables it uses depend on the lexical scope 
-      where it was defined, not where it was called
+       where it was defined, not where it was called
 
         let name = "Global";
 
@@ -175,6 +175,7 @@ Javascript is a dynamically typed single threaded launguage
 
         function execute(callback) {
             let name = "Local";
+            callback()
         }
 
         execute(printName); // OUTPUT -> Global and not Local
@@ -206,7 +207,8 @@ Javascript is a dynamically typed single threaded launguage
     const newFunction=functionName.bind(thisValue,args1,args2...)
 
     * It is used to re-use the methods created as an object property
-    ** While destructuring an object, it looses its this binding (in STRICT MODE, in 
+
+    ** While destructuring an object, it looses its this binding (in STRICT MODE this will be undefined, in 
         Non - STRICT Mode this will be window object)
         example -
             const user = {

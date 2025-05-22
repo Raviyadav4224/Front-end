@@ -99,7 +99,7 @@
 
     * Relative - 
 
-        This property allows for adding top left bottom etc porperty to the given element
+        This property allows for adding top left bottom etc property to the given element
         The element does not comes out of normal flow, it remains at its original position
         
     * Absolute -
@@ -156,13 +156,16 @@
 9. DocType of HTML -
 
     It stands for Document type declaration
+
     It tells the browser about the type and version of the HTML
+
     DocType declaration tells the browser to render the page in STANDARD MODE ensuring latest web standards
     are follwed, If DocType declaration is missing browser renders it in QUIRKS MODE which may cause 
     inconsistencty while rendering
 
     *Current HTML version is HTML5
     *document.doctype gives some information about doctype
+
     *example - If doctype is missing CSS margin padding border may not work as intended
 
 10. Anchor Tag -
@@ -339,7 +342,7 @@
    padding
 
    box-sizing ->  default content-box -> means height and width applies only to content area. 
-                  border box -> means box height & width contains border and padding not margin
+                  border box -> means box height & width contains border and padding but not margin
 
 19. z-index - 
 
