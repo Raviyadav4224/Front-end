@@ -1518,3 +1518,30 @@ Javascript is a dynamically typed single threaded launguage
 
         const laptop = new Electronic("Laptop", 1500, "Dell");
         laptop.display(); // Dell Laptop costs $1500
+
+63. How the Browser works -
+
+    1. HTML parsing - 
+    
+        Browser reads the HTML and creates Document Object Model ( DOM )
+
+    2. CSS parsing - 
+    
+        Browser reads the internal/external styles and creates CSS Object Model ( CSSOM )
+
+    3. Constructing the Render Tree - 
+
+        The DOM and CSSOM are combined to build the render tree, which represents what will be 
+        painted on the screen
+
+    4. Layout (Reflow) -
+
+        The browser calculates size and position of each element
+
+    5. Paint - 
+
+        It paints the pixels to the screen
+
+    6. Compositing - 
+
+        Final step to combine printed layers efficiently
