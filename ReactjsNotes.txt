@@ -311,17 +311,54 @@
     Unmounting --->
         componentWillUnmount
 
-21. Virtual Dom, Reconcillation, Diffing Algorithm - 
+    Error Boundary -
 
-    *Virtual DOM is a tree like srtructure of actual DOM elements and react compares the changes in DOM element using
-    diffing algorithm and then makes changes in the actual dom
+        class ErrorBoundary extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { hasError: false };
+            }
 
-    *This whole process of comparison of DOM element using diffing algorithm is called Reconcillation in react
+        static getDerivedStateFromError(error) {
+                // Update state so the next render will show the fallback UI.
+                return { hasError: true };
+            }
 
-    *Element created using React.createElement is an Virtual DOM Element and element created using document.createElement
-    is an normal DOM element
+        componentDidCatch(error, info) {
+                // Example "componentStack":
+                //   in ComponentThatThrows (created by App)
+                //   in ErrorBoundary (created by App)
+                //   in div (created by App)
+                //   in App
+                logComponentStackToMyService(info.componentStack);
+            }
 
-    *React uses virtual DOM to track changes in element
+        render() {
+                if (this.state.hasError) {
+                // You can render any custom fallback UI
+                return <h1>Something went wrong.</h1>;
+                }
+
+                return this.props.children;
+            }
+            }
+
+21. Virtual Dom, Reconcillation, Diffing Algorithm & React Fiber - 
+
+    * Virtual DOM is a tree like srtructure of actual DOM elements and react compares the changes in DOM element using
+      diffing algorithm and then makes changes in the actual dom
+
+    * This whole process of comparison of DOM element using diffing algorithm is called Reconcillation in react
+
+    * React Fiber is the reconciliation engine introduced in React 16. It’s a complete rewrite of React’s 
+      core algorithm to overcome limitations of the old synchronous rendering. Fiber allows React to break 
+      rendering into smaller units of work, prioritize tasks, and pause and resume rendering. This enables 
+      features like Concurrent Mode, Suspense, and smoother user experiences even in complex applications.
+
+    * Element created using React.createElement is an Virtual DOM Element and element created using document.createElement
+      is an normal DOM element
+
+    * React uses virtual DOM to track changes in element
 
 22. Difference btw React and ReactDOM ->
 
