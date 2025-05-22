@@ -329,6 +329,32 @@ Object.defineProperty(obj, "actualLength", {
   },
 });
 
+// Polyfill for Array.reduce method
+
+Array.prototype.myReduce = function (callback, initialValue) {
+  
+  if (this.length === 0 && initialValue === undefined) {
+    throw new TypeError("Reduce of empty array with no initial value");
+  }
+  if (typeof callback !== "function") {
+    throw new TypeError(callback + " is not a function");
+  }
+
+  let acc;
+  let startIndex;
+  if (initialValue !== undefined) {
+    acc = initialValue;
+    startIndex = 0;
+  } else {
+    acc = this[0];
+    startIndex = 1;
+  }
+  for (let index = startIndex; index < this.length; index++) {
+    acc = callback(acc, this[index], index, this);
+  }
+  return acc;
+};
+
 // CLOSURES AND HOISTING QUESTIONS
 // ------------------------------------------------------------------------------------------
 
