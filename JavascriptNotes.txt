@@ -652,6 +652,26 @@ Javascript is a dynamically typed single threaded launguage
         even those created before the modification.
         Replacing the entire prototype (using Object.prototype = { logMe:function(){console.log(this)} }) 
         breaks the connection for existing instances, as they still refer to the original prototype object.
+        example -
+            function Person(name) {
+            this.name = name;
+                }
+
+                let p1 = new Person("Ravi");
+
+                Person.prototype.sayHello = function () {
+                    console.log(`Hello, I'm ${this.name}`);
+                };
+
+                Person.prototype = {
+                    sayHello: function () {
+                    console.log(`Hello, I'm ${this.name}`);
+                    },
+                };
+                let p2 = new Person("Minu");
+
+                p1.sayHello(); // Hello, I'm Alice ✅
+                p2.sayHello(); // Hello, I'm Bob ✅
 
     * Object Literals ({}) always refer to Object.prototype as their prototype.
 
