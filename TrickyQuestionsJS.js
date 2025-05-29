@@ -332,7 +332,6 @@ Object.defineProperty(obj, "actualLength", {
 // Polyfill for Array.reduce method
 
 Array.prototype.myReduce = function (callback, initialValue) {
-  
   if (this.length === 0 && initialValue === undefined) {
     throw new TypeError("Reduce of empty array with no initial value");
   }

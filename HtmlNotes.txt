@@ -54,11 +54,12 @@
 4. Comments -> 
     <!-- This is a comment -->
 
-5. Defer,Async attributes in script tag -
+5. Defer , Async attributes in script tag -
 
     <script defer src="index.js"></script>
         * Loads the script Asynchronously (with HTML parsing)
-        * Execution is deferred until HTML is fully parsed
+        * Execution is deferred until HTML is fully parsed but other resources (like images or CSS files) 
+          might still be loading.
         * Ensures scripts are executed in given order
 
     <script async src="index.js"></script>
@@ -72,8 +73,8 @@
         * Executes only after entire page and resources are loaded
 
     DOMContentLoaded -
-        * Executes as soon as the HTML is fully parsed and DOM is built
-          It doesn't waits for external resources.
+        * DOMContentLoaded fires, when the HTML is fully parsed and the DOM is fully built, 
+          but other resources (like images or CSS files) might still be loading.
 
         *  example 
                 <script src="async.js" async></script>
