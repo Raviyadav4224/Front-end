@@ -516,12 +516,17 @@ Javascript is a dynamically typed single threaded launguage
     Promise.any([]) - 
 
         It returns the value of first promise to be resolved
-        If none of the promise gets resolved, it returns the rejected value of last promise
+        If none of the promise resolves it gives AggregatError
 
-    Promise.allSettled -
+    Promise.allSettled([]) -
 
-        It returns the value of promises when all promises gets resolved
+        It returns the settled value of all promises i.e either resolved or rejected value of 
+        all promises
 
+    Promise.race([]) -  
+
+        It returns the value of first promise which either resolves or rejects
+    
     Promise.resolve(value) & Promise.reject(value) - 
     
         It directly resolves or rejects the promise with the given value
