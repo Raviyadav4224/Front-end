@@ -1485,7 +1485,6 @@ Javascript is a dynamically typed single threaded launguage
         }
         console.log(MathUtil.add(2,3)); // 5
 
-
     * Extends keyword is used for inheritance     
 
     * super() is used to call constructor of parent class
@@ -1570,3 +1569,71 @@ Javascript is a dynamically typed single threaded launguage
     6. Compositing - 
 
         Final step to combine printed layers efficiently
+    
+64. Intesection Observer API -
+
+    * The Intersection Observer API allows us to efficiently observe when a target element enters or 
+        exits a visible area, without relying on scroll events.
+
+    * const observer= new IntersectionObserver(callback,options)
+
+        callback=(entries)=>{
+            //here entries refers to all the observable objects
+        }
+        options={
+            root:null, //for root element
+            threshold:1 // means trigger when 100% of target element is visible in the viewport
+        }
+
+    * We can define a root, which is either the viewport (null) or a custom scrollable container.
+
+    * The threshold defines how much of the target must be visible before the callback fires — e.g., 0 (just 1 pixel), 1.0 (100%), or any value in between.
+
+    * This API is commonly used for lazy loading images, infinite scrolling, triggering animations, 
+        and improving performance over traditional scroll listeners
+    
+    * example - 
+            <div id="content">
+                <p>Item 1</p>
+                </div>
+            <div id="loader">Loading more...</div>
+
+                const observer=new IntersectionObserver((entries)=>{
+                console.log(entries)
+
+                if(entries[0].isIntersecting){
+                    console.log("Loader in ViewPort")
+                }
+                },
+                {
+                    root:null
+                })
+            observer.observe(document.getElementById("loader"))
+
+65. MutationObserver API -
+
+    * It is used to observer changes in a DOM tree such as
+        Adding or Removing elements
+        Modifying attributes
+        Changing text content of an element
+    
+    * Syntax -
+
+        const observer=new MutationObserver((mutationList)=>{
+            mutationList.forEach(item=>{
+                if(item.type==="childList" || item.type==="attributes"){
+                    // scroll to bottom
+                    item.target.scrollTop=item.target.scrollHeight;
+                }
+            })
+        })
+
+        observer.observer(document.getElementById('chat-box'),{
+            childList:true,attributes:true
+        })
+
+    * examples -
+
+        It is used for detecting changes in a chat app or notifications panel
+        You can automatically scroll to the bottom or highlight unread messages when a new message 
+        element is added.
