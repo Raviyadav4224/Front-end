@@ -1637,3 +1637,59 @@ Javascript is a dynamically typed single threaded launguage
         It is used for detecting changes in a chat app or notifications panel
         You can automatically scroll to the bottom or highlight unread messages when a new message 
         element is added.
+    
+66. Security best practices - 
+
+    1. CSP ( Content Security Policy ) -
+
+        * It prevents XSS by controlling the resources the browser can load
+
+        * Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com
+
+        * default-src 'self': Load everything from the same origin.
+
+        * script-src: Only allow scripts from your domain and Google's API.
+
+        * This blocks:
+            eval()
+            new Function()
+            setTimeout("code", 1000) ← when passing string instead of function
+
+        * Content-Security-Policy: script-src 'self' 'unsafe-eval';
+            This re-enables:
+            eval()
+            Function("...")
+            Any other dynamic code evaluation
+            
+    2. CSRF ( Cross Site Request Forgery ) - 
+
+        * It happens when a user unknowingly makes a request while authenticated
+          for example - on clicking an image a request is send to the server to transfer funds
+        
+        * Use token in headers for protected access
+
+    3. XSS ( Cross Site Scripting ) - 
+        
+        * Sanitize Input fields 
+
+    4. Use JWT's -
+
+        * JWT is used for stateless authentication. The server does not store session data — the token 
+          contains all the information
+        
+        * You log in → server sends back a JWT.
+
+        * Store JWT in HttpOnly Cookie (secure) or localStorage (less secure).
+
+        * Send it with each request (usually in Authorization header)
+
+        * Cannot be accessed via JS
+
+    5. Dependencies - 
+
+        Update the dependencies to the latest and stable versions
+        * use npm audit to get the list of vulnerabilities if any
+    
+    6. Environment variables -
+
+        * Never expose secrets in .env files (frontend is public!)
