@@ -316,6 +316,13 @@ Array.prototype.forEachAsync = async function (callbackFn) {
   }
 };
 
+// Issue with normal forEach , it Prints after 1 sec, but all at once, not sequential
+const delay = (ms) => new Promise(res => setTimeout(res, ms));
+[1, 2, 3].forEachAsync(async (num) => {
+  await delay(1000);
+  console.log(num); 
+});
+
 // Actual Length of an Object considering Symbols and enumerable false keys as well
 
 Object.defineProperty(obj, "actualLength", {
@@ -339,15 +346,8 @@ Array.prototype.myReduce = function (callback, initialValue) {
     throw new TypeError(callback + " is not a function");
   }
 
-  let acc;
-  let startIndex;
-  if (initialValue !== undefined) {
-    acc = initialValue;
-    startIndex = 0;
-  } else {
-    acc = this[0];
-    startIndex = 1;
-  }
+  let startIndex = !initialValue ? 1 : 0;
+  let acc = initialValue ? initialValue : this[0];
   for (let index = startIndex; index < this.length; index++) {
     acc = callback(acc, this[index], index, this);
   }

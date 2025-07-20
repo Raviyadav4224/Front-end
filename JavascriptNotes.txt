@@ -1163,9 +1163,12 @@ Javascript is a dynamically typed single threaded launguage
     * null and undefined can be stored using String wrapper class
         a=String(undefined)
         a.toString() - > "undefined"
-    *For Arrays - It return string with elements joined using ','
-    *For Functions - It return string format of function definition
-    *For Date - It returs date in human readable format
+
+    * For Arrays - It return string with elements joined using ','
+
+    * For Functions - It return string format of function definition
+
+    * For Date - It returs date in human readable format
 
 44. JSON.stringify() limitations -
 
@@ -1570,7 +1573,7 @@ Javascript is a dynamically typed single threaded launguage
 
         Final step to combine printed layers efficiently
     
-64. Intesection Observer API -
+64. Intersection Observer API -
 
     * The Intersection Observer API allows us to efficiently observe when a target element enters or 
         exits a visible area, without relying on scroll events.
