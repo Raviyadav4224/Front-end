@@ -1308,7 +1308,7 @@ Javascript is a dynamically typed single threaded launguage
     It is a primitive data type in Javascript, generally used as keys in objects to differentiate two
     object keys
 
-    *Symbols are not enumerable i.e we cannot run loops on it
+    * Symbols are not enumerable i.e we cannot run loops on it
 
     * Symbol("value") always creates a NEW symbol
       let sm1 = Symbol("abc")
@@ -1318,8 +1318,8 @@ Javascript is a dynamically typed single threaded launguage
     * Symbol.for("") creates symbol GLOBALLY , if it exists already then NEW symbol is not created 
       rather same is returned from the global pool
 
-      let sym1=Symbol.for('abc')
-      let sym2=Symbol.for('abc')
+      let sym1 = Symbol.for('abc')
+      let sym2 = Symbol.for('abc')
       sm1 === sm2 --> true
 
 51. isNaN vs Number.isNaN() -
@@ -1367,7 +1367,7 @@ Javascript is a dynamically typed single threaded launguage
         console.log(null === null); // true
         console.log({} == {}); // false
         console.log([] == {}); // false
-        console.log({} === {}); // true
+        console.log({} === {}); // false
         console.log([] === {}); // false
 
         const obj1 = { a: 1 };
