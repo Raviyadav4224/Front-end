@@ -535,28 +535,85 @@ Javascript is a dynamically typed single threaded launguage
 
 19. Async await - 
 
-    It is used to handle promises or asynchronous tasks in Javascript
-    when await keyword is encountered, Javascript waits there and checks if any other tasks is there to finish
-    or not
-    Inside of async function works Synchronously
-    Till the time ,execution of code is waiting at await keyword all other possible tasks which can be finished gets 
-    executed
-    *async function returns a promise by default
+    * await pauses the entire async function until the Promise resolves.
 
-    const myPromise1 = new Promise((resolve, reject) => {
-        if (true) {
-        setTimeout(() => resolve("Promise 3"), 3000);
-        } else {
-            reject("The myPromise has been rejected");
+    * Code after await is deferred to the microtask queue.
+
+    * What .then() does:
+        Registers a callback to run when the promise resolves.
+        The callback goes into the microtask queue.
+        Returns a new Promise, which resolves to whatever the callback returns.
+
+    * await Promise.resolve("A").then((res) => console.log(res)); is equivalent to
+      const res = await Promise.resolve("A");
+      console.log(res);
+
+    *  Revise this example -
+    
+        1.
+            Output - start,a,d,end,b,A,c,B (with .then)
+            Output - start,a,d,end,b,A,B,c (with await)
+
+            async function example() {
+                console.log("a");
+                await Promise.resolve();
+                console.log("b");
+                await Promise.resolve();
+                console.log("c");
             }
-            });
-    const myPromise2 = new Promise((resolve, reject) => {
-        if (true) {
-            resolve("Promise 4");
-        } else {
-            reject("The myPromise2 has been rejected");
-        }
-            });
+
+            async function run() {
+                await Promise.resolve("A").then((res) => console.log(res));
+                // const res = await Promise.resolve("A");
+                // console.log(res);
+                console.log("B");
+            }
+
+            console.log("start");
+            example();
+            console.log("d");
+            run();
+            console.log("end");
+        
+        2.
+            OUTPUT - start,1,middle,end,2,4,X,Y,3,Z
+            
+            async function alpha() {
+            console.log("1");
+            await Promise.resolve();
+            console.log("2");
+            setTimeout(() => console.log("3"), 0);
+            console.log("4");
+            }
+
+            async function beta() {
+                await Promise.resolve("X").then((val) => console.log(val));
+                console.log("Y");
+                setTimeout(() => console.log("Z"), 0);
+            }
+
+            console.log("start");
+            alpha();
+            console.log("middle");
+            beta();
+            console.log("end");
+        
+        3.
+            const myPromise1 = new Promise((resolve, reject) => {
+            if (true) {
+            setTimeout(() => resolve("Promise 3"), 3000);
+            } else {
+                reject("The myPromise has been rejected");
+                }
+                    });
+
+            const myPromise2 = new Promise((resolve, reject) => {
+                if (true) {
+                    resolve("Promise 4");
+                } else {
+                    reject("The myPromise2 has been rejected");
+                }
+                    });
 
     async function callPromise() {
         console.log("mypromise 1");
