@@ -615,39 +615,41 @@ Javascript is a dynamically typed single threaded launguage
                 }
                     });
 
-    async function callPromise() {
-        console.log("mypromise 1");
-        const p1 = await myPromise1;
-        console.log(p1)
-        console.log("mypromise 2");
-        const p2 = await myPromise2;
-        console.log(p2)
-        console.log("mypromise 3");
-            }
-    function logMe() {
-        console.log('Hey i"m logginggg......');
-        }
+            async function callPromise() {
+                console.log("mypromise 1");
+                const p1 = await myPromise1;
+                console.log(p1)
+                console.log("mypromise 2");
+                const p2 = await myPromise2;
+                console.log(p2)
+                console.log("mypromise 3");
+                    }
+            function logMe() {
+                console.log('Hey i"m logginggg......');
+                }
 
-    console.log('Start')
-    setTimeout(() => console.log("Waiting for 0 seconds", 0));
-    setTimeout(() => {
-        console.log("setTimeout function");
-        }, 5000);
-    logMe()
-    callPromise();
-    console.log('End')
+            console.log('Start')
+            setTimeout(() => console.log("Waiting for 0 seconds", 0));
+            setTimeout(() => {
+                console.log("setTimeout function");
+                }, 5000);
+            logMe()
+            callPromise();
+            console.log('End')
 
-    Output
-    // Start
-    // hey i"m logginggg......
-    // mypromise 1
-    // End
-    // Waiting for 0 seconds
-    // Promise 3
-    // mypromise 2
-    // Promsie 4
-    // mypromise 3
-    // setTimeout function
+            Output
+            // Start
+            // hey i"m logginggg......
+            // mypromise 1
+            // End
+            // Waiting for 0 seconds
+            // Promise 3
+            // mypromise 2
+            // Promsie 4
+            // mypromise 3
+            // setTimeout function
+
+    * async function returns a promise by default
 
 20. Fetch Api - 
 
