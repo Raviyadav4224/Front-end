@@ -345,8 +345,8 @@
 
 21. Virtual Dom, Reconcillation, Diffing Algorithm & React Fiber - 
 
-    * Virtual DOM is a tree like srtructure of actual DOM elements and react compares the changes in DOM element using
-      diffing algorithm and then makes changes in the actual dom
+    * Virtual DOM is a tree like srtructure of actual DOM elements and react compares the changes in DOM element 
+      using diffing algorithm and then makes changes in the actual dom
 
     * This whole process of comparison of DOM element using diffing algorithm is called Reconcillation in react
 
