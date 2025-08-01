@@ -714,28 +714,28 @@ Javascript is a dynamically typed single threaded launguage
 
     * Prototype modifications (e.g., adding methods or properties) affect all instances dynamically, 
         even those created before the modification.
-        Replacing the entire prototype (using Object.prototype = { logMe:function(){console.log(this)} }) 
-        breaks the connection for existing instances, as they still refer to the original prototype object.
-        example -
-            function Person(name) {
-            this.name = name;
-                }
+    * Replacing the entire prototype (using Object.prototype = { logMe:function(){console.log(this)} }) 
+      breaks the connection for existing instances, as they still refer to the original prototype object.
+      example -
+        function Person(name) {
+        this.name = name;
+            }
 
-                let p1 = new Person("Ravi");
+            let p1 = new Person("Ravi");
 
-                Person.prototype.sayHello = function () {
-                    console.log(`Hello, I'm ${this.name}`);
-                };
+            Person.prototype.sayHello = function () {
+                console.log(`Hello, I'm ${this.name}`);
+            };
 
-                Person.prototype = {
-                    sayHello: function () {
-                    console.log(`Hello, I'm ${this.name}`);
-                    },
-                };
-                let p2 = new Person("Minu");
+            Person.prototype = {
+                sayHello: function () {
+                console.log(`Hello, I'm ${this.name}`);
+                },
+            };
+            let p2 = new Person("Minu");
 
-                p1.sayHello(); // Hello, I'm Alice ✅
-                p2.sayHello(); // Hello, I'm Bob ✅
+            p1.sayHello(); // Hello, I'm Alice ✅
+            p2.sayHello(); // Hello, I'm Bob ✅
 
     * Object Literals ({}) always refer to Object.prototype as their prototype.
 
@@ -1509,7 +1509,8 @@ Javascript is a dynamically typed single threaded launguage
 
     4. Use CDN -
 
-        To serve static assets like images, CSS, JS use CDN links such as Cloudfare, AWS CDN
+        To serve static assets like images, CSS, JS 
+        use CDN links such as Cloudfare, AWS CDN
     
     5. Use Efficient Fonts -
 
