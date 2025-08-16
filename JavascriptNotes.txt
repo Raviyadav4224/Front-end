@@ -1756,3 +1756,88 @@ Javascript is a dynamically typed single threaded launguage
     6. Environment variables -
 
         * Never expose secrets in .env files (frontend is public!)
+
+67. Events associated with Anchor Tag -
+
+    When you click <a href="/page">:
+
+    * mousedown → triggered when mouse button pressed.
+
+    * focus → anchor gains focus.
+
+    * mouseup → when button released.
+
+    * click → fires after press + release.
+
+    * default action of anchor tag is triggered i.e navigation to new URL → Browser checks href, 
+      loads new page (navigation).
+
+    * In React, if you use <Link> from react-router-dom, it prevents default navigation and instead 
+      updates the URL + Virtual DOM routing → SPA experience.
+
+68. JS Docs -
+
+    * It is used to create documentation of Existing JS projects to help future developers
+
+        /**
+        * Description of function/class/variable
+        * @tag {type} name - description
+        */
+
+    * @param → Documents a function parameter
+
+        /**
+        * @param {string} name - User's name
+        * @param {number} age - User's age
+        */
+        function greet(name, age) {}
+
+    * @returns / @return → Documents return value
+
+        /**
+        * @returns {boolean} True if valid
+        */
+
+    * @type → Documents a variable/constant type
+
+        /** @type {string[]} */
+        const names = ["Alice", "Bob"];
+
+    * @typedef → Define custom object type
+
+        /**
+        * @typedef {Object} User
+        * @property {string} name
+        * @property {number} age
+        */
+
+    * @property (alias @prop) → Used inside @typedef or class to define object properties
+
+        /**
+        * @typedef {Object} Car
+        * @property {string} brand
+        * @property {number} year
+        */
+
+    * @example → Show usage example
+
+        /**
+        * @example
+        * add(2, 3); // 5
+        */
+
+    * @default → Specify default value
+
+        /**
+        * @param {string} [status="active"] - User status
+        */
+
+    * @deprecated → Marks old code
+
+        /** @deprecated Use newFunction instead */
+
+    * Async / Promise
+
+        /**
+        * @returns {Promise<string>} Resolves with message
+        */
