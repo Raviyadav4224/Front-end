@@ -697,8 +697,52 @@
         console.log(user.name) // Gives error - Uncaught TypeError: Cannot read properties of undefined
         solution - console.log(user?.name) 
 
+33. PropTypes -
+
+    * It is a package used in React for checking types of props of a React Component
+
+    * It does type checking on RUNTIME and NOT COMPILE TIME
+
+    * It gives warning when proptype mismatch occurs and doesn't throws any error
+
+    * It works only in DEVELOPMENT mode i.e process.env.NODE_ENV=development
+
+    * Examples -    
         
-React.createElement
-ReactDOM.createRoot
-ReactDOM.render  
-***some method,sort method ?
+        import PropTypes from 'prop-types'
+        
+        UserProfile.propTypes = {
+            status: PropTypes.oneOf(["active", "inactive", "pending"]).isRequired,
+            user: PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                age: PropTypes.number,
+            }).isRequired,
+            handleToggle: PropTypes.func.isRequired,
+            bagItems: PropTypes.arrayOf(PropTypes.string),
+            message: function (props, propName, componentName) {
+                console.log(props, propName, componentName);
+                if (!props[propName]) {
+                throw new Error("Missing props message");
+                }
+                if (!props[propName].startsWith("A")) {
+                throw new Error(
+                   Invalid prop '${propName}' supplied to '${componentName}'. It must start with 'A'.`
+                );
+                }
+            },
+            };
+    
+    * We can use Custom Validators for props by defining a custom function as above
+
+    * Possible values of Proptypes -
+
+        PropTypes.string        
+        PropTypes.number        
+        PropTypes.bool          
+        PropTypes.array         
+        PropTypes.object                                 
+        PropTypes.func          
+        PropTypes.node          
+        PropTypes.element       
+        PropTypes.oneOf([...])  
+        PropTypes.shape({...})  
