@@ -57,7 +57,7 @@ Javascript is a dynamically typed single threaded launguage
  
  const - it is similar to let but values once assigned cannot be overwritten
 
-    * const Arrays vlaues,Objects can be overwritten
+    * const Arrays, Objects can be overwritten
 
 6. typeof - 
     it is used to determine the type of variable
@@ -133,6 +133,22 @@ Javascript is a dynamically typed single threaded launguage
         20
         20
 
+    * Javascript executes in two phases -
+
+        Creation Phase -
+
+            Js scans the whole code
+            Allocates memory for variables and functions
+            Functions declarations get stored with full function definition
+            variables declared using var are set to undefined and let/const are in TDZ
+
+        Execution Phase -
+
+            JS starts executing the code line by line
+            Actual values are assigned to the variables
+            Functions are executed when called
+            let const var get values assigned
+            
 8. Temporal Dead Zone - 
 
     Both let and const are hoisted but differs with var 
@@ -575,6 +591,9 @@ Javascript is a dynamically typed single threaded launguage
             run();
             console.log("end");
         
+        * await Promise.resolve("A").then((res) => console.log(res)) resolves the promise and value is 
+          accessed using .then and await further creates a new microtask await Promise<undefined>
+
         2.
             OUTPUT - start,1,middle,end,2,4,X,Y,3,Z
             
@@ -714,6 +733,7 @@ Javascript is a dynamically typed single threaded launguage
 
     * Prototype modifications (e.g., adding methods or properties) affect all instances dynamically, 
         even those created before the modification.
+        
     * Replacing the entire prototype (using Object.prototype = { logMe:function(){console.log(this)} }) 
       breaks the connection for existing instances, as they still refer to the original prototype object.
       example -
@@ -989,7 +1009,7 @@ Javascript is a dynamically typed single threaded launguage
         ]);
 
     *Set are also objects in JavaScript that store only UNIQUE values unlike Map which stores key-values
-    let mySet=new Map()
+    let mySet=new Set()
     mySet.add(key,value)
     mySet.delete(key)
     mySet.keys()
@@ -1231,7 +1251,7 @@ Javascript is a dynamically typed single threaded launguage
 
 44. JSON.stringify() limitations -
 
-        * JSON.stringify() If keys are same but differs in order then stringify cannot be used to compare 
+    * JSON.stringify() If two objects have same keys but differs in order then stringify cannot be used to compare 
             two objects.
             
         * JSON.stringify() ignores properties whose VALUES are functions, undefined, or symbol
@@ -1331,7 +1351,7 @@ Javascript is a dynamically typed single threaded launguage
         Script with type="module" are executed in STRICT mode and variables and functions have module 
         level scoping
 
-        *With type="module" scripts are deferred, meaning the script is executed only after HTML parsing
+        * With type="module" scripts are deferred, meaning the script is executed only after HTML parsing
          is completed similar to defer attribute
 
         

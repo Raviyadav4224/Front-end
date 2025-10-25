@@ -225,6 +225,23 @@
     
     * order:2 (child property) - sets the order of child elements
 
+    * flex-grow (Grow Factor)
+
+        Defines how much a flex item will grow when extra space is available.
+        Default value: 0 (items don’t grow by default)
+        If one item has a higher flex-grow value, it will take more of the remaining space.
+
+    * flex-shrink (Shrink Factor)
+
+        Defines how much a flex item will shrink when there is not enough space.
+        Default value: 1 (items shrink by default)
+        Higher value = the item shrinks more compared to others.
+
+    * flex-basis (Base Size)      
+
+        Defines the initial width (or height in column direction) before growing or shrinking applies.
+        Default: auto
+
 13. Simulate onclick using CSS -
     Directly simulation is not possible but we can mimic of clicking using btn:active,
     btn:focus etc 
@@ -327,9 +344,9 @@
    passed inside them, its specifc weight is added
    example - is(.myClass) - (0,1,0)
 
-   *Inline CSS has the highest Specficity
+   * Inline CSS has the highest Specficity
 
-   *If Specficity clashes , lastest css is given more preference
+   * If Specficity clashes , latest css is given more preference
 
    * !important -  It reverses the specificity of the element
 
@@ -338,9 +355,9 @@
    It defines how elements are structured and positioned in a web page
    It consists of four main components ->
    content
+   padding
    border
    margin
-   padding
 
    box-sizing ->  default content-box -> means height and width applies only to content area. 
                   border box -> means box height & width contains border and padding but not margin
