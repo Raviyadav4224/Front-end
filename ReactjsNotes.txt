@@ -600,6 +600,14 @@
             will be updated to the mentioned version
         * While udpating using npm update, if new version is available it will update both package.json and package-lock.json
 
+    * Real example scenario:
+
+        Your package.json says: "lodash": "^4.17.0"
+        Dev A installs and gets 4.17.21
+        Dev B installs a month later and gets 4.18.0 (with breaking change)
+
+        Therefor package-lock.json is important and must be maintained in production
+        
 29. How to add compatible BROWSERSLIST'S in package.json -
 
      "browserslist": {
