@@ -686,12 +686,14 @@
 31. NPX vs NPM -
 
     NPX - Node Package Executor 
+
         It is a tool which comes with Node (5.2.0 and above) and allows you to execute Node packages
         using command line without the need of installing them globally.
         It downloads the packages temporarily and removes it after execution.
         example - npx babel src --out-dir outputFolderName
 
     NPM - Node Package Manager
+    
         It is tool for managing Nodejs packages.
         It is mainly used for installing packages locally and globally
         It helps in managing dependencies of a project
@@ -754,3 +756,148 @@
         PropTypes.element       
         PropTypes.oneOf([...])  
         PropTypes.shape({...})  
+
+34. ESLint and its configuration & Husky with pre commit hooks-
+
+    * ESLint -
+
+        * globalIgnores - 
+
+            Accepts files/folders which must be ignored
+            example ["build", "dist", "**/*.config.json"]
+
+        * defineConfig -
+
+            The root of configuration which defines all the configurations which will be followed
+
+        * files -
+
+            Represents the files for which eslint will work
+            example ["**/*.{js,jsx}"] - works on all jsx and js files
+
+        * extends -
+
+            Defines pre-defined rule sets
+
+            example 
+                js.configs.recommended, - For JavaScript recommended rules
+                react.configs.flat["jsx-runtime"], // For modern React JSX transform
+                reactHooks.configs["recommended-latest"], For React hooks related rules
+                reactRefresh.configs.vite, // For vite
+
+        * plugins -
+
+            Uses external packages which contains rules like 
+
+            import importPlugin from "eslint-plugin-import";
+            import prettierPlugin from "eslint-plugin-prettier";
+
+            then inside plugins:{
+                import:importPlugin,
+                prettier:prettierPlugin
+            }
+
+            which is used inside rules like 
+            rules{
+                ...prettierPlugin.configs.recommended.rules,
+            }
+
+        * languageOptions -
+            
+            Specifies the environment and language features ESLint should understand.
+
+            ecmaVersion: "latest" → Supports latest JS syntax (ES2023+).
+
+            globals: globals.browser → Enables browser globals like window, document.
+
+            sourceType: "module" → Allows import/export syntax.
+
+        * settings -
+
+            Provides shared configurations to plugins (e.g., React version detection or alias paths).
+
+            react: {
+                    version: "detect",
+                },
+                "import/resolver": {
+                    alias: {
+                    map: [
+                        ["@hooks", "./src/hooks"],
+                        ["@", "./src"],
+                    ],
+                    extensions: [".js", ".jsx"],
+                    },
+                },
+
+        * rules -
+
+            Defines custom project-specific linting rules. 
+            Rules which will be applied 
+
+            rules: {
+                ...prettierPlugin.configs.recommended.rules,
+                "no-unused-vars": "error",
+                "import/no-unresolved": "error",
+                "no-console": "error",
+                "react/react-in-jsx-scope": "off",
+                // ...jsxA11y.configs.recommended.rules,
+                "react/jsx-uses-react": "warn",
+                "react/jsx-uses-vars": "warn",
+                "import/newline-after-import": ["error", { count: 1 }],
+                "import/no-duplicates": "error",
+                "import/order": [
+                    "error",
+                    {
+                    groups: [
+                        ["builtin", "external"], // Node built-ins & npm packages
+                        ["internal"], // your custom alias paths (like @/components)
+                        ["parent", "sibling", "index"], // relative imports
+                        ["object"], // import {something} from obj?
+                        ["type"], // TypeScript types
+                    ],
+                    pathGroups: [
+                        {
+                        pattern: "@hooks/**",
+                        group: "internal",
+                        },
+                        {
+                        pattern: "**/*.css",
+                        group: "index",
+                        position: "after",
+                        },
+                    ],
+                    pathGroupsExcludedImportTypes: ["builtin"],
+                    "newlines-between": "always", // blank line between groups
+                    alphabetize: {
+                        order: "asc",
+                        caseInsensitive: true,
+                    },
+                    },
+                ],
+                },
+
+    * Husky -
+
+        * install as devDependency - npm i husky --save-dev
+
+        * Add prepare in scripts 
+
+            prepare:"husky"
+        
+        * For running linting on staged files 
+
+            * Add lint-staged as devDependency - npm i lint-staged --save-dev
+
+            * Add in package json
+                
+                "lint-staged": {
+                    "*.{js,jsx,ts,tsx}": [
+                    "eslint --fix",
+                    "prettier --write"
+                    ]
+                }
+            
+            * Inside .husky/pre-commit file add - npx lint-staged
+        
+        * .husky folder should be commited in git
+
