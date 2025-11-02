@@ -901,3 +901,50 @@
         
         * .husky folder should be commited in git
 
+35. Mock Serice Worker (msw) -
+
+    * It intercepts network requests at network layer and returns mock responses
+
+    * It simulates real world api without actual backend
+
+    * Instal - npm i msw --save-dev
+
+    * Initialize msw - npx msw init public/ --save - creates mockServiceWorker.js file in PUBLIC folder
+
+    * Create handlers array using http, HttpResponse from msw 
+
+    * Provide these handlers to setupWorker or setupServer from msw/browser , msq/node 
+
+    * Start the worker/server in main.js file for dev environment
+
+    * For Browser -
+
+        import { setupWorker } from "msw/browser";
+        import { handlers } from "./handlers";
+        export const worker = setupWorker(...handlers);
+
+        if (process.env.NODE_ENV === "development") {
+            const { worker } = await import("./mocks/browser");
+            await worker.start({ onUnhandledRequest: "bypass" });
+        }
+    
+    * For Node (jest) -
+
+        import { setupServer } from "msw/node";
+        import { handlers } from "./handlers";
+        export const server = setupServer(...handlers);
+
+        * In src/setupTests.js
+
+            import { server } from "./mocks/server";
+
+            beforeAll(() => server.listen());
+            afterEach(() => server.resetHandlers());
+            afterAll(() => server.close());
+
+        * In jest.config.json or package.json 
+        
+            "jest": {
+                "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"]
+            }
+
