@@ -948,3 +948,125 @@
                 "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"]
             }
 
+36. Redux Toolkit Query (RTK Query) -
+
+    * RTKQ is a data fetching and caching layer built on the top of ReduxToolkit
+      It removes a lot of boiler plate code written when managing api's
+
+    * Before RTKQ -
+        
+        Write a thunk for every endpoint
+        Manage loading, error, success manually
+        Handle refetching logic manually
+        Maintain duplicated fetch logic everywhere
+    
+    * After RTKQ -
+
+        Define endpoints in one createApi slice
+        Auto-generate hooks (useGetUsersQuery, useAddUserMutation, etc.)
+        Get caching, invalidation, deduplication, and refetching for free
+
+    * builder.query vs builder.mutation -
+        
+        query = read (cached automatically)
+        mutation = write (you control cache invalidation)
+
+    * createApi - 
+
+        Central api definition
+    
+    * fetchBaseQuery -
+
+        lightweight wrapper for fetch
+    
+    * Auto generated hooks -
+    
+        * useGetUsersQuery() -	
+            
+            Auto fetches data
+            const { data, error, isLoading, isFetching, isSuccess, refetch } = useGetUsersQuery();
+
+        * useAddUserMutation() -
+
+            Runs a write request
+            const [addUser, { data, error, isLoading, isSuccess, isError }] = useAddUserMutation();
+
+            const handleAdd = async () => {
+            await addUser({ name: 'Ravi', age: 25 });
+            };
+
+        * useLazyGetUserQuery() -
+
+        	Fetches data manually on trigger
+            const [trigger, { data, error, isFetching, isSuccess }] = useLazyGetUserQuery();
+
+            const handleFetchUser = () => {
+            trigger(10); // Pass userId dynamically
+            };
+    
+    * Caching	
+        
+        Each unique query argument creates a unique cache entry.
+        useGetUserQuery(1); // separate cache
+        useGetUserQuery(2); // separate cache
+
+    * Cache Lifetime	-
+    
+        keepUnusedDataFor controls how long data stays cached after it’s no longer used.
+        getUsers: builder.query({
+            query: () => "users",
+            keepUnusedDataFor: 60, // default = 60s
+        })
+
+    * Refetch Control	-
+        
+        | Trigger               | Controlled By              | Description                         |
+        | --------------------- | -------------------------- | ----------------------------------- |
+        | On focus (tab switch) | `refetchOnFocus: true`     | Refetches when window regains focus |
+        | On reconnect          | `refetchOnReconnect: true` | Refetches when network reconnects   |
+        | On arg change         | automatic                  | Fetches fresh data when args differ |
+
+        useGetUsersQuery(undefined, {
+            refetchOnFocus: true,
+            refetchOnReconnect: true,
+        });
+
+    * Arguments	-
+        
+        Pass dynamic values to queries (useGetUserQuery(id))
+
+    * Tags	-
+        
+        Tags help link queries and mutations, so cache updates automatically after data changes.
+        
+        getUsers: builder.query({
+            query: () => "users",
+            providesTags: ["Users"],
+        }),
+
+        addUser: builder.mutation({
+            query: (user) => ({
+                url: "users",
+                method: "POST",
+                body: user,
+            }),
+            invalidatesTags: ["Users"],
+        }),
+
+        When you call addUser(), RTK Query invalidates the "Users" tag
+        and automatically refetches the getUsers query.
+
+    * Manual Control	-
+        
+        Manually refetch a query:
+        const { refetch } = useGetUsersQuery();
+        refetch();
+
+        Reset the whole cache:
+        dispatch(apiSlice.util.resetApiState());
+
+    * To enable refetchOnFocus/refetchOnReconnect add this after store creation ,
+
+        // 👇 enables refetchOnFocus / refetchOnReconnect
+        setupListeners(store.dispatch);
+        
