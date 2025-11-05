@@ -1024,7 +1024,7 @@
         | --------------------- | -------------------------- | ----------------------------------- |
         | On focus (tab switch) | `refetchOnFocus: true`     | Refetches when window regains focus |
         | On reconnect          | `refetchOnReconnect: true` | Refetches when network reconnects   |
-        | On arg change         | automatic                  | Fetches fresh data when args differ |
+        | On arg change         |  automatic                 | Fetches fresh data when args differ |
 
         useGetUsersQuery(undefined, {
             refetchOnFocus: true,
@@ -1067,6 +1067,107 @@
 
     * To enable refetchOnFocus/refetchOnReconnect add this after store creation ,
 
-        // 👇 enables refetchOnFocus / refetchOnReconnect
+        // enables refetchOnFocus / refetchOnReconnect
         setupListeners(store.dispatch);
-        
+
+37. Mutex -
+
+    * Mutex is used for mutual exclusion
+
+    * It ensures only one operation runs at a time and rest calls wait for it to finish
+
+    * It is similar to synchronized keyword in Java
+
+    * Use case in prod -
+
+        Suppose 10 api's are called to fetch user data, all return 401 unauthorized, i.e refresh token 
+        is expired
+        Then each of these api's calls the refresh token api to get new token
+        Whichever finises last overrides or invalidates the last token
+
+        Solution - Mutex, makes sure that one request performs the refresh, rest uses the new token
+
+        example -
+            
+            import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+            import { Mutex } from "async-mutex";
+
+            const mutex = new Mutex();
+
+            const baseQuery = fetchBaseQuery({
+            baseUrl: import.meta.env.VITE_API_BASE_URL,
+            prepareHeaders: (headers, { getState }) => {
+                const token = getState()?.auth?.token;
+                if (token) headers.set("Authorization", `Bearer ${token}`);
+                return headers;
+            },
+            });
+
+            export const baseQueryWithReauth = async (args, api, extraOptions) => {
+            // Wait if another request is already refreshing token
+            await mutex.waitForUnlock();
+
+            let result = await baseQuery(args, api, extraOptions);
+
+            if (result?.error?.status === 401) {
+                // If no refresh is in progress, acquire mutex
+                if (!mutex.isLocked()) {
+                const release = await mutex.acquire();
+                try {
+                    const refreshResult = await baseQuery(
+                    {
+                        url: "/auth/refresh",
+                        method: "POST",
+                        body: { refreshToken: api.getState().auth.refreshToken },
+                    },
+                    api,
+                    extraOptions
+                    );
+
+                    if (refreshResult.data) {
+                    // Update token in store
+                    api.dispatch({
+                        type: "auth/setToken",
+                        payload: refreshResult.data.accessToken,
+                    });
+
+                    // Retry original query
+                    result = await baseQuery(args, api, extraOptions);
+                    } else {
+                    api.dispatch({ type: "auth/logout" });
+                    }
+                } finally {
+                    release(); // Always release mutex
+                }
+                } else {
+                // Wait until refresh completes, then retry
+                await mutex.waitForUnlock();
+                result = await baseQuery(args, api, extraOptions);
+                }
+            }
+
+            return result;
+            };
+
+38. ZOD -
+
+    * It is used for Frontend input validation
+
+    * We can define schemas and check if user input follows the schema or not
+
+    * We can throw error is there is mismatch in schema either before hitting API or after getting 
+      different response from expected
+
+    * Examples  -
+
+        export const UserSchema = z.object({
+            username: z.string().min(3, "Username must be at least 3 characters"),
+            password: z.string().min(6, "Password must be at least 6 characters")
+                .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+        });
+
+    * parse(data)	Throws error if invalid
+      safeParse(data)	Returns { success: boolean, data/error }
+      parseAsync(data)	Async parse (for async checks)
+      safeParseAsync(data)	Async version of safeParse
+
