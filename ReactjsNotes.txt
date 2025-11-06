@@ -1171,3 +1171,53 @@
       parseAsync(data)	Async parse (for async checks)
       safeParseAsync(data)	Async version of safeParse
 
+39. using Common package, as dependency in react project -
+    
+    * To create common package -    
+
+        * configure package.json file
+
+            Set "private": false
+            Add build and pack scripts
+            Declare peerDependencies (e.g., React, React DOM) to avoid duplicate installs
+
+            * example -
+                {
+                    "name": "@ravi/url_short_common",
+                    "version": "1.0.0",
+                    "private": false,
+                    "main": "dist/index.js",
+                    "files": ["dist"],
+                    "scripts": {
+                        "build": "vite build",
+                        "pack": "npm run build && npm pack"
+                    },
+                    "peerDependencies": {
+                        "react": "^19.0.0",
+                        "react-dom": "^19.0.0"
+                    }
+                    }
+
+        * Add peerDependencies, build commands and use npm pack
+
+        * Run npm run pack - This creates the .tgz file, which can be installed in any React project
+          as a dependency.
+
+    * To use common package as a dependecy -
+
+            we need .tgz file , which installs the given package
+            example -  
+            "@ravi/url_short_common": "file:./ravi-url_short_common-1.0.0.tgz"
+        
+40. PeerDependency in package.json -
+
+    * peer dependecy tells that dont install the same package twice
+
+    * I need this package to exist — but the project that installs me must provide it.
+      Don’t install your own copy.
+
+    * "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+        }
+
