@@ -901,7 +901,7 @@
         
         * .husky folder should be commited in git
 
-35. Mock Serice Worker (msw) -
+35. Mock Service Worker (msw) -
 
     * It intercepts network requests at network layer and returns mock responses
 
