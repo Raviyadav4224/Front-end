@@ -1220,4 +1220,45 @@
         "react": "^19.0.0",
         "react-dom": "^19.0.0"
         }
+        
+41. Testing in JavaScript & React using Jest and RTL -
+
+    Jest -
+
+        * The base library to test functions in js
+
+        * Mostly used functions -
+            
+            * test, describe, expect, .toBe, .toEqual, 
+                expect(a).toBe(b);               // strict equality (===)
+                expect(a).toEqual(b);            // deep equality (objects/arrays)
+                expect(a).not.toBe(b);           // negation
+                expect(a).toBeTruthy();          // truthy
+                expect(a).toBeFalsy();           // falsy
+                expect(a).toBeNull();            // null
+                expect(a).toBeDefined();         // not undefined
+
+            * For Promiese - .resolves, .rejects, async/await 
+
+                test('fetches data', async () => {
+                    const data = await fetchData();
+                    expect(data).toBeDefined();
+                });
+
+            * For Mock Functions - jest.fn(func), vi.fn(func)
+
+            * Lifecycle methods - beforeEach, afterEach
+
+    RTL -
+
+        | Function             | Purpose                                 | Example                                                  |
+        | -------------------- | --------------------------------------- | -------------------------------------------------------- |
+        | render()             | Renders component for test              | render(<App />)                                        |
+        | screen.getByText()   | Find element by visible text            | expect(screen.getByText('Login')).toBeInTheDocument(); |
+        | screen.getByRole()   | Find by role (button, textbox etc.)     | screen.getByRole('button', { name: /submit/i })        |
+        | fireEvent.click()    | Simulate events                         | fireEvent.click(button)                                |
+        | userEvent            | Simulates real user interaction (async) | await userEvent.type(input, 'hello')                   |
+        | waitFor()            | Wait for async UI updates               | await waitFor(() => expect(...))                       |
+        | findBy...            | Async version of getBy                  | await screen.findByText('Success!')                    |
+        | queryBy...           | Doesn’t throw if element missing        | expect(screen.queryByText('Error')).toBeNull();        |
 
