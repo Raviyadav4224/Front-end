@@ -173,11 +173,11 @@
 
     <a href="https://google.com" onclick="handleReload()">Google</a>
 
-    *href= refers to the url which anchor tag will point to
-    *target= _blank opens the link in new tab/window
-    *To stop reloading preventDefault action
-    *To scroll to particular section we can use href="#idToScroll", we cannot use class, it only works for ID
-    *To style anchor tag -
+    * href = refers to the url which anchor tag will point to
+    * target = _blank opens the link in new tab/window
+    * To stop reloading preventDefault action
+    * To scroll to particular section we can use href="#idToScroll", we cannot use class, it only works for ID
+    * To style anchor tag -
         to change underline color - text-decoration-color:red;
         to change underline - text-decoration-line:overline;
         to remove the decoration - text-decoration :none;
@@ -338,7 +338,7 @@
 
    specific weight - ( ID , Class , TagName )
 
-   *Id > Class > TagName
+   * Id > Class > TagName
 
    * is() has() not() pseudo classes doesn't add value while calculating specific weight but the values
    passed inside them, its specifc weight is added
@@ -408,7 +408,7 @@
                 handleSubmit();
             }
 
-22. display:none vs visibility:none -
+22. display : none vs visibility : none -
 
     display :none -
 

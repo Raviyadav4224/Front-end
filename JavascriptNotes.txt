@@ -532,7 +532,7 @@ Javascript is a dynamically typed single threaded launguage
     Promise.any([]) - 
 
         It returns the value of first promise to be resolved
-        If none of the promise resolves it gives AggregatError
+        If none of the promise resolves it gives AggregateError
 
     Promise.allSettled([]) -
 
@@ -732,7 +732,7 @@ Javascript is a dynamically typed single threaded launguage
     * This [[Prototype]] property links the object to another object, known as its prototype.
 
     * Prototype modifications (e.g., adding methods or properties) affect all instances dynamically, 
-        even those created before the modification.
+      even those created before the modification.
         
     * Replacing the entire prototype (using Object.prototype = { logMe:function(){console.log(this)} }) 
       breaks the connection for existing instances, as they still refer to the original prototype object.
@@ -754,8 +754,8 @@ Javascript is a dynamically typed single threaded launguage
             };
             let p2 = new Person("Minu");
 
-            p1.sayHello(); // Hello, I'm Alice ✅
-            p2.sayHello(); // Hello, I'm Bob ✅
+            p1.sayHello(); // Hello, I'm Ravi ✅
+            p2.sayHello(); // Hello, I'm Minu ✅
 
     * Object Literals ({}) always refer to Object.prototype as their prototype.
 
@@ -1165,32 +1165,32 @@ Javascript is a dynamically typed single threaded launguage
 
     Generator are special functions in JavaScript that pause execution, yield value and resume 
     execution later.
-    *generator functions can delegate to another generators using yield*
-    *generator functions are iterable by default and forof loop can be used
-    example -
-    function* generator() {
-        yield 1;
-        yield 2;
-        yield 3;
-        }
-        let gen = generator();
-        console.log(gen.next());
-        console.log(gen.next());
-        console.log(gen.next());
-        console.log(gen.next());
+    * generator functions can delegate to another generators using yield*
+    * generator functions are iterable by default and forof loop can be used
+        example -
+        function* generator() {
+            yield 1;
+            yield 2;
+            yield 3;
+            }
+            let gen = generator();
+            console.log(gen.next());
+            console.log(gen.next());
+            console.log(gen.next());
+            console.log(gen.next());
 
-        *Using generator functions for iterating over an object
-            function* iterateGenerator(object) {
-            for (const key in object) {
-                if (Object.prototype.hasOwnProperty.call(object, key)) {
-                yield [key, obj[key]];
+            *Using generator functions for iterating over an object
+                function* iterateGenerator(object) {
+                for (const key in object) {
+                    if (Object.prototype.hasOwnProperty.call(object, key)) {
+                    yield [key, obj[key]];
+                    }
                 }
-            }
-            }
+                }
 
-            for (const [key, value] of iterateGenerator(obj)) {
-            console.log(key, value);
-            }
+                for (const [key, value] of iterateGenerator(obj)) {
+                console.log(key, value);
+                }
 
 39. Date Object -
 
