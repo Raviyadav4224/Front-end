@@ -976,7 +976,7 @@ Javascript is a dynamically typed single threaded launguage
     Web API's - 
     DOM Manipulation, Promises, Fetch API, events , xmlhttpRequest etc all are handled by web api's which is 
     generally the browser in front end case
-    All these functions move to the web apis and then to the callback queue(FIFO)
+    All these functions move to the web apis and then THEIR CALLBACKS are moved to the callback queue(FIFO)
 
     Event Loop - 
     Event loop keeps a check on CallStack and Callback Queue
@@ -991,6 +991,17 @@ Javascript is a dynamically typed single threaded launguage
     Execution Context - It holds information about the environment in which Javascript is being executed
     During the execution , a context is created everytime
     Firstly variable creation phase takes place and then value assignment takes place
+
+    * Interview Ready answer -  
+
+        JavaScript runs on a single thread with one call stack. Every time JS runs code, it creates 
+        an execution context with a creation phase (memory allocation) and execution phase. 
+        
+        Async operations like timers and fetch are handled by Web APIs and their callbacks enter either 
+        the microtask queue (Promises) or macrotask queue (timeouts). 
+        
+        The event loop moves callbacks to the call stack when it's empty, always prioritizing microtasks.
+        That’s how JavaScript handles concurrency on a single thread.
 
 31. Map & Set - 
 
@@ -1658,7 +1669,7 @@ Javascript is a dynamically typed single threaded launguage
     * The Intersection Observer API allows us to efficiently observe when a target element enters or 
         exits a visible area, without relying on scroll events.
 
-    * const observer= new IntersectionObserver(callback,options)
+    * const observer = new IntersectionObserver(callback,options)
 
         callback=(entries)=>{
             //here entries refers to all the observable objects
@@ -1670,10 +1681,11 @@ Javascript is a dynamically typed single threaded launguage
 
     * We can define a root, which is either the viewport (null) or a custom scrollable container.
 
-    * The threshold defines how much of the target must be visible before the callback fires — e.g., 0 (just 1 pixel), 1.0 (100%), or any value in between.
+    * The threshold defines how much of the target must be visible before the callback fires — 
+      e.g., 0 (just 1 pixel), 1.0 (100%), or any value in between.
 
     * This API is commonly used for lazy loading images, infinite scrolling, triggering animations, 
-        and improving performance over traditional scroll listeners
+      and improving performance over traditional scroll listeners
     
     * example - 
             <div id="content">

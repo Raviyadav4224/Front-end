@@ -547,6 +547,30 @@
                 );
                 });
 
+    useTransition -
+
+        syntax - [ isPending , startTransition ]=useTransition()
+
+        * Use case - It marks the update as non urgent, It tells React that this update is slow
+          mark it as non urgent
+
+        * Example 
+            
+            function handleChange(e) {
+                const q = e.target.value;
+                setQuery(q);
+
+                startTransition(() => {
+                // expensive filtering
+                const filtered = bigList.filter((item) =>
+                    item.toLowerCase().includes(q.toLowerCase())
+                );
+                setResults(filtered);
+                });
+            }      
+
+            Here UI doesn't lags and user can input another value
+
 26. Custom hooks -
 
 27. Package json (install a package, ~ vs ^, devDependencies, exact package version) -
