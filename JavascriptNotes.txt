@@ -1006,7 +1006,9 @@ Javascript is a dynamically typed single threaded launguage
 31. Map & Set - 
 
     Map are objects in JavaScript which stores key-values pairs
-    *Keys can be of any type unless Objects where keys are of type string
+
+    * Keys can be of any type unless Objects where keys are of type string
+
     let myMap=new Map()
     myMap.set(key,value)
     myMap.get(key)
@@ -1019,7 +1021,8 @@ Javascript is a dynamically typed single threaded launguage
         ['onion',    50]
         ]);
 
-    *Set are also objects in JavaScript that store only UNIQUE values unlike Map which stores key-values
+    * Set are also objects in JavaScript that store only UNIQUE values unlike Map which stores key-values
+    
     let mySet=new Set()
     mySet.add(key,value)
     mySet.delete(key)
